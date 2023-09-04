@@ -1,13 +1,16 @@
-function Router() {
-    return (
-      <div>
-      <Router>
-        <Routes>
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import home from './Components/main/home';
 
-        </Routes>
-      </Router>
-      </div>
-    );
-  }
-  
-  export default Router;
+
+const Router = () => {
+  return (
+    <div>
+      <Routes>
+        <Route path='/' Component={home} />
+      </Routes>
+    </div>
+  );
+};
+
+export default Router;
