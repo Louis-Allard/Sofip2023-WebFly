@@ -4,11 +4,8 @@ const userController = require("../controllers/usersController");
 const jwt = require("jsonwebtoken");
 
 router.get("/all", userController.findAll);
-router.get("/user/:id", userController.findById);
+router.get("/user/:id", userController.findOne);
 router.post("/user/", userController.create);
-router.put("/user/:id", userController.update);
-router.put("/user/info/:id", userController.updateInfo);
-router.put("/user/pass/:id", userController.updatePass);
 router.delete("/user/:id", userController.delete);
 router.get("/logout", userController.logout);
 router.post("/login", userController.login);

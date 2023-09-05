@@ -1,12 +1,15 @@
 const initialState = {
-  isAuth: false,
+  id: 0,
+  username: "",
+  roles: false,
+  avatar: 0,
 };
 
 const authReducer = (state = initialState, action: any) => {
   if (action.type === "AUTH") {
     return {
       ...state,
-      isAuth: action.payload,
+      ...action.payload,
     };
   }
 
