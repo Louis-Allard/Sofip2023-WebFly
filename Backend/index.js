@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
 const bcrypt = require('bcrypt');
-
+const bodyParser = require("body-parser");
 const saltRounds = 10;
 
 dotenv.config();
@@ -15,6 +15,7 @@ app.use(cors({
 	methods: ["GET", "POST"],
 	credentials: true
 }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(PORT, () => {
     console.log(`Le port de mon backend est le : ${PORT}`);
@@ -35,20 +36,19 @@ connection.connect((err) => {
         console.log('Connecté à la base de données MySQL !');
     }
 });
+// app.get('/users', (req, res) => {
+//     // Utilisation d'une requête préparée pour sécuriser la requête
+//     const sql = 'SELECT * FROM utilisateur';
 
-app.get('/users', (req, res) => {
-    // Utilisation d'une requête préparée pour sécuriser la requête
-    const sql = 'SELECT * FROM utilisateur';
-
-    connection.query(sql, (err, results) => {
-        if (err) {
-            console.error('Erreur lors de la requête :', err);
-            return res.status(500).send('Erreur lors de la requête à la base de données.');
-        }
-        // Traitez les résultats ici et renvoyez-les au client
-        res.json(results);
-    });
-});
+//     connection.query(sql, (err, results) => {
+//         if (err) {
+//             console.error('Erreur lors de la requête :', err);
+//             return res.status(500).send('Erreur lors de la requête à la base de données.');
+//         }
+//         // Traitez les résultats ici et renvoyez-les au client
+//         res.json(results);
+//     });
+// });
 
 
 // CREER UN COMPTE POUR ADMIN

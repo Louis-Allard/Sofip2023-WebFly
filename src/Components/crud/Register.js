@@ -14,7 +14,7 @@ function Register() {
         axios.post('http://localhost:3001/register', 
         {mail: mailReg, nom: nomReg, prenom: prenomReg, entreprise: entrepriseReg, motdepasse: motdepasseReg})
         .then(res => console.log("c'est good"))
-        .then(err => console.log(err))
+        .catch(err => console.log(err))
     }
     return (
         <section>
