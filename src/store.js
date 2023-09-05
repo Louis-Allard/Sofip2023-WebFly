@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Store
 const initStore = {
-    connected: false,
+    connected: true,
     idUser: '',
     entreprise: ''
 };
