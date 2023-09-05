@@ -70,11 +70,11 @@ const FormLogin = () => {
             <h1 className='text-center'>Connexion</h1>
             <form className='border mt-5 p-3' onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Adresse email</label>
+                    <label htmlFor="exampleInputEmail1" className="form-label">Adresse email:</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={mail} onChange={changeMail} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Mot de passe</label>
+                    <label htmlFor="exampleInputPassword1" className="form-label">Mot de passe:</label>
                     <input type="password" className="form-control" id="exampleInputPassword1" value={password} onChange={changePassword} />
                 </div>
                 {msg && (
