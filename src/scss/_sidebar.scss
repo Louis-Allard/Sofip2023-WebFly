@@ -1,0 +1,85 @@
+.sidebarleft {
+    font-family: 'Poppins';
+    font-size: 20px;
+    width: 300px;
+    flex-shrink: 0;
+    background-color: #171b21;
+    display: grid;
+    position: fixed;
+    color: #F5F5F5;
+
+    .sideleft {
+        min-height: calc(100vh - 80px);
+    }
+
+    .sideleft,
+    .navLink,
+    .navLinkA {
+        display: flex;
+        font-weight: 600;
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .navLink,
+    .navLinkA {
+        cursor: pointer;
+    }
+
+    .navLinkA,
+    .navLinkOpened {
+        margin-top: 40px;
+    }
+
+    .overflow {
+        height: 50vh;
+        overflow-y: scroll;
+    }
+
+    .navLinkSubA {
+        margin-top: 16px;
+    }
+
+    .navLinkSub,
+    .navLinkSubA {
+        display: flex;
+        font-weight: 400;
+        flex-direction: column;
+        text-align: left;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .navLinkOpened {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+        color: #F5F5F5;
+    }
+}
+
+.sidedown {
+    height: 80px;
+    width: 100%;
+
+    .navLinkLogout {
+        font-weight: 600;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 73.5px;
+        padding-right: 73.5px;
+        cursor: pointer;
+    }
+}
+
+.navLink:hover,
+.navLinkOpened,
+.navLinkLogout:hover {
+    font-weight: 600;
+    background-color: #7298d9;
+    border-radius: 5px;
+}

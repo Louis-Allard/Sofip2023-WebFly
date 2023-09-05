@@ -1,0 +1,11 @@
+//fichier central de style en SCSS, c’est lui qui importe tous les autres fichiers pour permettre un seul import dans votre projet.
+
+// Global
+@import "./variables";
+@import "./mixins";
+
+// @font-face {
+//     font-family: 'Montserrat', 'Poppins';
+//     src: url('/fonts/Montserrat-Bold.ttf') format('TrueType');
+//     src: url('/fonts/Poppins-Regular.ttf') format('TrueType');
+// }

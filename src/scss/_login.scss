@@ -1,0 +1,67 @@
+.login {
+  padding-top: calc((100vh - 480px)/2);
+}
+
+.login_form {
+  .TitreLogin {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    color: #4E81C2;
+  }
+
+  width: 30vw;
+  height: 480px;
+  background-color: #171B21;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.champForm,
+.champCox {
+  font-family: 'Poppins';
+  font-weight: 400;
+  color: white;
+
+  p {
+    color: red;
+  }
+}
+
+.champCox {
+  background-color: #202632;
+  border-color: #4E81C2;
+  height: 40px;
+  width: 60%;
+  border-radius: 15px;
+  color: white;
+}
+
+.placeBtn {
+  align-items: center;
+  justify-content: space-between;
+
+  .forgotten {
+    border: none;
+    background-color: #00000000;
+  }
+
+  .confirm {
+    border-radius: 10px;
+    border-color: #4E81C2;
+    background-color: #48254A;
+  }
+
+  button {
+    cursor: pointer;
+    display: block;
+    margin-bottom: 20%;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+  }
+}

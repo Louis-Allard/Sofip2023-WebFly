@@ -1,0 +1,154 @@
+.signup {
+  padding-top: calc((100vh - 600px)/2);
+
+  h1 {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    text-align: center;
+    color: #4E81C2;
+  }
+}
+
+.signup_form {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  background-color: #171B21;
+  width: 75vw;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.trivial {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 80%;
+  margin-left: 2.5%;
+}
+
+.element_company {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  width: 90%;
+}
+
+.element_siret {
+  grid-column: 3 / 5;
+  grid-row: 1;
+  width: 90%;
+}
+
+.element_address {
+  grid-column: 1;
+  grid-row: 2;
+  width: 90%;
+}
+
+.element_street {
+  grid-column: 2 / 5;
+  grid-row: 2;
+  width: 93.25%;
+}
+
+.element_code {
+  grid-column: 1 / 3;
+  grid-row: 3;
+  width: 90%;
+}
+
+.element_city {
+  grid-column: 3 / 5;
+  grid-row: 3;
+  width: 90%;
+}
+
+.champForm {
+  font-family: 'Poppins';
+  display: block;
+  color: white;
+  margin-top: 24px;
+}
+
+.txtmailpass {
+  font-family: 'Poppins';
+  background-color: #202632;
+  border-color: #4E81C2;
+  height: 40px;
+  width: 100%;
+  border-radius: 15px;
+  color: white;
+  margin-top: 8px;
+}
+
+.confirm {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  width: 126px;
+  height: 38px;
+  text-align: center;
+  border-radius: 15px;
+  gap: 10px;
+  background: linear-gradient(to right, #4E81C2 75%, #FFFFFF);
+  color: white;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+  margin-bottom: 2%;
+}
+
+.Accueil {
+  width: 100%;
+  padding: 10px;
+  border-color: #4E81C2;
+  gap: 10px;
+  background-color: #171B21;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-bottom: 3%;
+}
+
+.alternative-login,
+.privacy-policy {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.alternative-login a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.privacy-policy a {
+  color: #a89d9d;
+  text-decoration: none;
+}
+
+.bouton_nul {
+
+  display: inline-flex;
+  flex-direction: row;
+
+}
+
+.placeBtnSU {
+  display: flex;
+  margin-top: 2%;
+  width: 90%;
+  justify-content: center;
+}
+
+//   width: 110px;
+//   height: 30px;
+//   border-color: #555;
+//   border-radius: 100px;
+//   background-color: #555;
+//   color: #fff;
+//   font-size: smaller;
+//   background-color: blue;
