@@ -40,20 +40,18 @@ app.post('/register', (req, res) => {
     const prenom = req.body.prenom;
     const entreprise = req.body.entreprise
     const motdepasse = req.body.mdp;
-    const role = req.body.ROLE_UTILISATEUR;
-    const etat = req.body.ETAT;
-    // HASH LE MOT DE PASSE
-    // bcrypt.hash(motdepasse, saltRounds, (err, hash) => {
-    // 	if(err){
-    // 		console.log("erreur dans le hash");
-    // 	}
-    // REQUETE
+
     connection.query(
-        "INSERT INTO utilisateur (EMAIL,NOM,PRENOM,ENTREPRISE,MDP,ROLE_UTILISATEUR,ETAT) VALUES (?,?,?,?,?,'user','hors ligne')",
-        [mail, nom, prenom, entreprise, motdepasse, role, etat],
-        (err, result) => {
-            if (err) return res.json({ Error: "Problème de requête" });
-            return res.redirect('/');
+        "INSERT INTO utilisateur (EMAIL,NOM,PRENOM,ENTREPRISE,MDP,ROLE_UTILISATEUR,ETAT) VALUES (?,?,?,?,?,?,?)",
+        [mail, nom, prenom, entreprise, motdepasse, 'user', 'Hors ligne'],
+        (error, result) => {
+            if (error) {
+                console.error('Erreur lors de l\'insertion', error);
+                res.status(500).json({ message: 'Erreur lors de la requête' });
+            } else {
+                console.log('Requête réussie');
+                res.status(200).json({ msg: 'insertion réussie.' });
+            }
         }
     );
 });

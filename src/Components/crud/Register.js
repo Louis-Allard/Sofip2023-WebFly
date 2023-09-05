@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import bcrypt from 'bcryptjs-react';
-// axios.post('http://localhost:3001/register', 
-// {mail: mailReg, nom: nomReg, prenom: prenomReg, entreprise: entrepriseReg, mdp: motdepasseReg})
-// .then(res => {return res.redirect('/')})
-// .catch(err => console.log(err))
 
 function Register() {
     // INITIALISATION DES VALEURS
@@ -24,14 +20,20 @@ function Register() {
 
     const register = (event) => {
         event.preventDefault();
-        console.log(hashedPassword);
+        //console.log(hashedPassword, mailReg, nomReg);
+        axios.post('http://localhost:3001/register',
+            { mail: mailReg, nom: nomReg, prenom: prenomReg, entreprise: entrepriseReg, mdp: hashedPassword })
+            .then(response => {
+                console.log('Insertion réussie');
+                //window.location.href = '/login';
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'insertion', error);
+            });
     }
 
     return (
         <section>
-            <div className='border border-dark'>
-                <h1>HEADER</h1>
-            </div>
             <div className='register'>
                 <h3 className='text-center'>Enregistrer un utilisateur</h3>
                 <form method="POST" className="formRegister text-center border border-dark p-3 rounded" onSubmit={register}>
