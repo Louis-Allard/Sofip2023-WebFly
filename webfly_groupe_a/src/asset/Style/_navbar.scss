@@ -1,0 +1,121 @@
+.Navbar {
+    width: 100%;
+    height: 55px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: $NavColar;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    .logo_Search {
+        display: flex;
+        align-items: center;
+        margin-left: 15px;
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .search {
+            input {
+                background-color: #f0f2f5;
+                border: none;
+                width: 240px;
+                height: 40px;
+                border-radius: 25px;
+            }
+            .loupe {
+                size: 1em;
+                position: absolute;
+                margin-top: 12px;
+                margin-left: 9px;
+            }
+            @include media-min("desktop-down") {
+                input {
+                    border: none;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                }
+                .loupe {
+                    size: 1em;
+                    position: absolute;
+                    margin-top: 12px;
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+    .Liste {
+        width: 100%;
+        ul {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            li {
+                width: 95%;
+                height: 45px;
+                margin-top: 7px;
+                .listeIcon {
+                    padding-top: 10px;
+                    color: #77797c;
+                    font-size: 1.7em;
+                }
+            }
+            li:hover {
+                background-color: #eaeaea;
+                border-radius: 10px;
+            }
+        }
+        .selected {
+            color: $ColorIcon;
+            .borders {
+                margin-top: 4px;
+                height: 3px;
+                background-color: $ColorIcon;
+            }
+        }
+        @include media-min("tablet-up") {
+            display: none;
+        }
+    }
+    .profil {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        .profils {
+            width: 43px;
+            height: 43px;
+            background-color: #e4e6eb;
+            border-radius: 50%;
+            margin-right: 8px;
+            img {
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+        .profilIcon {
+            position: absolute;
+            margin-right: 169px;
+            font-size: 1.7em;
+        }
+        .profilIcon1 {
+            position: absolute;
+            margin-right: 66px;
+            font-size: 1.7em;
+        }
+        .profilIcon2 {
+            position: absolute;
+            margin-right: 118px;
+            font-size: 1.7em;
+        }
+        .profils:hover {
+            background-color: #d8dae0;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+$BodyColor: #f0f2f5;
+$NavColar: #ffffff;
+$ColorIcon: #1b74e4;
+body {
+    width: 100%;
+    background-color: $BodyColor;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}

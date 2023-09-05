@@ -1,0 +1,50 @@
+.sidebar {
+    width: 23%;
+    margin-top: 20px;
+    margin-left: 10px;
+    button {
+        width: 60%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        border: none;
+        background-color: #f0f2f5;
+        font-size: 0.9em;
+        font-weight: bold;
+        color: #3d3e3f;
+        margin-bottom: 5px;
+        img {
+            width: 36px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+    }
+    button:hover {
+        background-color: #d6d6d669;
+        border-radius: 8px;
+    }
+    hr {
+        width: 60%;
+        float: left;
+        margin-left: 5px;
+        border: 1px solid #ced0d4;
+    }
+    .raccourcis {
+        height: 100px;
+        p {
+            float: left;
+            margin: 0;
+            margin-left: 5px;
+            color: #65676b;
+            font-weight: 500;
+        }
+        .jeux {
+            img {
+                border-radius: 5px;
+            }
+        }
+    }
+    @include media-min("desktop-up") {
+        display: none;
+    }
+}
