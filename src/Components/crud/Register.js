@@ -12,8 +12,8 @@ function Register() {
       const register = (event) => {
         event.preventDefault();
         axios.post('http://localhost:3001/register', 
-        {mail: mailReg, nom: nomReg, prenom: prenomReg, entreprise: entrepriseReg, motdepasse: motdepasseReg})
-        .then(res => console.log("c'est good"))
+        {mail: mailReg, nom: nomReg, prenom: prenomReg, entreprise: entrepriseReg, mdp: motdepasseReg})
+        .then(res => {return res.redirect('/')})
         .catch(err => console.log(err))
     }
     return (
@@ -42,7 +42,7 @@ function Register() {
                     </div>
                     <div className="mb-1">
                         <label htmlFor="Input" className="form-label">Mot de passe</label>
-                        <input onChange={(e) => {setMotdepasseReg(e.target.value);}} type="password" className="form-control" id="motdepasse" name="motdepasse" autoComplete="off"/>
+                        <input onChange={(e) => {setMotdepasseReg(e.target.value);}} type="password" className="form-control" id="mdp" name="mdp" autoComplete="off"/>
                     </div>
                     <button onClick={register} className="btn btn-dark mt-1" type="submit" value="Confirmer l'inscription">Confirmer l'inscription</button>
                 </form>
