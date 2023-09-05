@@ -1,0 +1,131 @@
+.sidebardroit {
+    width: 22%;
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    .vos {
+        width: 100%;
+        button {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            border: none;
+            background-color: #f0f2f5;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #3d3e3f;
+            margin-bottom: 5px;
+            img {
+                width: 36px;
+                border-radius: 50%;
+                margin-right: 15px;
+            }
+        }
+        button:hover {
+            background-color: #d6d6d669;
+            border-radius: 8px;
+        }
+        p {
+            text-align: start;
+            margin-left: 5px;
+            color: #65676b;
+            font-weight: 600;
+            width: 100%;
+        }
+        .change {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            img {
+                width: 25px;
+                margin-left: 40px;
+                color: #65676b;
+            }
+            h5 {
+                float: left;
+                color: #919397;
+                margin: 0px 0px 0px 70px;
+            }
+        }
+        hr {
+            width: 96%;
+            float: left;
+            border: 1px solid #ced0d4;
+        }
+    }
+    .contact {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 4%;
+        p {
+            text-align: start;
+            margin: 0px 0px 0px 5px;
+            color: #65676b;
+            font-weight: 600;
+            width: 100%;
+        }
+        .btn_contact {
+            display: flex;
+            height: 40px;
+            .btn_icon {
+                width: 40px;
+                height: 100%;
+                border-radius: 50%;
+                img {
+                    width: 20px;
+                    color: #919397;
+                    padding-top: 10px;
+                }
+            }
+            .btn_icon:hover {
+                background-color: #c6cad36c;
+            }
+        }
+    }
+    .amis {
+        button {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            border: none;
+            background-color: #f0f2f5;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #3d3e3f;
+            margin-bottom: 5px;
+            img {
+                width: 36px;
+                border-radius: 50%;
+                margin-right: 15px;
+            }
+        }
+        button:hover {
+            background-color: #d6d6d669;
+            border-radius: 8px;
+        }
+    }
+    @include media-min("tablet-down") {
+        width: 40%;
+    }
+    @include media-min("tablet-up") {
+        display: none;
+    }
+}
+.sidebardroit:hover {
+    overflow-y: scroll;
+}
+.sidebardroit::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.sidebardroit::-webkit-scrollbar-track {
+    background: #e50d0d00;
+}
+
+.sidebardroit::-webkit-scrollbar-thumb {
+    background: #a5a5a574;
+    border-radius: 5px;
+}

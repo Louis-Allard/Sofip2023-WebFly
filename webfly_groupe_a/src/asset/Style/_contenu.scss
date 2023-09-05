@@ -1,0 +1,28 @@
+.contenu {
+    width: 42%;
+    margin-top: 30px;
+    height: 100vh;
+    overflow-y: scroll;
+    @include media-min("desktop-up") {
+        width: 65%;
+    }
+    @include media-min("tablet-up") {
+        width: 100%;
+        height: 100vh;
+        padding: 50px;
+        margin-right: 10px;
+    }
+}
+
+.contenu::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.contenu::-webkit-scrollbar-track {
+    background: #e50d0d00;
+}
+
+.contenu::-webkit-scrollbar-thumb {
+    background: #a5a5a574;
+    border-radius: 5px;
+}
