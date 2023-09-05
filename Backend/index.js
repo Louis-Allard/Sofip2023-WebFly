@@ -4,9 +4,12 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt');
+
+const saltRounds = 10;
 
 dotenv.config();
-app.use(express.json())
+app.use(express.json());
 app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.listen(PORT, () => {
@@ -41,4 +44,34 @@ app.get('/users', (req, res) => {
         // Traitez les résultats ici et renvoyez-les au client
         res.json(results);
     });
+});
+
+
+// CREER UN COMPTE POUR ADMIN
+app.post('/register', (req, res) => {
+	const mail = req.body.mail;
+	const nom = req.body.nom;
+	const prenom = req.body.prenom;
+    const entreprise = req.body.entreprise
+	const motdepasse = req.body.motdepasse;
+	const role = req.body.role;
+    const etat = req.body.etat;
+	// HASH LE MOT DE PASSE
+	bcrypt.hash(motdepasse, saltRounds, (err, hash) => {
+		if(err){
+			console.log("erreur dans le hash")
+		}
+	// REQUETE
+	connection.query(
+		"INSERT INTO utilisateur (EMAIL,NOM,PRENOM,ENTREPRISE,MDP,ROLE_UTILISATEUR,ETAT) VALUES (?,?,?,?,?,'user','hors ligne)",
+		[mail, nom, prenom, entreprise, hash, role, etat],
+		(err, result) => {
+			if(err){ 
+                return res.json({Error: "Problème de requête"});
+            }else{
+                return res.redirect('/');
+            }
+		}
+		);
+	});
 });
