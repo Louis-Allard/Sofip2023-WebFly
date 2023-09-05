@@ -13,7 +13,7 @@ function Register() {
         event.preventDefault();
         axios.post('http://localhost:3001/register', 
         {mail: mailReg, nom: nomReg, prenom: prenomReg, entreprise: entrepriseReg, motdepasse: motdepasseReg})
-        .then(console.log("Tout est ok"))
+        .then(res => console.log("c'est good"))
         .then(err => console.log(err))
     }
     return (

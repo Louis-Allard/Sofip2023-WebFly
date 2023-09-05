@@ -10,7 +10,11 @@ const saltRounds = 10;
 
 dotenv.config();
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({
+    origin: ["http://localhost:3000"],
+	methods: ["GET", "POST"],
+	credentials: true
+}));
 
 app.listen(PORT, () => {
     console.log(`Le port de mon backend est le : ${PORT}`);
@@ -54,8 +58,8 @@ app.post('/register', (req, res) => {
 	const prenom = req.body.prenom;
     const entreprise = req.body.entreprise
 	const motdepasse = req.body.motdepasse;
-	const role = req.body.role;
-    const etat = req.body.etat;
+	const role = req.body.ROLE_UTILISATEUR;
+    const etat = req.body.ETAT;
 	// HASH LE MOT DE PASSE
 	bcrypt.hash(motdepasse, saltRounds, (err, hash) => {
 		if(err){
@@ -63,15 +67,12 @@ app.post('/register', (req, res) => {
 		}
 	// REQUETE
 	connection.query(
-		"INSERT INTO utilisateur (EMAIL,NOM,PRENOM,ENTREPRISE,MDP,ROLE_UTILISATEUR,ETAT) VALUES (?,?,?,?,?,'user','hors ligne)",
+		"INSERT INTO utilisateur (EMAIL,NOM,PRENOM,ENTREPRISE,MDP,ROLE_UTILISATEUR,ETAT) VALUES (?,?,?,?,?,'user','hors ligne')",
 		[mail, nom, prenom, entreprise, hash, role, etat],
 		(err, result) => {
-			if(err){ 
-                return res.json({Error: "Problème de requête"});
-            }else{
-                return res.redirect('/');
-            }
-		}
-		);
+			if(err) return res.json({Error: "Problème de requête"});
+            return res.redirect('/');  
+            } 
+        );
 	});
-});
+})
