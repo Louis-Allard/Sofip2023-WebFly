@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 
 //REQUETES
 const connexion = require("./Requetes/connexion");
+const utilisateur = require('./Requetes/utilisateurs');
 
 dotenv.config();
 app.use(express.json());
@@ -31,20 +32,6 @@ connection.connect((err) => {
         console.log('Connecté à la base de données MySQL !');
     }
 });
-// app.get('/users', (req, res) => {
-//     // Utilisation d'une requête préparée pour sécuriser la requête
-//     const sql = 'SELECT * FROM utilisateur';
-
-//     connection.query(sql, (err, results) => {
-//         if (err) {
-//             console.error('Erreur lors de la requête :', err);
-//             return res.status(500).send('Erreur lors de la requête à la base de données.');
-//         }
-//         // Traitez les résultats ici et renvoyez-les au client
-//         res.json(results);
-//     });
-// });
-
 
 // CREER UN COMPTE POUR ADMIN
 app.post('/register', (req, res) => {
@@ -73,3 +60,5 @@ app.post('/register', (req, res) => {
 // })
 
 connexion(app, connection);
+utilisateur(app, connection);
+

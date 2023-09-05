@@ -1,5 +1,5 @@
 import React from 'react';
-import Register from '../crud/Register';
+import Register from '../Components/crud/Register';
 
 const register = () => {
     return (
