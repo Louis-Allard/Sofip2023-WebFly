@@ -5,6 +5,9 @@ const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
 
+//REQUETES
+const connexion = require("./Requetes/connexion");
+
 dotenv.config();
 app.use(express.json())
 app.use(cors({ origin: 'http://localhost:3000' }));
@@ -42,3 +45,5 @@ app.get('/users', (req, res) => {
         res.json(results);
     });
 });
+
+connexion(app, connection);

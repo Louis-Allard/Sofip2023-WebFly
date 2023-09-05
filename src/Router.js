@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import home from './Components/main/home';
+import home from './main/home';
 import Header from './Components/Header';
-import login from './Components/main/login';
+import login from './main/login';
 
 
 const Router = () => {
