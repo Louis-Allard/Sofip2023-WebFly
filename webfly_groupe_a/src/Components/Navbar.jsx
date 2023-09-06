@@ -1,16 +1,15 @@
 import React from 'react';
 
+function Navbar({ setSelectedComponent }) {
 
-function Navbar() {
     return (
         <div className='sidebar'>
-            <button>Méssagerie</button>
-            <button>Ajouter TMA</button>
-            <button>Modifier TMA </button>
-            <button>Supprimer TMA</button>
-            <button>Liste TMA</button>
+            <button onClick={() => setSelectedComponent('Messagerie')}>Messagerie</button>
+            <button onClick={() => setSelectedComponent('Ajouter_TMA')}>Ajouter TMA</button>
+            <button onClick={() => setSelectedComponent('Liste_TMA')}>Liste TMA</button>
         </div>
-    )
+    );
 }
 
 export default Navbar;
+
