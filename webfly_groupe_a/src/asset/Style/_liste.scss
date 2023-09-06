@@ -1,0 +1,44 @@
+.lister_utilisateur {
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th,
+        td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr {
+            &:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+        }
+
+        .user {
+            td {
+                position: relative;
+                vertical-align: middle;
+
+                button {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    margin-left: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 5px;
+        }
+    }
+}

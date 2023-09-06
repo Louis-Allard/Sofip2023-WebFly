@@ -19,7 +19,6 @@ const con = mysql.createConnection({
     database: "webfly",
 });
 
-
 con.connect((err) => {
     if (err) {
         console.error("Erreur de connexion à la base de données :", err);
@@ -143,6 +142,75 @@ app.post("/ajouterUtilisateur", async (req, res) => {
     }
 });
 
+//liste utilisateur
+app.get('/lister_utilisateur', (req, res) => {
+    const sql = `SELECT id,nom,email FROM webfly.utilisateur;`;
+    con.query(sql, (err, data) => {
+        if (err) {
+            console.log("err2 ", err)
+            return res.json(err);
+        }
+        console.log(data)
+        return res.json(data);
+
+    })
+})
+
+//supprimer utilisateur
+app.delete('/sup_utilisateur/:userId', (req, res) => {
+    const userId = req.params.userId;
+
+    if (!userId || isNaN(userId)) {
+        return res.status(400).json({ error: "ID d'utilisateur invalide" });
+    }
+
+    const sql = `DELETE FROM utilisateur WHERE id = ${userId};`;
+    con.query(sql, (err, data) => {
+        if (err) {
+            console.log("err2 ", err);
+            return res.status(500).json({ error: "Erreur de base de données" });
+        }
+        console.log(data);
+        return res.json({ message: "Utilisateur supprimé avec succès" });
+    });
+});
+
+//modifier utilisateur
+app.post("/update_User/:userId", async (req, res) => {
+    const { nom, email } = req.body;
+    const userId = req.params.userId;
+
+    if (!userId || isNaN(userId)) {
+        return res.status(400).json({ error: "ID d'utilisateur invalide" });
+    }
+
+    try {
+        const sql = `UPDATE utilisateur SET nom = "${nom}", email = "${email}" where id = ${userId}`;
+        con.query(
+            sql,
+            [nom, email],
+            (err, result) => {
+                if (err) {
+                    console.error("Erreur lors de la modification des données :", err);
+                    res.json({
+                        success: false,
+                        message: "Erreur lors de la modification de l'utilisateur",
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        message: "Utilisateur modifier avec succès",
+                    });
+                }
+            }
+        );
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Erreur lors de la modification de l'utilisateur",
+        });
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`mon backend : ${PORT}`);
