@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(cors());
@@ -41,8 +42,6 @@ app.get('/user', (req, res) => {
 })
 
 //verifier la conection admin
-const bcrypt = require('bcrypt'); // Importez le module bcrypt
-
 app.post("/Connexion", (req, res) => {
     const { email, password } = req.body;
 
@@ -110,40 +109,39 @@ app.post("/Connexion", (req, res) => {
 });
 
 
+//ajouter utilisateur
+app.post("/ajouterUtilisateur", async (req, res) => {
+    const { nom, email, password } = req.body;
+    console.log(req.body);
 
-app.post('/login', (req, res) => {
-    const { email } = req.body;
-
-    // Vérifier si l'e-mail se trouve dans la table "admin"
-    db.query('SELECT * FROM admin WHERE email = ?', [email], (err, adminResults) => {
-        if (err) {
-            console.error('Erreur lors de la recherche dans la table "admin" :', err);
-            return res.status(500).json({ message: 'Erreur serveur' });
-        }
-
-        // Si l'e-mail se trouve dans la table "admin"
-        if (adminResults.length > 0) {
-            return res.status(200).json({ message: 'Connecté en tant qu\'administrateur' });
-        }
-
-        // Si l'e-mail n'est pas dans la table "admin", vérifiez la table "utilisateur"
-        db.query('SELECT * FROM utilisateur WHERE email = ?', [email], (err, userResults) => {
-            if (err) {
-                console.error('Erreur lors de la recherche dans la table "utilisateur" :', err);
-                return res.status(500).json({ message: 'Erreur serveur' });
+    try {
+        const sql = `INSERT INTO utilisateur (nom, email, mot_de_passe) VALUES (?, ?, ?)`;
+        con.query(
+            sql,
+            [nom, email, password],
+            (err, result) => {
+                if (err) {
+                    console.error("Erreur lors de l'insertion des données :", err);
+                    res.json({
+                        success: false,
+                        message: "Erreur lors de l'enregistrement de l'utilisateur",
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        message: "Utilisateur enregistré avec succès",
+                    });
+                }
             }
-
-            // Si l'e-mail se trouve dans la table "utilisateur"
-            if (userResults.length > 0) {
-                return res.status(200).json({ message: 'Connecté en tant qu\'utilisateur' });
-            }
-
-            // Si l'e-mail n'est pas trouvé dans les deux tables
-            return res.status(404).json({ message: 'E-mail non trouvé' });
+        );
+    } catch (error) {
+        console.error("Erreur lors du hachage du mot de passe :", error);
+        res.status(500).json({
+            success: false,
+            message: "Erreur lors de l'enregistrement de l'utilisateur",
         });
-    });
+    }
 });
-
 
 
 app.listen(PORT, () => {

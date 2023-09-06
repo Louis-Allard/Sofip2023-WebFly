@@ -8,7 +8,6 @@ function Navbar() {
             <button>Ajouter TMA</button>
             <button>Modifier TMA </button>
             <button>Supprimer TMA</button>
-            <button>Supprimer TMA</button>
             <button>Liste TMA</button>
         </div>
     )

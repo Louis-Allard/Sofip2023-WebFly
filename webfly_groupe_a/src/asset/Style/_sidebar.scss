@@ -1,9 +1,8 @@
 .sidebar {
-    width: 23%;
-    margin-top: 20px;
-    margin-left: 10px;
+    width: 25%;
+
     button {
-        width: 60%;
+        width: 100%;
         height: 50px;
         display: flex;
         align-items: center;
@@ -13,38 +12,13 @@
         font-weight: bold;
         color: #3d3e3f;
         margin-bottom: 5px;
-        img {
-            width: 36px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
+        justify-content: center;
     }
     button:hover {
         background-color: #d6d6d669;
         border-radius: 8px;
     }
-    hr {
-        width: 60%;
-        float: left;
-        margin-left: 5px;
-        border: 1px solid #ced0d4;
-    }
-    .raccourcis {
-        height: 100px;
-        p {
-            float: left;
-            margin: 0;
-            margin-left: 5px;
-            color: #65676b;
-            font-weight: 500;
-        }
-        .jeux {
-            img {
-                border-radius: 5px;
-            }
-        }
-    }
-    @include media-min("desktop-up") {
-        display: none;
+    @include media-min("phone-down") {
+        font-size: 0.75em;
     }
 }
