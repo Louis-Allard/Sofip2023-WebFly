@@ -15,8 +15,6 @@ const Header = () => {
   const disconnect = async () => {
     // Effectuez des opérations asynchrones ici
     try {
-      await axios.put(`/deconnexion/${idUser}`);
-
       dispatch(setConnected(false));
       dispatch(setIdUser(0));
       dispatch(setEntreprise(''));
@@ -24,6 +22,7 @@ const Header = () => {
       dispatch(setPrenom(''));
       dispatch(setRole(''));
 
+      await axios.put(`/deconnexion/${idUser}`);
       // Redirigez l'utilisateur vers la page de connexion
       window.location.href = '/login';
     } catch (error) {
