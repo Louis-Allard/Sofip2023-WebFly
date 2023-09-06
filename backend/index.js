@@ -19,6 +19,9 @@ app.use(cookieParser());
 const userRoute = require("./routes/usersRoute");
 app.use("/users", userRoute);
 
+const messageRoute = require("./routes/messageRoute");
+app.use("/messages", messageRoute);
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

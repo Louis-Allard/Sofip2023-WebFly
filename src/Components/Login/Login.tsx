@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import MessagePopup from "../MessagePopup/MessagePopup";
@@ -14,26 +14,8 @@ const Login = () => {
   const [showMessage, setShowMessage] = useState(false);
   const handleCloseMessage = () => {
     setShowMessage(false);
+    setPopupMessage();
   };
-
-  axios.defaults.withCredentials = true;
-  const [userData, setUserData] = useState(null);
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3001/users`);
-        setUserData(response.data);
-        setIsAuth(true);
-      } catch (error) {
-        setUserData(null);
-        setIsAuth(false);
-      }
-    };
-
-    fetchUserData();
-  }, []);
 
   const handleSubmit = async (values) => {
     try {
@@ -43,6 +25,7 @@ const Login = () => {
       );
       setPopupMessage({ message: response.data.message, color: "green" });
       console.log("Login response:", response.data);
+      window.location.reload();
     } catch (error) {
       setShowMessage(true);
       setPopupMessage({ message: error.response.data.error, color: "red" });
@@ -50,9 +33,12 @@ const Login = () => {
     }
   };
 
-  const validate = (values: any) => {
+  const validate = (values) => {
     const errors = {};
 
+    if (!values.username) {
+      errors.username = "L'username est requis.";
+    }
     if (!values.password) {
       errors.password = "Le mot de passe est requis.";
     }
@@ -83,14 +69,11 @@ const Login = () => {
         >
           <Form className="mt-8 space-y-6">
             <div>
-              <label
-                htmlFor="username"
-                className={`block text-sm font-medium `}
-              >
-                Adresse e-mail
+              <label htmlFor="username" className={`block text-sm font-medium`}>
+                Nom d'utilisateur
               </label>
               <Field
-                type="text"
+                type="username"
                 name="username"
                 autoComplete="username"
                 required
@@ -103,10 +86,7 @@ const Login = () => {
               />
             </div>
             <div>
-              <label
-                htmlFor="password"
-                className={`block text-sm font-medium `}
-              >
+              <label htmlFor="password" className={`block text-sm font-medium`}>
                 Mot de passe
               </label>
               <Field

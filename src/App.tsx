@@ -1,39 +1,36 @@
+/*  const { isAuth } = useSelector((state) => state.authReducer);
+    const dispatch = useDispatch();
+    dispatch(setAuth(false)); */
+
 import Login from "./Components/Login/Login";
-import Message from "./Components/Message/Message";
+import Messenger from "./Components/Messenger/Messenger";
 import "./App.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuth } from "./actions/actions";
-import { useEffect } from "react";
-import axios from "axios";
+import { AuthStatus, useAuth } from "./hook/useAuth";
 
 function App() {
-  const { isAuth } = useSelector((state:any) => state.authReducer);
-  const dispatch = useDispatch();
+  const { status } = useAuth();
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/users");
-        if (response.data.Error) {
-          console.log("dzdza");
-          dispatch(setAuth(false));
-        }
-        if (response.data.Status) {
-          console.log(response);
-          dispatch(setAuth(true));
-        }
-      } catch (error) {
-        dispatch(setAuth(false));
-      }
-    };
-    fetchUserData();
-  }, []);
-  return (
-    <>
-      <p>TEST</p>
-      {isAuth ? <Message /> : <Login />}
-    </>
-  );
+  if (status === AuthStatus.Unknown) {
+    return (
+      <>
+      </>
+    );
+  }
+  if (status === AuthStatus.Guest) {
+    return (
+      <>
+        <Login />
+      </>
+    );
+  }
+  if (status === AuthStatus.Authenticated) {
+    return (
+      <>
+
+        <Messenger />
+      </>
+    );
+  }
 }
 
 export default App;

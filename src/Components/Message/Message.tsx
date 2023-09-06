@@ -1,7 +1,20 @@
-import React from "react";
+import "../Message/message.css"
 
-const Message = () => {
-  return <div>Message</div>;
-};
+function Message(props:any) {
+    return (
+      
+      <div className="componentMessage">
+        <div className="photoMessageMaker">
+          {props.avatar}
+        </div>
+        <div className="textM">
+            <span className="textMessage">{props.contenu}</span>
+        </div>
+        <div className="dateM">
+            <span className="dateMessage">{props.created_at}</span>
+        </div>
+      </div>
+    );
+  }
 
 export default Message;
