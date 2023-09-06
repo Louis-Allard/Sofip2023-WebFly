@@ -17,6 +17,7 @@ const Profil = () => {
       });
     console.log(id);
   }, [id]);
+
   return (
     <div>
       <h2>Profil de l'utilisateur</h2>
@@ -24,7 +25,7 @@ const Profil = () => {
       <p>Prénom : {data.PRENOM}</p>
       <p>Adresse e-mail : {data.EMAIL}</p>
       <p>Entreprise : {data.ENTREPRISE}</p>
-      <Link to="../Components/EditProfil.js">
+      <Link to="/EditProfil">
         <button className="editProfilButton">Modif profil</button>
       </Link>
     </div>
