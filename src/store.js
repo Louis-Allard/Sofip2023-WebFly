@@ -2,15 +2,18 @@
 
 import { legacy_createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 // Store
 
 const initStore = {
-  connected: localStorage.getItem('connected') === 'true' || false,
-  idUser: parseInt(localStorage.getItem('myNumber'), 10) || 0, // Par défaut, 0 si aucune valeur n'est trouvée
-  entreprise: localStorage.getItem('entreprise') || '',
-  nom: localStorage.getItem('nom') || '',
-  prenom: localStorage.getItem('prenom') || ''
+  connected: false,
+  idUser: 0, // Par défaut, 0 si aucune valeur n'est trouvée
+  entreprise: '',
+  nom: '',
+  prenom: '',
+  role: ''
 };
 
 // Actions creators
@@ -39,38 +42,43 @@ const setPrenom = (value) => ({
   payload: value,
 });
 
+const setRole = (value) => ({
+  type: "setRole",
+  payload: value,
+});
+
 // Reducer
-const comparisonReducer = (state = initStore, action) => {
+const rootReducers = (state = initStore, action) => {
   switch (action.type) {
     case "setConnected":
-      localStorage.setItem('connected', action.payload.toString());
       return {
         ...state,
         connected: action.payload,
       };
     case "setIdUser":
-      localStorage.setItem('myNumber', action.payload.toString());
       return {
         ...state,
         idUser: action.payload,
       };
     case "setEntreprise":
-      localStorage.setItem('entreprise', action.payload);
       return {
         ...state,
         entreprise: action.payload,
       };
     case "setNom":
-      localStorage.setItem('nom', action.payload);
       return {
         ...state,
         nom: action.payload,
       };
     case "setPrenom":
-      localStorage.setItem('prenom', action.payload);
       return {
         ...state,
         prenom: action.payload,
+      };
+    case "setRole":
+      return {
+        ...state,
+        role: action.payload,
       };
     default:
       return state;
@@ -78,6 +86,13 @@ const comparisonReducer = (state = initStore, action) => {
 };
 
 // Create the Redux store
-const store = legacy_createStore(comparisonReducer, composeWithDevTools());
+const persistConfig = {
+  key: 'root', // La clé racine pour le stockage local
+  storage, // Utilisez le stockage local (vous pouvez changer cela en sessionStorage ou tout autre stockage)
+};
 
-export { store, setConnected, setIdUser, setEntreprise, setNom, setPrenom };
+const persistedReducer = persistReducer(persistConfig, rootReducers);
+const store = legacy_createStore(persistedReducer, composeWithDevTools());
+const persistor = persistStore(store);
+
+export { store, persistor, setConnected, setIdUser, setEntreprise, setNom, setPrenom, setRole };

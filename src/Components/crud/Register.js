@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import bcrypt from 'bcryptjs-react';
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     // INITIALISATION DES VALEURS
@@ -10,6 +11,7 @@ function Register() {
     const [entrepriseReg, setEntrepriseReg] = useState('');
     const [motdepasseReg, setMotdepasseReg] = useState('');
     const [hashedPassword, setHashedPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleChangePassword = async (e) => {
         const saltRounds = 10; // Nombre de "tours" pour renforcer le hachage
@@ -25,7 +27,7 @@ function Register() {
             { mail: mailReg, nom: nomReg, prenom: prenomReg, entreprise: entrepriseReg, mdp: hashedPassword })
             .then(response => {
                 console.log('Insertion réussie');
-                //window.location.href = '/login';
+                navigate('/login');
             })
             .catch(error => {
                 console.error('Erreur lors de l\'insertion', error);

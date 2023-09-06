@@ -3,8 +3,9 @@ import React from 'react';
 import image from '../assets/CodeConnect.ico';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setConnected, setEntreprise, setIdUser, setNom, setPrenom } from '../store';
+import { setConnected, setEntreprise, setIdUser, setNom, setPrenom, setRole } from '../store';
 import axios from 'axios';
+import CardHeader from './CardHeader';
 
 const Header = () => {
     const connected = useSelector((state) => state.connected);
@@ -22,6 +23,7 @@ const Header = () => {
             dispatch(setEntreprise(''));
             dispatch(setNom(''));
             dispatch(setPrenom(''));
+            dispatch(setRole(''));
 
             // Redirigez l'utilisateur vers la page de connexion
             window.location.href = '/login';
@@ -37,6 +39,7 @@ const Header = () => {
                 <img src={image} alt="" />
                 <h1>WebFly</h1>
             </div>
+            <div className='card-header'><CardHeader /></div>
             <div className='connexion'>
                 {connected ? (
                     <Link to='/'><button className='btn btn-danger' onClick={disconnect}>Déconnexion</button></Link>)

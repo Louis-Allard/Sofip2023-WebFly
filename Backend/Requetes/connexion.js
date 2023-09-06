@@ -23,7 +23,7 @@ const connexion = (app, connection) => {
                 } else {
                     console.log("Un resultat a été trouvé");
 
-                    connection.query("SELECT ID_UTILISATEUR, NOM, PRENOM, MDP, ENTREPRISE FROM utilisateur WHERE ID_UTILISATEUR = ?", [rows[0].ID_UTILISATEUR], (error, results, fields) => {
+                    connection.query("SELECT ID_UTILISATEUR, NOM, PRENOM, MDP, ENTREPRISE, ROLE_UTILISATEUR FROM utilisateur WHERE ID_UTILISATEUR = ?", [rows[0].ID_UTILISATEUR], (error, results, fields) => {
                         if (error) {
                             console.error('Erreur lors de l\'insertion', error);
                             res.status(500).json({ message: 'Erreur lors de la requête' });

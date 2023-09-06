@@ -9,6 +9,7 @@ const dotenv = require("dotenv");
 const { connexion, etatEnLigne } = require("./Requetes/connexion");
 const utilisateur = require('./Requetes/utilisateurs');
 const deconnexion = require('./Requetes/deconnexion');
+const register = require('./Requetes/register');
 
 dotenv.config();
 app.use(express.json());
@@ -33,31 +34,6 @@ connection.connect((err) => {
         console.log("Connecté à la base de données MySQL !");
     }
 });
-
-// CREER UN COMPTE POUR ADMIN
-app.post('/register', (req, res) => {
-    const mail = req.body.mail;
-    const nom = req.body.nom;
-    const prenom = req.body.prenom;
-    const entreprise = req.body.entreprise
-    const motdepasse = req.body.mdp;
-
-    connection.query(
-        "INSERT INTO utilisateur (EMAIL,NOM,PRENOM,ENTREPRISE,MDP,ROLE_UTILISATEUR,ETAT) VALUES (?,?,?,?,?,?,?)",
-        [mail, nom, prenom, entreprise, motdepasse, 'user', 'Hors ligne'],
-        (error, result) => {
-            if (error) {
-                console.error('Erreur lors de l\'insertion', error);
-                res.status(500).json({ message: 'Erreur lors de la requête' });
-            } else {
-                console.log('Requête réussie');
-                res.status(200).json({ msg: 'insertion réussie.' });
-            }
-        }
-    );
-});
-// })
-
 
 app.get("/profil/:id", (req, res) => {
     const query =
@@ -86,3 +62,4 @@ connexion(app, connection);
 utilisateur(app, connection);
 etatEnLigne(app, connection);
 deconnexion(app, connection);
+register(app, connection);

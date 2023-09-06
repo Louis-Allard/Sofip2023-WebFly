@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import bcrypt from "bcryptjs-react";
 import { useDispatch, useSelector } from 'react-redux';
-import { setConnected, setEntreprise, setIdUser, setNom, setPrenom } from '../store';
+import { setConnected, setEntreprise, setIdUser, setNom, setPrenom, setRole } from '../store';
 import { useNavigate } from 'react-router-dom';
 
 const FormLogin = () => {
@@ -52,6 +52,7 @@ const FormLogin = () => {
                     dispatch(setEntreprise(response.data[0].ENTREPRISE));
                     dispatch(setNom(response.data[0].NOM));
                     dispatch(setPrenom(response.data[0].PRENOM))
+                    dispatch(setRole(response.data[0].ROLE_UTILISATEUR));
                     const connexion = await axios.put(`http://localhost:3001/connexion/${response.data[0].ID_UTILISATEUR}`);
                     console.log(connexion.data);
                     navigate('/');
