@@ -1,6 +1,6 @@
 import React from 'react';
 // import '../assets/styles/_Header.scss';
-import image from '../assets/CodeConnect.ico';
+import image from '../assets/icons/1.png';
 import { useSelector } from 'react-redux';
 
 const Header = () => {

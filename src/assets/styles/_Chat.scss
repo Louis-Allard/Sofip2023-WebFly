@@ -1,0 +1,28 @@
+.blocChat{
+    width: 60%;
+    height: 100vh;
+    float: right;
+    border-left: 1px solid rgba(218, 208, 208, 0.5);
+    #message{
+        height: 100%;  
+
+    }
+    .form{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .formAnswer{
+            width: 50%;
+            display: inline-flex;
+            position: fixed;
+            bottom: 0;
+            align-items: center;
+            padding-bottom: 10px;
+            img{
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }      
+
+}
