@@ -4,6 +4,7 @@ import "./App.css";
 import { AuthStatus, useAuth } from "./hook/useAuth";
 
 function App() {
+
   const { status } = useAuth();
 
   if (status === AuthStatus.Unknown) {
