@@ -1,4 +1,6 @@
-export const setAuth = (value: boolean) => ({
+import { Account } from "../Types/Types";
+
+export const setAuth = (account: Account) => ({
   type: "AUTH",
-  payload: value,
+  payload: account,
 });

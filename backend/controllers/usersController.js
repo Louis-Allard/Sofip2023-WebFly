@@ -1,5 +1,6 @@
 const User = require("../models/usersModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 exports.findAll = (req, res) => {
   User.findAll((err, data) => {
@@ -27,6 +28,26 @@ exports.findById = (req, res) => {
       } else {
         res.status(500).send({
           message: `Erreur lors de la récupération de l'utilisateur avec l'ID ${id}.`,
+        });
+      }
+    } else {
+      res.send(data);
+    }
+  });
+};
+
+exports.findOne = (req, res) => {
+  const username = req.params.id;
+
+  User.findOne(username, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Utilisateur avec l'ID ${username} non trouvé.`,
+        });
+      } else {
+        res.status(500).send({
+          message: `Erreur lors de la récupération de l'utilisateur avec l'ID ${username}.`,
         });
       }
     } else {
@@ -65,79 +86,6 @@ exports.create = (req, res) => {
       });
     } else {
       res.send({ Status: "Success", Data: data });
-    }
-  });
-};
-
-exports.update = (req, res) => {
-  if (!req.body) {
-    res.status(400).send({
-      message: "Le contenu de la requête ne peut pas être vide.",
-    });
-  }
-
-  const id = req.params.id;
-
-  const updated = new User({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-    is_admin: req.body.is_admin,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    phone: req.body.phone,
-    postal: req.body.postal,
-    avatar: req.body.avatar,
-    website: req.body.website,
-    id_adress: req.body.id_adress,
-  });
-
-  User.update(id, updated, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Utilisateur avec l'ID ${id} non trouvé.`,
-        });
-      } else {
-        res.status(500).send({
-          message: `Erreur lors de la mise à jour de l'utilisateur avec l'ID ${id}.`,
-        });
-      }
-    } else {
-      res.send(data);
-    }
-  });
-};
-
-exports.updateInfo = (req, res) => {
-  if (!req.body) {
-    res.status(400).send({
-      message: "Le contenu de la requête ne peut pas être vide.",
-    });
-  }
-
-  const id = req.params.id;
-
-  const updated = new User({
-    email: req.body.email,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    phone: req.body.phone,
-  });
-
-  User.updateInfo(id, updated, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Utilisateur avec l'ID ${id} non trouvé.`,
-        });
-      } else {
-        res.status(500).send({
-          message: `Erreur lors de la mise à jour de l'utilisateur avec l'ID ${id}.`,
-        });
-      }
-    } else {
-      res.send({ data, Status: "OK" });
     }
   });
 };
@@ -197,18 +145,61 @@ exports.delete = (req, res) => {
   });
 };
 
-exports.login = (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  User.login(username, password, (err, data) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.cookie("token", data.Token);
-      res.send(data.Status);
+exports.login = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res
+        .status(400)
+        .json({ error: "Veuillez fournir tous les champs requis." });
     }
-  });
+
+    User.findOne(username, async (error, user) => {
+      if (error) {
+        return res
+          .status(500)
+          .json({ error: "Une erreur est survenue lors de la connexion." });
+      }
+
+      if (!user) {
+        return res.status(404).json({ error: "Utilisateur non trouvé." });
+      }
+
+      const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordMatch) {
+        return res.status(401).json({ error: "Mot de passe incorrect." });
+      }
+
+      const token = jwt.sign(
+        {
+          id: user._id,
+          username: user.username,
+          role: user.role,
+          avatar: user.avatar,
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "1h",
+        }
+      );
+
+      res.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 3600000,
+        path: "/",
+        sameSite: "strict",
+      });
+      res.status(200).json({ message: "Authentification réussi.", token });
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Une erreur est survenue lors de la connexion." });
+  }
 };
+
 exports.logout = (req, res) => {
   res.clearCookie("token");
   res.json({ status: "Success" });
