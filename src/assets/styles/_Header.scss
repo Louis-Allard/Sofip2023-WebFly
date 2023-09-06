@@ -2,10 +2,12 @@
     border: 1px solid black;
     display: flex;
     align-items: center;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+background-color: #F4F6F7;
 
     img {
-        width: 100px;
-        height: 100px;
+        width: 180px;
+        height: 180px;
     }
 
     .div-logo {
@@ -16,5 +18,13 @@
 
     .connexion {
         margin-right: 5em;
+    }
+
+    h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .card-header {
+        margin-right: 2em;
     }
 }

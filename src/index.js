@@ -1,16 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import 'bootstrap/dist/css/bootstrap.css';
-import './assets/styles/index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "bootstrap/dist/css/bootstrap.css";
+import "./assets/styles/index.scss";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { persistor, store } from "./store";
+import { PersistGate } from 'redux-persist/integration/react';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>
 );
 

@@ -2,12 +2,18 @@
 
 import { legacy_createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 // Store
+
 const initStore = {
-  connected: true,
-  idUser: "1",
-  entreprise: "",
+  connected: false,
+  idUser: 0, // Par défaut, 0 si aucune valeur n'est trouvée
+  entreprise: '',
+  nom: '',
+  prenom: '',
+  role: ''
 };
 
 // Actions creators
@@ -26,8 +32,23 @@ const setEntreprise = (value) => ({
   payload: value,
 });
 
+const setNom = (value) => ({
+  type: "setNom",
+  payload: value,
+});
+
+const setPrenom = (value) => ({
+  type: "setPrenom",
+  payload: value,
+});
+
+const setRole = (value) => ({
+  type: "setRole",
+  payload: value,
+});
+
 // Reducer
-const comparisonReducer = (state = initStore, action) => {
+const rootReducers = (state = initStore, action) => {
   switch (action.type) {
     case "setConnected":
       return {
@@ -44,12 +65,34 @@ const comparisonReducer = (state = initStore, action) => {
         ...state,
         entreprise: action.payload,
       };
+    case "setNom":
+      return {
+        ...state,
+        nom: action.payload,
+      };
+    case "setPrenom":
+      return {
+        ...state,
+        prenom: action.payload,
+      };
+    case "setRole":
+      return {
+        ...state,
+        role: action.payload,
+      };
     default:
       return state;
   }
 };
 
 // Create the Redux store
-const store = legacy_createStore(comparisonReducer, composeWithDevTools());
+const persistConfig = {
+  key: 'root', // La clé racine pour le stockage local
+  storage, // Utilisez le stockage local (vous pouvez changer cela en sessionStorage ou tout autre stockage)
+};
 
-export { store, setConnected, setIdUser, setEntreprise };
+const persistedReducer = persistReducer(persistConfig, rootReducers);
+const store = legacy_createStore(persistedReducer, composeWithDevTools());
+const persistor = persistStore(store);
+
+export { store, persistor, setConnected, setIdUser, setEntreprise, setNom, setPrenom, setRole };
