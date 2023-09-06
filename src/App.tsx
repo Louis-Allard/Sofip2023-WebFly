@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 function App() {
-  const { isAuth } = useSelector((state) => state.authReducer);
+  const { isAuth } = useSelector((state:any) => state.authReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
