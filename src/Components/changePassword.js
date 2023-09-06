@@ -49,24 +49,6 @@ const ChangePassword = () => {
 
   };
 
-  // Fonction pour récupérer l'ID de l'utilisateur depuis le backend
-  // const fetchUserId = async () => {
-  //   try {
-  //     const response = await axios.get("/getUserID"); // Remplacez par votre URL d'endpoint
-  //     const { userId } = response.data; // Assurez-vous de correspondre à la structure de la réponse de votre backend
-  //     //setUserId(userId);
-  //   } catch (error) {
-  //     console.error(
-  //       "Erreur lors de la récupération de l'ID de l'utilisateur:",
-  //       error
-  //     );
-  //   }
-  // };
-
-  // Appelez fetchUserId lorsque le composant est monté (vous pouvez également déclencher cela lorsque vous en avez besoin)
-  // useEffect(() => {
-  //   fetchUserId();
-  // }, []);
   return (
     <div>
       <h2>Changer le mot de passe</h2>
