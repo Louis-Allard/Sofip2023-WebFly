@@ -6,8 +6,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 //REQUETES
-const connexion = require("./Requetes/connexion");
+const { connexion, etatEnLigne } = require("./Requetes/connexion");
 const utilisateur = require('./Requetes/utilisateurs');
+const deconnexion = require('./Requetes/deconnexion');
 
 dotenv.config();
 app.use(express.json());
@@ -83,3 +84,5 @@ app.get("/profil/:id", (req, res) => {
 
 connexion(app, connection);
 utilisateur(app, connection);
+etatEnLigne(app, connection);
+deconnexion(app, connection);
