@@ -2,18 +2,39 @@ const express = require("express");
 const mysql = require("mysql2");
 const PORT = process.env.PORT || 3001;
 const app = express();
+const http = require("http");
 const cors = require("cors");
 const dotenv = require("dotenv");
-
+const {Server} = require("socket.io");
+app.use(cors());
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET","POST"],
+    },
+});
+io.on("connection", (socket) => {
+    console.log(`User connected: ${socket.id}`);
+    socket.on("join room", (data) => {
+        socket.join(data);
+        console.log(`User with ID: ${socket.id} join room: ${data}`);
+    })
+    socket.on("send_message"), (data) =>{
+        socket.to(data.room).emit("receive_message",data);
+    }
+    socket.on("disconnect", () => {
+        console.log("User disconnected", socket.id);
+    })
+})
 //REQUETES
 const connexion = require("./Requetes/connexion");
 const utilisateur = require('./Requetes/utilisateurs');
 
 dotenv.config();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000" }));
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Le port de mon backend est le : ${PORT}`);
 });
 
