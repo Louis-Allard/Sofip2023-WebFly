@@ -17,6 +17,9 @@ app.use(
 const adressRoutes = require('./routes/adresseRoutes');
 app.use("/adresses", adressRoutes);
 
+const userRoutes = require("./routes/userRoutes");
+app.use("/users", userRoutes);
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
