@@ -8,7 +8,7 @@ const CardHeader = () => {
     const nom = useSelector((state) => state.nom);
     return (
         <div className='cardHeader d-flex'>
-            <div className='mx-2'>{role}</div>
+            <div className='mx-2'>{role === 'admin' ? role : ''}</div>
             <div className='mx-2'>{prenom} {nom}</div>
             <div className='mx-2'>{connected ? 'En Ligne' : ''}</div>
         </div>
