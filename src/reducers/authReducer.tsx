@@ -1,15 +1,20 @@
 const initialState = {
   id: 0,
   username: "",
-  roles: false,
+  role: false,
   avatar: 0,
 };
-
 const authReducer = (state = initialState, action: any) => {
-  if (action.type === "AUTH") {
+  if (action.type === "DATA") {
     return {
       ...state,
       ...action.payload,
+    };
+  }
+
+  if (action.type === "RESET") {
+    return {
+      initialState,
     };
   }
 

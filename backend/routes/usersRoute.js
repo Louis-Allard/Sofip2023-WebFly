@@ -21,7 +21,8 @@ const verifyUser = (req, res, next) => {
       } else {
         req.id = decoded.id;
         req.username = decoded.username;
-        req.role = decoded.role;
+        req.role = decoded.roles;
+        req.avatar = decoded.avatar;
         next();
       }
     });
@@ -32,8 +33,9 @@ router.get("/", verifyUser, (req, res) => {
   return res.json({
     Status: "Success",
     username: req.username,
-    role: req.role,
     id: req.id,
+    role: req.role,
+    avatar: req.avatar,
   });
 });
 

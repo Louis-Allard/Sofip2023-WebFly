@@ -10,27 +10,27 @@ export enum AuthStatus {
 
 export function useAuth() {
   axios.defaults.withCredentials = true;
-  const [userData, setUserData] = useState(null);
-  const [account, setAccount] = useState<Account | null | undefined>(undefined);
 
+  const [account, setAccount] = useState<Account | null | undefined>(undefined);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`http://localhost:3001/users`);
-        setUserData(response.data);
-
         if (response.data.Error) {
           setAccount(null);
-          console.log(response.data);
         }
         if (response.data.Status === "Success") {
-          setAccount({ username: response.data.username });
           console.log(response.data);
+          setAccount({
+            id: response.data.id,
+            username: response.data.username,
+            avatar: response.data.avatar,
+            role: response.data.role,
+          });
         } else {
           setAccount(null);
         }
       } catch (error) {
-        setUserData(null);
         setAccount(null);
       }
     };
@@ -42,6 +42,7 @@ export function useAuth() {
     try {
       await axios.get("http://localhost:3001/users/logout");
       setAccount(null);
+      location.reload();
     } catch (error) {
       console.log("Logout failed:", error);
     }

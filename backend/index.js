@@ -16,8 +16,11 @@ app.use(
 );
 app.use(cookieParser());
 
-const userRoute = require("./routes/usersRoute");
-app.use("/users", userRoute);
+const usersRoute = require("./routes/usersRoute");
+app.use("/users", usersRoute);
+
+const ticketsRoute = require("./routes/ticketsRoute");
+app.use("/tickets", ticketsRoute);
 
 const messageRoute = require("./routes/messageRoute");
 app.use("/messages", messageRoute);

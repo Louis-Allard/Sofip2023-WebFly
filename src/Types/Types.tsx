@@ -1,6 +1,6 @@
 export type Account = {
   id: number;
   username: string;
-  roles: boolean;
+  role: boolean;
   avatar: number;
 };
