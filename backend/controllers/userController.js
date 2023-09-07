@@ -45,8 +45,8 @@ exports.findById = (req, res) => {
     const newUser = new User({
         lastname: req.body.lastname,
         firstname: req.body.firstname,
-        password: req.body.password,
         email: req.body.email,
+        password: req.body.password,
       
     });
   
@@ -75,8 +75,9 @@ exports.findById = (req, res) => {
     const updated = new User({
         lastname: req.body.lastname,
         firstname: req.body.firstname,
-        password: req.body.password,
         email: req.body.email,
+        password: req.body.password,
+        isCM: req.body.isCM,
     });
   
     User.update(id, updated, (err, data) => {

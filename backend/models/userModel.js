@@ -7,11 +7,12 @@ const User = function (user){
     this.firstname = user.firstname;
     this.email = user.email;
     this.password = user.password;
+    this.isCM = user.isCM;
     
 };
 
 User.findAll = (result) => {
-    sql.query("SELECT id, lastname, firstname, email, password FROM users", (err, res) => {
+    sql.query("SELECT id, lastname, firstname, email, password, isCM FROM users", (err, res) => {
       if (err) {
         console.log("Erreur :", err);
         result(null, err);
@@ -24,7 +25,7 @@ User.findAll = (result) => {
 };
 
 User.findById = (id, result) => {
-    sql.query("SELECT lastname, firstname, email, password FROM users WHERE id = ?", id, (err, res) => {
+    sql.query("SELECT lastname, firstname, email, password, isCM FROM users WHERE id = ?", id, (err, res) => {
       if (err) {
         console.log("Erreur :", err);
         result(err, null);
