@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import smiley from '../assets/icons/smiley.png';
 import file from '../assets/icons/file.png';
 import calendar from '../assets/icons/calendar.png';
+import ScrollToBottom from 'react-scroll-to-bottom';
     //DEBUT APP.JS
 import io from 'socket.io-client';
 
@@ -31,6 +32,7 @@ const Chat = ({socket, nom, room}) => {
         };
         await socket.emit("send_message", messagedata);
         setMessageList((list) => [...list, messagedata]);
+        setCurrentMessage("")
     }
     };
 useEffect(() => {
@@ -59,20 +61,32 @@ const socket = io.connect("http://localhost:3001");
                 <button onClick={joinRoom} type='submit'>Rejoindre</button>
             </div>
             ) : (
-            <div>
+            <div className='body-message'>
+                <ScrollToBottom className='message-container'>
                 {messageList.map((messageContent) => {
-                    return <div className='message'>
+                    return <div className='message' id={nom === messageContent.author ? "you" : "other"}>
                                 <div>
-                                    <div className='message-content'></div>
-                                    <div className='message-content'></div>
+                                    <div className='message-content'>
+                                        <p>{messageContent.message}</p>
+                                    </div>
+                                    <div className='message-meta'>
+                                        <p id="time">{messageContent.time}</p>
+                                        <p id="author">{messageContent.author}</p>
+                                    </div>
                                 </div>
                             </div>;
                 })}
+                </ScrollToBottom>
             </div>
 
             <div className='form'>
                 <form className='formAnswer' id="form" action='#'>
-                    <input className='form-control' onChange={(event) => {setCurrentMessage(event.target.value);}} placeholder='Votre message ...' id="input" autoComplete="off" />
+                    <input type='text'
+                    className='form-control'
+                    value={currentMessage} 
+                    onChange={(event) => {setCurrentMessage(event.target.value);}} 
+                    onKeyDown={(event) => {event.key === "enter" && sendMessage();}} 
+                    placeholder='Votre message ...' id="input" autoComplete="off" />
                     <button onClick={sendMessage} className='btn btn-secondary ms-1'>Envoyer</button>
                     <img className='ms-2' src={smiley} alt='smiley'/>
                     <img className='ms-2' src={file} alt='fichier'/>
