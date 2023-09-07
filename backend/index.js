@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 
 const app = express();
 app.use(cors());
@@ -40,9 +40,8 @@ app.get("/user", (req, res) => {
 });
 
 //verifier la conection admin
-app.post("/Connexion", (req, res) => {
+app.post("/connexion", (req, res) => {
     const { email, password } = req.body;
-
     let tableName = "";
 
     if (email === "md@webfly.fr") {
@@ -56,64 +55,46 @@ app.post("/Connexion", (req, res) => {
         });
     }
 
-    const sql = `SELECT * FROM ${tableName} WHERE email = ?`;
+    const sql = `SELECT * FROM ${tableName} WHERE email = '${email}'`;
 
     con.query(sql, [email], (err, result) => {
         if (err) {
             return res.status(500).json({
                 success: false,
-                message: "Erreur de connexion à la base de données",
+                message: err,
             });
         }
-
         if (result.length === 1) {
             const user = result[0];
-
-            // Comparer le mot de passe entré avec le mot de passe haché en utilisant bcrypt
-            bcrypt.compare(
-                password,
-                user.mot_de_passe,
-                (err, passwordMatch) => {
-                    if (err) {
-                        return res.status(500).json({
-                            success: false,
-                            message: "Erreur de comparaison de mot de passe",
-                        });
-                    }
-
-                    if (passwordMatch) {
-                        const userId = user.id;
-                        const token = jwt.sign(
-                            { userId },
-                            "RANDOM_TOKEN_SECRET",
-                            {
-                                expiresIn: "24h",
-                            }
-                        );
-
-                        if (tableName === "admin") {
-                            return res.json({
-                                success: true,
-                                message: "Connexion admin réussie",
-                                token,
-                                admin: true,
-                            });
-                        } else {
-                            return res.json({
-                                success: true,
-                                message: "Connexion utilisateur réussie",
-                                token,
-                                admin: false,
-                            });
-                        }
-                    } else {
-                        return res.json({
-                            success: false,
-                            message: "Mot de passe incorrect",
-                        });
-                    }
+            if (!bcryptjs.compareSync(password, user.mot_de_passe)) {
+                return res.json({
+                    success: false,
+                    message: "Mot de passe incorrect",
+                });
+            } else {
+                console.log("ok");
+                //A
+                const userId = user.id;
+                const token = jwt.sign({ userId }, "RANDOM_TOKEN_SECRET", {
+                    expiresIn: "24h",
+                });
+                //
+                if (tableName === "admin") {
+                    return res.json({
+                        success: true,
+                        message: "Connexion admin réussie",
+                        token,
+                        admin: true,
+                    });
+                } else {
+                    return res.json({
+                        success: true,
+                        message: "Connexion utilisateur réussie",
+                        token,
+                        admin: false,
+                    });
                 }
-            );
+            }
         } else {
             return res.json({
                 success: false,

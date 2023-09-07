@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs-react";
 
 function AjouterUtilisateur() {
     // const navigate = useNavigate();
@@ -46,10 +46,7 @@ function AjouterUtilisateur() {
         try {
             const saltRounds = 10;
 
-            const hashedPassword = await bcrypt.hash(
-                values.password,
-                saltRounds
-            );
+            const hashedPassword = bcrypt.hashSync(values.password, saltRounds);
 
             const response = await axios.post(
                 "http://localhost:3001/ajouterUtilisateur",
