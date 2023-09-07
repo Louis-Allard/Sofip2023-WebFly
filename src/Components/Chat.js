@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import smiley from '../assets/icons/smiley.png';
 import file from '../assets/icons/file.png';
 import calendar from '../assets/icons/calendar.png';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 const Chat = ({socket, nom, room}) => {
 
@@ -40,26 +39,27 @@ const Chat = ({socket, nom, room}) => {
 
         {/* BODY */}
         <div className='chat-body'>
-            <ScrollToBottom className='message-container'>
+            <div className='message-container'>
             {messageList.map((messageContent, index) => {
                 return (
                 <div className='message' key={index} id={nom === messageContent.author ? "you" : "other"}>
                     <div>
+                    <div className='message-meta'>
+                            <p id="author">{messageContent.author}</p>
+                            <p id="time">{messageContent.time}</p>
+                        </div>
                         <div className='message-content'>
                             <p>{messageContent.message}</p>
-                        </div>
-                        <div className='message-meta'>
-                            <p id="time">{messageContent.time}</p>
-                            <p id="author">{messageContent.author}</p>
                         </div>
                     </div>
                 </div>
                 )
             })}
-            </ScrollToBottom>
+            </div>
         </div>
 
         {/*FOOTER*/}
+        <div className='chat-footer'>
         <div className='form'>
             <form className='formAnswer' id="form" action='#'>
                 <input type='text'
@@ -74,7 +74,7 @@ const Chat = ({socket, nom, room}) => {
                 <img className='ms-2' src={calendar} alt='calendrier'/>
             </form>
         </div>
-
+        </div>
         </div>
     );
 };

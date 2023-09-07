@@ -18,21 +18,26 @@ const Join = () => {
     return (
         <section>
             {!showChat ? (
-            <div>
-            <h3>Join a chat</h3>
-            <input type='text' 
-                placeholder='nom' 
-                onChange={(event) => {
-                    setNom(event.target.value);
-                }}
-            />
-            <input type='text' 
-                placeholder='room' 
-                onChange={(event) => {
-                    setRoom(event.target.value);
-                }}
-            />
-            <button onClick={joinRoom} type='submit'>Rejoindre</button>
+            <div className='blocJoin'>
+                    <h3>Join a chat</h3>                
+                    <div className='join'>
+
+                    <input type='text' 
+                        className='form-control'
+                        placeholder='nom' 
+                        onChange={(event) => {
+                        setNom(event.target.value);
+                    }}
+                    />
+                    <input type='text'
+                        className='form-control' 
+                        placeholder='room' 
+                        onChange={(event) => {
+                        setRoom(event.target.value);
+                    }}
+                    />
+                    <button className='btn btn-secondary' onClick={joinRoom} type='submit'>Rejoindre</button>
+                </div>
             </div>
             )
             :

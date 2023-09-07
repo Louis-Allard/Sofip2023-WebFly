@@ -3,26 +3,83 @@
     height: 100vh;
     float: right;
     border-left: 1px solid rgba(218, 208, 208, 0.5);
-    #message{
-        height: 100%;  
-
+    .chat-header{
+        color: white;
+        background-color: rgb(184, 184, 184);
+        height: 5vh;
+        border-radius: 20px;
+        font-size: larger;
+        text-align: center;
+        p{
+            padding-top: 5px;
+        }
     }
-    .form{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        .formAnswer{
-            width: 50%;
-            display: inline-flex;
-            position: fixed;
-            bottom: 0;
-            align-items: center;
-            padding-bottom: 10px;
-            img{
-                width: 30px;
-                height: 30px;
+    .chat-body{            
+        margin-left: 10px;
+        overflow-y: scroll;
+        height: 87vh;
+        padding-bottom:170px;
+        .message-content{
+            display: flex;
+            border: solid 1px rgb(182, 182, 182);
+            width: max-content;
+            padding: 5px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 2px 15px 2px 15px;
+            margin-bottom: 5px;
+            #other{
+                justify-content: flex-end;
+            }
+            #you{
+                justify-content: flex-start;
             }
         }
-    }      
+        .message-meta{
+            display: inline-flex;
+            #author{
+                font-size: medium;
+            }
+            #time{
+                font-style: italic;
+                color: grey;
+                display: flex;
+                align-items: center;
+                font-size: small;
+                margin-left: 7px;
+            }
+            p{
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+    .chat-footer{
+        height: 7vh;
+        width: 60%;
+        display: block;
+        position: fixed;
+        bottom: 0;
+        border-top: solid 1px rgb(197, 197, 197);
+        background-color: rgb(240, 240, 240);
+        .form{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .formAnswer{       
+                width: 40%;
+                display: inline-flex;
+                position: fixed;
+                bottom: 0;
+                align-items: center;
+                padding-bottom: 10px;
+                img{
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }  
+    }
+    
 
 }
