@@ -1,5 +1,5 @@
 .Header {
-  border: 1px solid black;
+  border: 1px solid blue;
   display: flex;
   align-items: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -8,13 +8,30 @@
   img {
     width: 180px;
     height: 180px;
-    animation: scaleAndRotate 3s ease infinite;
+    animation: scaleAndRotate 9s ease infinite;
+    
   }
 
   .div-logo {
     display: flex;
     flex-grow: 1;
     align-items: center;
+   margin-left:45%;
+    overflow: hidden;
+  }
+@keyframes scaleAndRotate {
+    0% {
+      transform: scale(1);
+      
+    }
+
+    80% {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    100% {
+      transform: scale(1);
+    }
   }
 
   .connexion {
@@ -29,20 +46,7 @@
     animation: scaleAndRotate 3s ease infinite;
   }
 
-  @keyframes scaleAndRotate {
-    0% {
-      transform: scale(1);
-    }
-
-    80% {
-      transform: scale(1.1) rotate(10deg);
-    }
-
-    100% {
-      transform: scale(1);
-    }
-  }
-
+  
   .card-header {
     margin-right: 2em;
   }

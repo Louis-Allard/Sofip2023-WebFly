@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import bcrypt from 'bcryptjs-react';
+import axios from "axios";
+import bcrypt from "bcryptjs-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Register() {
   // INITIALISATION DES VALEURS
   const role = useSelector((state) => state.role);
-  const [mailReg, setMailReg] = useState('');
-  const [nomReg, setNomReg] = useState('');
-  const [prenomReg, setPrenomReg] = useState('');
-  const [entrepriseReg, setEntrepriseReg] = useState('');
-  const [hashedPassword, setHashedPassword] = useState('');
+  const [mailReg, setMailReg] = useState("");
+  const [nomReg, setNomReg] = useState("");
+  const [prenomReg, setPrenomReg] = useState("");
+  const [entrepriseReg, setEntrepriseReg] = useState("");
+  const [hashedPassword, setHashedPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (role !== 'admin') {
-      navigate('/');
+    if (role !== "admin") {
+      navigate("/");
     }
-  }, [role, navigate])
+  }, [role, navigate]);
 
   const handleChangePassword = async (e) => {
     const saltRounds = 10; // Nombre de "tours" pour renforcer le hachage
     const hashed = await bcrypt.hash(e.target.value, saltRounds);
     setHashedPassword(hashed);
-  }
+  };
 
   const register = (event) => {
     event.preventDefault();
@@ -43,6 +43,20 @@ function Register() {
       })
       .catch((error) => {
         console.error("Erreur lors de l'insertion", error);
+      });
+  };
+
+  const deleteUser = () => {
+    // Vous pouvez utiliser une requête axios pour supprimer l'utilisateur en fonction de son identifiant ou de son adresse e-mail, en supposant que vous avez une API pour gérer cela.
+    // Par exemple :
+    axios
+      .delete(`http://localhost:3001/users/${mailReg}`)
+      .then((response) => {
+        console.log("Utilisateur supprimé avec succès");
+        // Vous pouvez rediriger l'utilisateur vers une autre page ou effectuer une action appropriée après la suppression.
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression de l'utilisateur", error);
       });
   };
 
@@ -130,6 +144,9 @@ function Register() {
             value="Confirmer l'inscription"
           >
             Confirmer l'inscription
+          </button>
+          <button className="btn btn-danger mt-1" onClick={deleteUser}>
+            Supprimer l'utilisateur
           </button>
         </form>
       </div>
