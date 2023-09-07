@@ -12,6 +12,7 @@ const FormLogin = () => {
     const [msg, setMsg] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         if (connected) {
@@ -43,6 +44,7 @@ const FormLogin = () => {
                 console.log('Réponse de la requête: ', response.data);
 
                 const passwordMatch = await bcrypt.compare(password, response.data[0].MDP);
+                console.log(passwordMatch);
 
                 if (passwordMatch) {
                     // Authentification réussie
@@ -72,10 +74,22 @@ const FormLogin = () => {
 
     }
 
+    const openModal = () => {
+        setModal(!modal)
+        // axios.post('http://localhost:3001/mail')
+        //     .then(response => {
+        //         console.log('envoi réussi', response.data);
+        //     })
+        //     .catch(error => {
+        //         console.error('Erreur lors de l\'envoi de l\'email', error);
+        //     });
+
+    }
+
     return (
         <div className='form-login'>
             <h1 className='text-center'>Connexion</h1>
-            <form className='border mt-5 p-3' onSubmit={handleSubmit}>
+            <form className='border mt-5 p-3 form-connexion' onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Adresse email:</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={mail} onChange={changeMail} />
@@ -87,8 +101,24 @@ const FormLogin = () => {
                 {msg && (
                     <p className='msg-erreur'>Identifiants Incorrects</p>
                 )}
-                <button type="submit" className="btn btn-secondary">Connexion</button>
+                <button type="submit" className="btn btn-secondary mb-2">Connexion</button><br />
             </form>
+            <button onClick={openModal}>mot de passe oublié?</button>
+
+            {modal && (
+                <div class="page-shadow">
+                    <div className='modal-reset border text-center rounded'>
+                        <span onClick={() => { setModal(false) }} class="material-symbols-outlined close">
+                            close
+                        </span>
+                        <form action="">
+                            <label htmlFor="inputmail" className="form-label">Adresse mail:</label>
+                            <input type="text" className="form-control mb-3" id="inputmail" />
+                            <button type="submit" className="btn btn-secondary mb-2">envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

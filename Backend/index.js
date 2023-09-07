@@ -5,6 +5,7 @@ const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
 const bcrypt = require('bcryptjs-react');
+const transporter = require('./transporter');
 
 //REQUETES
 const { connexion, etatEnLigne } = require("./Requetes/connexion");
@@ -14,6 +15,7 @@ const register = require('./Requetes/register');
 const modifProfil = require("./Requetes/modifProfil");
 const profil = require("./Requetes/profil");
 const changePassword = require('./Requetes/changePassword');
+const mail = require('./Requetes/mail');
 
 dotenv.config();
 app.use(express.json());
@@ -47,3 +49,4 @@ register(app, connection);
 profil(app, connection);
 modifProfil(app, connection);
 changePassword(app, connection, bcrypt);
+mail(app, transporter);

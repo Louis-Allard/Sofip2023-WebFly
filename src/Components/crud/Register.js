@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import bcrypt from 'bcryptjs-react';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Register() {
     // INITIALISATION DES VALEURS
+    const role = useSelector((state) => state.role);
     const [mailReg, setMailReg] = useState('');
     const [nomReg, setNomReg] = useState('');
     const [prenomReg, setPrenomReg] = useState('');
     const [entrepriseReg, setEntrepriseReg] = useState('');
-    const [motdepasseReg, setMotdepasseReg] = useState('');
     const [hashedPassword, setHashedPassword] = useState('');
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (role !== 'admin') {
+            navigate('/');
+        }
+    }, [role, navigate])
+
     const handleChangePassword = async (e) => {
         const saltRounds = 10; // Nombre de "tours" pour renforcer le hachage
-        setMotdepasseReg(e.target.value);
         const hashed = await bcrypt.hash(e.target.value, saltRounds);
         setHashedPassword(hashed);
     }
