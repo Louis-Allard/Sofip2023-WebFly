@@ -7,7 +7,7 @@ import login from "./main/login";
 import profil from "./main/profil";
 import editprofil from "./Components/EditProfil";
 import ChangePassword from "./Components/changePassword";
-import chat from './main/chat';
+import Join from './Components/Join';
 
 const Router = () => {
   return (
@@ -20,7 +20,7 @@ const Router = () => {
         <Route path="/profil" Component={profil} />
         <Route path="/editprofil" Component={editprofil} />
         <Route path="/changePassword" Component={ChangePassword} />
-        <Route path="/chat" Component={chat}/>
+        <Route path="/join" Component={Join}/>
       </Routes>
     </div>
   );
