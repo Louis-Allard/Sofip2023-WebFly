@@ -9,9 +9,9 @@ const transporter = require('./transporter');
 
 //REQUETES
 const { connexion, etatEnLigne } = require("./Requetes/connexion");
-const utilisateur = require('./Requetes/utilisateurs');
-const deconnexion = require('./Requetes/deconnexion');
-const register = require('./Requetes/register');
+const utilisateur = require("./Requetes/utilisateurs");
+const deconnexion = require("./Requetes/deconnexion");
+const register = require("./Requetes/register");
 const modifProfil = require("./Requetes/modifProfil");
 const profil = require("./Requetes/profil");
 const changePassword = require('./Requetes/changePassword');

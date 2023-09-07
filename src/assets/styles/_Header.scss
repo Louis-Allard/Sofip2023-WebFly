@@ -8,6 +8,7 @@ background-color: #F4F6F7;
     img {
         width: 180px;
         height: 180px;
+        animation: scaleAndRotate 3s ease infinite; 
     }
 
     .div-logo {
@@ -22,7 +23,22 @@ background-color: #F4F6F7;
 
     h1 {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 3rem;
+        text-align: center;
+        color: #333;
+        animation: scaleAndRotate 3s ease infinite; 
     }
+    @keyframes scaleAndRotate {
+        0% {
+          transform: scale(1);
+        }
+        80% {
+          transform: scale(1.1) rotate(10deg);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
 
     .card-header {
         margin-right: 2em;

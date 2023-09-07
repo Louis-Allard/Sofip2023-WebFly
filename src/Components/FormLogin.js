@@ -1,9 +1,16 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import bcrypt from "bcryptjs-react";
-import { useDispatch, useSelector } from 'react-redux';
-import { setConnected, setEntreprise, setIdUser, setNom, setPrenom, setRole } from '../store';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import {
+    setConnected,
+    setEntreprise,
+    setIdUser,
+    setNom,
+    setPrenom,
+    setRole,
+} from "../store";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
     const connected = useSelector((state) => state.connected);
@@ -17,17 +24,17 @@ const FormLogin = () => {
 
     useEffect(() => {
         if (connected) {
-            navigate('/')
+            navigate("/");
         }
-    }, [connected, navigate])
+    }, [connected, navigate]);
 
     const changeMail = (e) => {
         setMail(e.target.value);
-    }
+    };
 
     const changePassword = (e) => {
         setPassword(e.target.value);
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,45 +42,54 @@ const FormLogin = () => {
 
         const data = {
             dataMail: mail,
-            dataPassword: password
+            dataPassword: password,
         };
         //console.log(data);
 
         if (data) {
             try {
-                const response = await axios.post('http://localhost:3001/connexion', data);
-                console.log('Réponse de la requête: ', response.data);
+                const response = await axios.post(
+                    "http://localhost:3001/connexion",
+                    data
+                );
+                console.log("Réponse de la requête: ", response.data);
+                console.log(response.data[0].MDP);
+                console.log(password);
 
-                const passwordMatch = await bcrypt.compare(password, response.data[0].MDP);
+                const passwordMatch = await bcrypt.compare(
+                    password,
+                    response.data[0].MDP
+                );
                 console.log(passwordMatch);
 
                 if (passwordMatch) {
                     // Authentification réussie
-                    console.log('Authentification réussie');
+                    console.log("Authentification réussie");
                     dispatch(setConnected(true));
                     dispatch(setIdUser(response.data[0].ID_UTILISATEUR));
                     dispatch(setEntreprise(response.data[0].ENTREPRISE));
                     dispatch(setNom(response.data[0].NOM));
-                    dispatch(setPrenom(response.data[0].PRENOM))
+                    dispatch(setPrenom(response.data[0].PRENOM));
                     dispatch(setRole(response.data[0].ROLE_UTILISATEUR));
-                    const connexion = await axios.put(`http://localhost:3001/connexion/${response.data[0].ID_UTILISATEUR}`);
+                    const connexion = await axios.put(
+                        `http://localhost:3001/connexion/${response.data[0].ID_UTILISATEUR}`
+                    );
                     console.log(connexion.data);
-                    navigate('/');
+                    navigate("/");
                 } else {
                     // Authentification échouée
-                    console.log('Authentification échouée');
+                    console.log("Authentification échouée");
                     dispatch(setConnected(false));
-                    setMsg(true)
+                    setMsg(true);
                 }
             } catch (error) {
-                console.error('Erreur lors de l\'envoi', error);
+                console.error("Erreur lors de l'envoi", error);
                 setMsg(!msg);
             }
         } else {
-            console.error('Erreur : valeur non définie');
+            console.error("Erreur : valeur non définie");
         }
-
-    }
+    };
 
     const submitMail = async (e) => {
         e.preventDefault();
