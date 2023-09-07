@@ -1,7 +1,11 @@
 // import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import Collapsible from 'react-collapsible';
-import '../scss/_sidebar.scss'
+import '../scss/_sidebar.scss';
+import company from '../img/apartment_FILL0_wght400_GRAD0_opsz48.png';
+import user from '../img/person_FILL0_wght400_GRAD0_opsz48.png';
+import message from '../img/mail_FILL0_wght400_GRAD0_opsz48.png';
+import logout from '../img/logout_FILL0_wght400_GRAD0_opsz48.png';
 
 const Sidebar = (props) => {
   const id = props.id;
@@ -46,6 +50,12 @@ const Sidebar = (props) => {
         <Link className="routNav" to={`http://localhost:3000/openwork`}><span className='isConnected'>Entreprises</span></Link>
         <Link className="routNav" to={`http://localhost:3000/friends/#`}><span className='isConnected'>Comptes Utilisateurs</span></Link>
         <Link className="routNav" to={`http://localhost:3000/ded`}>Déconnexion</Link> */}
+      </div>
+      <div className="responsive">
+          <a href="/" className={cls0}><img src={company} alt="company" /></a>
+          <a href="/" className={cls1}><img src={user} alt="user" /></a>
+          <a href="/" className={cls2}><img src={message} alt="message" /></a>
+          <a href="/" className="red"><img src={logout} alt="logout" /></a>
       </div>
     </div>
   );

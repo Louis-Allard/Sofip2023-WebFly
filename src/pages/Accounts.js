@@ -2,10 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import '../scss/_accounts.scss'
+import DeleteModal from '../components/DeleteModal';
+import { useDispatch } from 'react-redux';
+import { setModal } from '../reducers';
+import '../scss/_accounts.scss';
 
 const Accounts = () => {
     const [data, setData] = React.useState(null);
+    const dispatch = useDispatch();
+
+    const setModalOpen = () => {
+        dispatch(setModal(true));
+    };
 
     // React.useEffect(() => {
     //     axios.get('http://localhost:3001/accounts').then((res) => {
@@ -17,6 +25,7 @@ const Accounts = () => {
     return (
         <div className="accounts">
             <Sidebar id="0" />
+            <DeleteModal />
             <div className='account_list'>
                 <div className='account_map'>
                     {!data ? `Vous n'avez aucun contact enregistré.` : data.map((item, index) => (

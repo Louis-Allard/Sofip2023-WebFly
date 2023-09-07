@@ -7,6 +7,10 @@
     line-height: 29.26px;
     display: flex;
     color: rgb(255, 255, 255);
+
+    @media screen and (max-width: 512px) {
+        width: 100%;
+    }
 }
 
 .account_map {
@@ -30,6 +34,12 @@
     flex-wrap: wrap;
     background-color: #171b21;
     border-radius: 25px;
+
+    @media screen and (max-width: 512px) {
+        margin: 10%;
+        max-width: 80%;
+        width: 80%;
+    }
 }
 
 .color {

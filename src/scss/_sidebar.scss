@@ -8,6 +8,12 @@
     position: fixed;
     color: #F5F5F5;
 
+    @media screen and (max-width: 512px) {
+        width: 100%;
+        height: 50px;
+        bottom: 0;
+    }
+
     .sideleft {
         min-height: calc(100vh - 80px);
     }
@@ -21,6 +27,10 @@
         padding: 10px;
         margin-top: 10px;
         cursor: pointer;
+        
+        @media screen and (max-width: 512px) {
+            display: none;
+        }
     }
 
     .navLinkA {
@@ -39,6 +49,10 @@
         margin-top: 10px;
         overflow-y: scroll;
         background-color: #171b21;
+
+        @media screen and (max-height: 512px) {
+            height: 24vh;
+        }
     }
 
     .navLinkSub,
@@ -73,6 +87,10 @@
         padding-right: 73.5px;
         cursor: pointer;
     }
+        
+    @media screen and (max-width: 512px) {
+        display: none;
+    }
 
     .navLinkLogout:hover {
         font-weight: 600;
@@ -96,4 +114,19 @@
 .navLinkSub:hover,
 .navLinkSubA:hover {
     background-color: #d94272;
+}
+
+.responsive {  
+    display: none;
+
+    @media screen and (max-width: 512px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        filter: invert(1);
+
+        .red img {
+            filter: brightness(1) invert(.75) sepia(1) hue-rotate(135deg) saturate(4);
+        }
+    }
 }

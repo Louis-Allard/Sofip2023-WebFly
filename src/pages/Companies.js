@@ -2,10 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import '../scss/_companies.scss'
+import DeleteModal from '../components/DeleteModal';
+import { useDispatch } from 'react-redux';
+import { setModal } from '../reducers';
+import '../scss/_companies.scss';
 
 const Companies = () => {
     const [data, setData] = React.useState(null);
+    const dispatch = useDispatch();
+
+    const setModalOpen = () => {
+        dispatch(setModal(true));
+    };
 
     // React.useEffect(() => {
     //     axios.get('http://localhost:3001/companies').then((res) => {
@@ -17,6 +25,7 @@ const Companies = () => {
     return (
         <div className="companies">
             <Sidebar id="1" />
+            <DeleteModal />
             <div className='company_list'>
                 <div className="company_map">
                     {!data ? `Vous n'avez aucune entreprise enregistrée.` : data.map((item, index) => (
