@@ -17,6 +17,9 @@ app.use(
 const adressRoutes = require('./routes/adresseRoutes');
 app.use("/adresses", adressRoutes);
 
+const entrepriseRoutes = require('./routes/entrepriseRoutes');
+app.use("/entreprises", entrepriseRoutes);
+
 const userRoutes = require("./routes/userRoutes");
 app.use("/users", userRoutes);
 
