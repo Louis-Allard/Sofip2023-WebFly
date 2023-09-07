@@ -1,0 +1,41 @@
+.modifPro-container {
+    margin-left: 30%;
+    margin-top: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 0px 30px 30px 30px;
+    -moz-border-radius: 0px 30px 30px 30px;
+    -webkit-border-radius: 0px 30px 30px 30px;
+    border: 3px solid #c8303f;
+    border-right: #dededd;
+    border-bottom: #dededd;
+    background-color: #e9e9e7;
+    width: 600px;
+    height: 400px;
+    text-align: center;
+  
+    h2 {
+      color: rgb(33, 37, 37);
+      font-size: xx-large;
+      margin-top: 40px;
+    }
+  
+    .containerProf {
+      margin-top: 50px;
+      margin-right: auto;
+      margin-left: auto;
+  
+      p {
+        font-weight: 400;
+        text-align: left;
+        display: flex; // Utilisez flex pour aligner les éléments <spam>
+        justify-content: space-between;
+        margin-left: 15%;
+      }
+  
+      .spam {
+        text-align: right;
+        margin-right: 25%; /* Pour aligner les <spam> à gauche */
+      }
+    }
+  }
+  

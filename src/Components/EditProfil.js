@@ -34,7 +34,7 @@ const EditProfile = () => {
       });
   };
   return (
-    <div>
+    <div className="editProfil">
       <h2>Modifier le profil</h2>
       <Formik
         initialValues={{

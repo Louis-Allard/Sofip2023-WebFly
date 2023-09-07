@@ -1,0 +1,28 @@
+.editProfil {
+    margin-left: 30%;
+    margin-top: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 0px 30px 30px 30px;
+    -moz-border-radius: 0px 30px 30px 30px;
+    -webkit-border-radius: 0px 30px 30px 30px;
+    border: 3px solid #c8303f;
+    border-right: #dededd;
+    border-bottom: #dededd;
+    background-color: #e9e9e7;
+    width: 600px;
+    height: 400px;
+    text-align: center;
+
+    h2 {
+        color: rgb(33, 37, 37);
+        font-size: xx-large;
+        margin-top: 40px;
+      }
+
+      input {width: 50%;
+    margin-left: 25%;}
+
+    button {
+        margin-top: 2%;
+    }
+}
