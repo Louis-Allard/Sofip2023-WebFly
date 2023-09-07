@@ -1,0 +1,132 @@
+.sidebarleft {
+    font-family: 'Poppins';
+    font-size: 20px;
+    width: 300px;
+    flex-shrink: 0;
+    background-color: #171b21;
+    display: grid;
+    position: fixed;
+    color: #F5F5F5;
+
+    @media screen and (max-width: 512px) {
+        width: 100%;
+        height: 50px;
+        bottom: 0;
+    }
+
+    .sideleft {
+        min-height: calc(100vh - 80px);
+    }
+
+    .sideleft,
+    .navLink {
+        display: flex;
+        font-weight: 600;
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        
+        @media screen and (max-width: 512px) {
+            display: none;
+        }
+    }
+
+    .navLinkA {
+        padding-bottom: 10px;
+    }
+
+    .navLinkA,
+    .navLinkOpened {
+        margin-top: 40px;
+        padding-top: 10px;
+        cursor: pointer;
+    }
+
+    .overflow {
+        height: 50vh;
+        margin-top: 10px;
+        overflow-y: scroll;
+        background-color: #171b21;
+
+        @media screen and (max-height: 512px) {
+            height: 24vh;
+        }
+    }
+
+    .navLinkSub,
+    .navLinkSubA {
+        display: flex;
+        font-weight: 400;
+        flex-direction: column;
+        text-align: left;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    a {
+        text-decoration: none;
+        color: #F5F5F5;
+    }
+
+    .selected {
+        color: yellow;
+    }
+}
+
+.sidedown {
+    height: 80px;
+    width: 100%;
+
+    .navLinkLogout {
+        font-weight: 600;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 73.5px;
+        padding-right: 73.5px;
+        cursor: pointer;
+    }
+        
+    @media screen and (max-width: 512px) {
+        display: none;
+    }
+
+    .navLinkLogout:hover {
+        font-weight: 600;
+        background-color: #e09462;
+        border-radius: 5px;
+    }
+
+    .red {
+        color: red;
+    }
+}
+
+.navLink:hover,
+.navLinkA:hover,
+.navLinkOpened {
+    font-weight: 600;
+    background-color: #7298d9;
+    border-radius: 5px;
+}
+
+.navLinkSub:hover,
+.navLinkSubA:hover {
+    background-color: #d94272;
+}
+
+.responsive {  
+    display: none;
+
+    @media screen and (max-width: 512px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        filter: invert(1);
+
+        .red img {
+            filter: brightness(1) invert(.75) sepia(1) hue-rotate(135deg) saturate(4);
+        }
+    }
+}

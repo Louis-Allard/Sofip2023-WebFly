@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import LogIn from './pages/LogIn';
+import PersonRegister from './pages/PersonRegister';
+import CompanyRegister from './pages/CompanyRegister';
+import PersonEdit from './pages/PersonEdit';
+import CompanyEdit from './pages/CompanyEdit';
+import Accounts from './pages/Accounts';
+import Companies from './pages/Companies';
+import MessageBoard from './pages/MessageBoard';
+import Messenger from './pages/Messenger';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <LogIn /> */}
+      {/* <PersonRegister /> */}
+      {/* <CompanyRegister /> */}
+      {/* <PersonEdit /> */}
+      {/* <CompanyEdit /> */}
+      {/* <Accounts /> */}
+      {/* <Companies /> */}
+      {/* <MessageBoard /> */}
+      <Messenger />
     </div>
   );
 }
