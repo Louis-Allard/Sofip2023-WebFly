@@ -30,7 +30,7 @@ function AjouterUtilisateur() {
             .min(6, "Le mot de passe doit avoir plus de 6 caractères")
             .max(100, "Le mot de passe doit faire moins de 100 caractères")
             .matches(
-                /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*?&-]/,
+                /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&+-])[A-Za-z\d@$!%*?&-]/,
                 "Le mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial (!@#$%^&*-)."
             )
             .required("Champ requis"),
@@ -45,6 +45,7 @@ function AjouterUtilisateur() {
     const handleSubmit = async (values) => {
         try {
             const saltRounds = 10;
+
             const hashedPassword = await bcrypt.hash(
                 values.password,
                 saltRounds
