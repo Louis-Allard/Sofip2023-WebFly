@@ -42,13 +42,9 @@ function Register() {
 
   return (
     <section>
-      <div className="register">
-        <h3 className="text-center">Enregistrer un utilisateur</h3>
-        <form
-          method="POST"
-          className="formRegister text-center border border-dark p-3 rounded"
-          onSubmit={register}
-        >
+      <div className="register-container">
+        <h2 className="text-center">Enregistrer un utilisateur</h2>
+        <form method="POST" className=" text-center  p-3 " onSubmit={register}>
           <div className="mb-1">
             <label htmlFor="Input" className="form-label">
               Adresse mail
@@ -123,7 +119,7 @@ function Register() {
             />
           </div>
           <button
-            className="btn btn-dark mt-1"
+            className="btn btn-success mt-1"
             type="submit"
             value="Confirmer l'inscription"
           >

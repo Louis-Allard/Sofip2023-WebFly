@@ -42,7 +42,7 @@ const Header = () => {
     <div className="Header">
       <div className="div-logo">
         <img src={image} alt="" />
-        <h1>WebFly</h1>
+        {/* <h1>WebFly</h1> */}
       </div>
       <div className="card-header">
         <CardHeader />
