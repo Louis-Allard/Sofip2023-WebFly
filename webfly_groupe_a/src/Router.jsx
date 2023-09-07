@@ -2,18 +2,21 @@ import { Route, Routes } from "react-router-dom";
 import Connexion from "./Components/Connexion";
 import ConnexionAdminOk from "./Components/ConnexionAdminOk";
 import ConnexionUserOk from "./Components/ConnexionUserOk";
-import Ajouter_utilisateur from "./Components/Ajouter_utilisateur";
-import Lister_utilisateur from "./Components/Lister_utilisateur";
+import AjouterUtilisateur from "./Components/AjouterUtilisateur";
+import ListerUtilisateur from "./Components/ListerUtilisateur";
 
 function Routers() {
     return (
-            <Routes>
-                <Route path="/" element={<Connexion />} />
-                <Route path="/ConnexionAdminOk" element={<ConnexionAdminOk />} />
-                <Route path="/ConnexionUserOk" element={<ConnexionUserOk />} />
-                <Route path="/Ajouter_utilisateur" element={<Ajouter_utilisateur />} />
-                <Route path="/Lister_utilisateur" element={<Lister_utilisateur />} />
-            </Routes>
+        <Routes>
+            <Route path="/" element={<Connexion />} />
+            <Route path="/ConnexionAdminOk" element={<ConnexionAdminOk />} />
+            <Route path="/ConnexionUserOk" element={<ConnexionUserOk />} />
+            <Route
+                path="/AjouterUtilisateur"
+                element={<AjouterUtilisateur />}
+            />
+            <Route path="/ListerUtilisateur" element={<ListerUtilisateur />} />
+        </Routes>
     );
 }
 
