@@ -8,21 +8,22 @@ const Chat = ({socket, nom, room}) => {
 
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([])
-    const sendMessage = async () => {
-    if (currentMessage !== ""){
-        const messagedata = {
-            room: room,
-            author: nom,
-            message: currentMessage,
-            time: 
-            new Date(Date.now()).getHours() +
-            ":" + 
-            new Date(Date.now()).getMinutes()
-        };
-        await socket.emit("send_message", messagedata);
-        setMessageList((list) => [...list, messagedata]);
-        setCurrentMessage("")
-    }
+    const sendMessage = async (event) => {
+        event.preventDefault();
+        if (currentMessage !== ""){
+            const messagedata = {
+                room: room,
+                author: nom,
+                message: currentMessage,
+                time: 
+                new Date(Date.now()).getHours() +
+                ":" + 
+                new Date(Date.now()).getMinutes()
+            };
+            await socket.emit("send_message", messagedata);
+            setMessageList((list) => [...list, messagedata]);
+            setCurrentMessage("");
+        }
     };
     useEffect(() => {
         socket.on("receive_message", (data) => {
@@ -40,9 +41,9 @@ const Chat = ({socket, nom, room}) => {
         {/* BODY */}
         <div className='chat-body'>
             <ScrollToBottom className='message-container'>
-            {messageList.map((messageContent) => {
+            {messageList.map((messageContent, index) => {
                 return (
-                <div className='message' id={nom === messageContent.author ? "you" : "other"}>
+                <div className='message' key={index} id={nom === messageContent.author ? "you" : "other"}>
                     <div>
                         <div className='message-content'>
                             <p>{messageContent.message}</p>

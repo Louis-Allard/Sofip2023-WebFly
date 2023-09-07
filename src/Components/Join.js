@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import io from 'socket.io-client';
-const socket = io.connect("http://localhost:3001");
 import Chat from './Chat';
+const socket = io.connect("http://localhost:3001");
 
 const Join = () => {
     const [nom, setNom] = useState("");
