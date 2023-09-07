@@ -1,6 +1,14 @@
 .signup {
   padding-top: calc((100vh - 600px)/2);
 
+  @media screen and (max-width: 512px) {
+    padding-top: calc((100vh - 840px)/2);
+  }
+
+  @media screen and (max-height: 512px) {
+    padding-top: 10vh;
+  }
+
   h1 {
     font-family: 'Montserrat';
     font-weight: 700;
@@ -23,6 +31,29 @@
   align-items: center;
   text-align: left;
   border-radius: 10px;
+
+  @media screen and (max-width: 512px) {
+    height: 840px;
+  }
+
+  @media screen and (max-height: 512px) {
+    width: 80vw;
+    height: 80vh;
+  }
+
+  h1 {
+    width: 90%;
+
+    @media screen and (max-width: 512px) {
+      margin-top: 10%;
+      margin-bottom: 0%;
+    }
+
+    @media screen and (max-height: 512px) {
+      margin-top: -1%;
+      margin-bottom: -1%;
+    }
+  }
 }
 
 .trivial {
@@ -30,67 +61,116 @@
   grid-template-columns: repeat(4, 1fr);
   width: 80%;
   margin-left: 2.5%;
+  position: relative;
+
+  @media screen and (max-width: 512px) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media screen and (max-height: 512px) {
+    margin-top: -10%;
+  }
+
+  .element_company {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    width: 90%;
+  }
+
+  .element_siret {
+    grid-column: 3 / 5;
+    grid-row: 1;
+    width: 90%;
+  }
+
+  .element_address {
+    grid-column: 1;
+    grid-row: 2;
+    width: 90%;
+    @media screen and (max-height: 512px) {
+      margin-top: -15%;
+    }
+  }
+
+  .element_street {
+    grid-column: 2 / 5;
+    grid-row: 2;
+    width: 93.25%;
+    @media screen and (max-height: 512px) {
+      margin-top: -5%;
+    }
+  }
+
+  .element_code {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    width: 90%;
+    @media screen and (max-height: 512px) {
+      margin-top: -5%;
+    }
+  }
+
+  .element_city {
+    grid-column: 3 / 5;
+    grid-row: 3;
+    width: 90%;
+
+    @media screen and (max-height: 512px) {
+      margin-top: -10%;
+      grid-column: 3;
+    }
+  }
+
+  .element_button {
+    grid-column: 1 / 5;
+    grid-row: 4;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+
+    @media screen and (max-width: 512px) {
+      margin-top: 10%;
+    }
+
+    @media screen and (max-height: 512px) {
+      grid-column: 4;
+      grid-row: 3;
+      justify-content: end;
+      align-items: center;
+      width: 92.5%;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+    }
+  }
+
+  .champForm {
+    font-family: 'Poppins';
+    display: block;
+    color: white;
+    margin-top: 24px;
+  }
+
+  .txtmailpass {
+    font-family: 'Poppins';
+    background-color: #202632;
+    border-color: #4E81C2;
+    height: 40px;
+    width: 100%;
+    border-radius: 15px;
+    color: white;
+    margin-top: 8px;
+  }
 }
 
-.element_company {
-  grid-column: 1 / 3;
-  grid-row: 1;
-  width: 90%;
-}
-
-.element_siret {
-  grid-column: 3 / 5;
-  grid-row: 1;
-  width: 90%;
-}
-
-.element_address {
-  grid-column: 1;
-  grid-row: 2;
-  width: 90%;
-}
-
-.element_street {
-  grid-column: 2 / 5;
-  grid-row: 2;
-  width: 93.25%;
-}
-
-.element_code {
-  grid-column: 1 / 3;
-  grid-row: 3;
-  width: 90%;
-}
-
-.element_city {
-  grid-column: 3 / 5;
-  grid-row: 3;
-  width: 90%;
-}
-
-.champForm {
-  font-family: 'Poppins';
-  display: block;
-  color: white;
-  margin-top: 24px;
-}
-
-.txtmailpass {
-  font-family: 'Poppins';
-  background-color: #202632;
-  border-color: #4E81C2;
-  height: 40px;
-  width: 100%;
-  border-radius: 15px;
-  color: white;
-  margin-top: 8px;
-}
-
-.confirm {
+.confirm_company {
   font-family: 'Montserrat';
   font-weight: 400;
   width: 126px;
-  height: 38px;
+  height: 46px;
   text-align: center;
   border-radius: 15px;
   gap: 10px;
@@ -100,55 +180,10 @@
   line-height: 22px;
   cursor: pointer;
   margin-bottom: 2%;
+  grid-column: 4;
+  grid-row: 4;
+
+  @media screen and (max-width: 512px) {
+    margin-bottom: 10%;
+  }
 }
-
-.Accueil {
-  width: 100%;
-  padding: 10px;
-  border-color: #4E81C2;
-  gap: 10px;
-  background-color: #171B21;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 10px;
-  margin-bottom: 3%;
-}
-
-.alternative-login,
-.privacy-policy {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.alternative-login a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.privacy-policy a {
-  color: #a89d9d;
-  text-decoration: none;
-}
-
-.bouton_nul {
-
-  display: inline-flex;
-  flex-direction: row;
-
-}
-
-.placeBtnSU {
-  display: flex;
-  margin-top: 2%;
-  width: 90%;
-  justify-content: center;
-}
-
-//   width: 110px;
-//   height: 30px;
-//   border-color: #555;
-//   border-radius: 100px;
-//   background-color: #555;
-//   color: #fff;
-//   font-size: smaller;
-//   background-color: blue;

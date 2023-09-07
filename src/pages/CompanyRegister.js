@@ -34,7 +34,7 @@ const CompanyRegister = () => {
   };
 
   const handleChangeSiret = (event) => {
-      setSiret(event.target.value);
+    setSiret(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -68,7 +68,7 @@ const CompanyRegister = () => {
   return (
     <div className="signup">
       <form action="http://localhost:3001/signup" method="post" onSubmit={handleSubmit} className="signup_form">
-        <h1>Saisie des informations du nouveau contact</h1>
+        <h1>Saisie des informations de l'entreprise</h1>
         <div className="trivial">
           <div className="element_company">
             <label className='champForm' htmlFor="company">Nom : </label>
@@ -81,7 +81,7 @@ const CompanyRegister = () => {
           </div>
 
           <div className="element_street">
-            <label className='champForm' htmlFor="street">Rue/Avenue/Boulevard/etc... : </label>
+            <label className='champForm' htmlFor="street">Voie : </label>
             <input className='txtmailpass' type="text" name="fill_street" value={street} onChange={handleChangeStreet} required />
           </div>
 
@@ -99,18 +99,15 @@ const CompanyRegister = () => {
             <label className='champForm' htmlFor="siret">SIRET : </label>
             <input className='txtmailpass' type="text" name="fill_siret" value={siret} onChange={handleChangeSiret} required />
           </div>
-        </div>
 
-        <div className='placeBtnSU'>
-          <input type="submit" value="Confirmer" name="confirm" className="confirm" />
-          {/* <Link to="/"><Button2 textIn="Retourner à l'accueil" /></Link> */}
+          <div className='element_button'>
+            <input type="submit" value="Confirmer" name="confirm" className="confirm_company" />
+            {/* <Link to="/"><Button2 textIn="Retourner à l'accueil" /></Link> */}
+          </div>
         </div>
-
       </form>
-
     </div>
   );
 }
 
 export default CompanyRegister;
-

@@ -68,9 +68,9 @@ const PersonRegister = () => {
 
   return (
     <div className="signup">
-      <form action="http://localhost:3001/signup" method="post" onSubmit={handleSubmit} className="signup_form">
+      <form action="http://localhost:3001/signup" method="post" onSubmit={handleSubmit} className="signup_form_pers">
         <h1>Saisie des informations du nouveau contact</h1>
-        <div className="trivial">
+        <div className="trivial_pers">
           <div className="element_lastname">
             <label className='champForm' htmlFor="lastname">Nom : </label>
             <input className='txtmailpass' type="text" name="fill_lastname" value={lastname} onChange={handleChangeLastname} required />
@@ -95,25 +95,44 @@ const PersonRegister = () => {
             <label className='champForm' htmlFor="password">Confirmation : </label>
             <input className='txtmailpass' type="text" name="confirm_password" value={passwordConfirm} onChange={handleChangePasswordConfirm} required />
           </div>
+
+          <div className="element_company">
+            <label className='champForm' htmlFor="levelStudy">Entreprise : </label>
+            <select className='txtmailpass' value="{selectedValue}" onChange="{handleSelectChange}">
+              <option value="">1</option>
+              <option value="">2</option>
+              <option value="">3</option>
+              <option value="">4</option>
+              <option value="">5</option>
+              <option value="">6</option>
+              <option value="">7</option>
+              <option value="">8</option>
+              <option value="">9</option>
+              <option value="">10</option>
+              <option value="">11</option>
+              <option value="">12</option>
+              <option value="">13</option>
+              <option value="">14</option>
+              <option value="">15</option>
+              <option value="">16</option>
+              <option value="">17</option>
+              <option value="">18</option>
+              <option value="">19</option>
+              <option value="">20</option>
+              {/* {dataStudy && dataStudy.map((option) => (
+                <option key={option.ID_LEVELSTUDY} value={option.ID_LEVELSTUDY}>
+                  {option.WORDING_LEVELSTUDY}
+                </option>
+              ))} */}
+            </select>
+          </div>
+
+          <div className="element_button">
+            <input type="submit" value="Confirmer" name="confirm" className="confirm" />
+            {/* <Link to="/"><Button2 textIn="Retourner à l'accueil" /></Link> */}
+          </div>
         </div>
-
-        <label className='champForm' htmlFor="levelStudy">Entreprise : </label>
-        {/* <select className='txtmailpass' value={selectedValue} onChange={handleSelectChange}>
-          <option value="">Sélectionnez une option</option>
-          {dataStudy && dataStudy.map((option) => (
-            <option key={option.ID_LEVELSTUDY} value={option.ID_LEVELSTUDY}>
-              {option.WORDING_LEVELSTUDY}
-            </option>
-          ))}
-        </select> */}
-
-        <div className='placeBtnSU'>
-          <input type="submit" value="Confirmer" name="confirm" className="confirm" />
-          {/* <Link to="/"><Button2 textIn="Retourner à l'accueil" /></Link> */}
-        </div>
-
       </form>
-
     </div>
   );
 }

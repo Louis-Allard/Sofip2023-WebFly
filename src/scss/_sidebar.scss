@@ -13,32 +13,32 @@
     }
 
     .sideleft,
-    .navLink,
-    .navLinkA {
+    .navLink {
         display: flex;
         font-weight: 600;
         flex-direction: column;
         text-align: center;
         padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
     }
 
-    .navLink,
     .navLinkA {
-        cursor: pointer;
+        padding-bottom: 10px;
     }
 
     .navLinkA,
     .navLinkOpened {
         margin-top: 40px;
+        padding-top: 10px;
+        cursor: pointer;
     }
 
     .overflow {
         height: 50vh;
+        margin-top: 10px;
         overflow-y: scroll;
-    }
-
-    .navLinkSubA {
-        margin-top: 16px;
+        background-color: #171b21;
     }
 
     .navLinkSub,
@@ -51,14 +51,13 @@
         cursor: pointer;
     }
 
-    .navLinkOpened {
-        padding: 10px;
-        cursor: pointer;
-    }
-
     a {
         text-decoration: none;
         color: #F5F5F5;
+    }
+
+    .selected {
+        color: yellow;
     }
 }
 
@@ -74,12 +73,27 @@
         padding-right: 73.5px;
         cursor: pointer;
     }
+
+    .navLinkLogout:hover {
+        font-weight: 600;
+        background-color: #e09462;
+        border-radius: 5px;
+    }
+
+    .red {
+        color: red;
+    }
 }
 
 .navLink:hover,
-.navLinkOpened,
-.navLinkLogout:hover {
+.navLinkA:hover,
+.navLinkOpened {
     font-weight: 600;
     background-color: #7298d9;
     border-radius: 5px;
+}
+
+.navLinkSub:hover,
+.navLinkSubA:hover {
+    background-color: #d94272;
 }
