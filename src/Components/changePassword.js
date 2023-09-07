@@ -7,7 +7,6 @@ import bcrypt from "bcryptjs-react";
 import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
-
   const userId = useSelector((state) => state.idUser);
   console.log(userId);
   const [errMdp, setErrMdp] = useState(false);
@@ -19,7 +18,7 @@ const ChangePassword = () => {
     values.id = userId;
 
     if (values.NouveauPassword === values.confirmPassword) {
-      console.log('Valeurs identiques');
+      console.log("Valeurs identiques");
       const saltRounds = 10;
 
       try {
@@ -34,30 +33,29 @@ const ChangePassword = () => {
 
         // Réinitialisez les champs du formulaire
         setSubmitting(false);
-        navigate('/profil');
+        navigate("/profil");
       } catch (error) {
         console.error("Erreur lors du changement de mot de passe:", error);
         setSubmitting(false);
-        values.NouveauPassword = '';
-        values.confirmPassword = '';
+        values.NouveauPassword = "";
+        values.confirmPassword = "";
         setErrMdp(true);
       }
     } else {
-      console.log('erreur de confirmation');
+      console.log("erreur de confirmation");
       setErrConfirm(true);
     }
-
   };
 
   return (
-    <div>
+    <div className="password-container">
       <h2>Changer le mot de passe</h2>
       <Formik
         initialValues={{
           AncienPassword: "",
           NouveauPassword: "",
           confirmPassword: "",
-          id: userId
+          id: userId,
         }}
         onSubmit={handleSubmit}
       >
@@ -94,7 +92,9 @@ const ChangePassword = () => {
             <p className="text-danger">Le mot de passe saisi est incorrect</p>
           )}
           {errConfirm && (
-            <p className="text-danger">La confirmation du mot de passe est incorrect</p>
+            <p className="text-danger">
+              La confirmation du mot de passe est incorrect
+            </p>
           )}
           <Button type="submit">Changer le mot de passe</Button>
         </Form>

@@ -19,15 +19,28 @@ const Profil = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="modifPro-container">
       <h2>Profil de l'utilisateur</h2>
-      <p>Nom : {data.NOM}</p>
-      <p>Prénom : {data.PRENOM}</p>
-      <p>Adresse e-mail : {data.EMAIL}</p>
-      <p>Entreprise : {data.ENTREPRISE}</p>
-      <Link to="/EditProfil">
-        <button className="editProfilButton">Modif profil</button>
-      </Link>
+      <div className="containerProf">
+        <p>
+          Nom : <spam className="spam">{data.NOM}</spam>
+        </p>
+        <p>
+          Prénom : <spam className="spam">{data.PRENOM}</spam>
+        </p>
+        <p>
+          Adresse e-mail : <spam className="spam">{data.EMAIL}</spam>
+        </p>
+        <p>
+          Entreprise : <spam className="spam">{data.ENTREPRISE}</spam>
+        </p>
+        <Link to="/EditProfil">
+          <button className="btn btn-outline-success">Modif profil</button>
+        </Link>
+        <Link to="/changePassword">
+          <button className="btn btn-outline-primary">Modif password</button>
+        </Link>
+      </div>
     </div>
   );
 };

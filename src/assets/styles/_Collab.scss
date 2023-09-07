@@ -1,0 +1,26 @@
+.collab{
+    width: 40%;
+    float: left;
+    .interlocuteur{
+        display: flex;
+        height: 100px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid rgba(218, 208, 208, 0.5);
+
+    }
+    .listCollab{
+        .titreCollab{
+            text-decoration: underline;
+        }
+        img{
+            width: 15px;
+            background: linear-gradient(217deg, rgba(255, 255, 255, 0.8), rgba(255,0,0,0) 70.71%),
+                        linear-gradient(127deg, rgb(21, 75, 21), rgb(0, 255, 0) 70.71%),
+                        linear-gradient(336deg, rgba(82, 156, 76, 0.8), rgb(30, 255, 0) 70.71%);
+            border-radius: 20px;
+        }
+    }
+
+}
