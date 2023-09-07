@@ -16,6 +16,7 @@ const modifProfil = require("./Requetes/modifProfil");
 const profil = require("./Requetes/profil");
 const changePassword = require('./Requetes/changePassword');
 const mail = require('./Requetes/mail');
+const checkEmail = require('./Requetes/checkEmail');
 
 dotenv.config();
 app.use(express.json());
@@ -50,3 +51,4 @@ profil(app, connection);
 modifProfil(app, connection);
 changePassword(app, connection, bcrypt);
 mail(app, transporter);
+checkEmail(app, connection);

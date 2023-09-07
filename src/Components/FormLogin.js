@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FormLogin = () => {
     const connected = useSelector((state) => state.connected);
+    const [mail2, setMail2] = useState('');
     const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState(false)
@@ -74,16 +75,25 @@ const FormLogin = () => {
 
     }
 
-    const openModal = () => {
-        setModal(!modal)
-        // axios.post('http://localhost:3001/mail')
-        //     .then(response => {
-        //         console.log('envoi réussi', response.data);
-        //     })
-        //     .catch(error => {
-        //         console.error('Erreur lors de l\'envoi de l\'email', error);
-        //     });
+    const submitMail = async (e) => {
+        e.preventDefault();
+        console.log(mail2);
+        const data = {
+            dataMail: mail2
+        };
+        //console.log(data);
 
+        if (data) {
+            try {
+                const response = await axios.post('http://localhost:3001/checkEmail', data);
+                console.log('Réponse de la requête: ', response.data);
+
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi', error);
+            }
+        } else {
+            console.error('Erreur : valeur non définie');
+        }
     }
 
     return (
@@ -103,17 +113,17 @@ const FormLogin = () => {
                 )}
                 <button type="submit" className="btn btn-secondary mb-2">Connexion</button><br />
             </form>
-            <button onClick={openModal}>mot de passe oublié?</button>
+            <button onClick={() => { setModal(true) }}>mot de passe oublié?</button>
 
             {modal && (
-                <div class="page-shadow">
+                <div className="page-shadow">
                     <div className='modal-reset border text-center rounded'>
-                        <span onClick={() => { setModal(false) }} class="material-symbols-outlined close">
+                        <span onClick={() => { setModal(false) }} className="material-symbols-outlined close">
                             close
                         </span>
-                        <form action="">
+                        <form action="" onSubmit={submitMail}>
                             <label htmlFor="inputmail" className="form-label">Adresse mail:</label>
-                            <input type="text" className="form-control mb-3" id="inputmail" />
+                            <input type="text" className="form-control mb-3" id="inputmail" onChange={(e) => { setMail2(e.target.value) }} />
                             <button type="submit" className="btn btn-secondary mb-2">envoyer</button>
                         </form>
                     </div>
