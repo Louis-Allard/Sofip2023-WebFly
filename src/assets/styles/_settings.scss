@@ -1,5 +1,5 @@
 // SCSS GLOBAL
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -7,4 +7,11 @@
 
 body {
     background-color: #c1848411;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-y: hidden;
+}
+
+.form-control:focus {
+    border-color: transparent !important;
+    box-shadow: 0 0 5px rgb(255, 255, 255) !important;
 }

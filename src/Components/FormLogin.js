@@ -75,7 +75,7 @@ const FormLogin = () => {
                         `http://localhost:3001/connexion/${response.data[0].ID_UTILISATEUR}`
                     );
                     console.log(connexion.data);
-                    navigate("/");
+                    navigate("/join");
                 } else {
                     // Authentification échouée
                     console.log("Authentification échouée");
@@ -114,37 +114,39 @@ const FormLogin = () => {
 
     return (
         <div className='form-login'>
-            <h1 className='text-center'>Connexion</h1>
-            <form className='border mt-5 p-3 form-connexion' onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Adresse email:</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={mail} onChange={changeMail} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Mot de passe:</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" value={password} onChange={changePassword} />
-                </div>
-                {msg && (
-                    <p className='msg-erreur'>Identifiants Incorrects</p>
-                )}
-                <button type="submit" className="btn btn-secondary mb-2">Connexion</button><br />
-            </form>
-            <button onClick={() => { setModal(true) }}>mot de passe oublié?</button>
-
-            {modal && (
-                <div className="page-shadow">
-                    <div className='modal-reset border text-center rounded'>
-                        <span onClick={() => { setModal(false) }} className="material-symbols-outlined close">
-                            close
-                        </span>
-                        <form action="" onSubmit={submitMail}>
-                            <label htmlFor="inputmail" className="form-label">Adresse mail:</label>
-                            <input type="text" className="form-control mb-3" id="inputmail" onChange={(e) => { setMail2(e.target.value) }} />
-                            <button type="submit" className="btn btn-secondary mb-2">envoyer</button>
-                        </form>
+            <div className="login-container">
+                <h1 className='text-center'>Connexion</h1>
+                <form className='border mt-5 p-3 form-connexion' onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label">Adresse email:</label>
+                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={mail} onChange={changeMail} />
                     </div>
-                </div>
-            )}
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputPassword1" className="form-label">Mot de passe:</label>
+                        <input type="password" className="form-control" id="exampleInputPassword1" value={password} onChange={changePassword} />
+                    </div>
+                    {msg && (
+                        <p className='msg-erreur'>Identifiants Incorrects</p>
+                    )}
+                    <button type="submit" className="btn btn-primary mb-2">Connexion</button><br />
+                </form>
+                <button onClick={() => { setModal(true) }}>mot de passe oublié?</button>
+
+                {modal && (
+                    <div className="page-shadow">
+                        <div className='modal-reset border text-center rounded'>
+                            <span onClick={() => { setModal(false) }} className="material-symbols-outlined close">
+                                close
+                            </span>
+                            <form action="" onSubmit={submitMail}>
+                                <label htmlFor="inputmail" className="form-label">Adresse mail:</label>
+                                <input type="text" className="form-control mb-3" id="inputmail" onChange={(e) => { setMail2(e.target.value) }} />
+                                <button type="submit" className="btn btn-secondary mb-2">envoyer</button>
+                            </form>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

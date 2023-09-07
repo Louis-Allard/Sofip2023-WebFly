@@ -31,7 +31,7 @@ const Header = () => {
 
       await axios.put(`/deconnexion/${idUser}`);
       // Redirigez l'utilisateur vers la page de connexion
-      window.location.href = "/login";
+      window.location.href = "/";
     } catch (error) {
       // Gérez les erreurs ici en cas d'échec des opérations asynchrones
       console.error("Erreur lors de la déconnexion :", error);
@@ -54,7 +54,7 @@ const Header = () => {
             </button>
           </Link>
         ) : (
-          <Link to="/login">
+          <Link to="/">
             <button className="btn btn-primary">Connexion</button>
           </Link>
         )}
