@@ -1,0 +1,136 @@
+.message_background {
+    width: calc(100vw - 300px);
+    height: 144px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #282c34;
+    z-index: 3;
+    
+    @media screen and (max-width: 512px) {
+        width: 100%;
+        height: 120px;
+        bottom: 50px;
+    }
+}
+
+.message_box {
+    font-family: "Montserrat";
+    width: calc((100vw - 300px) * 0.92);
+    margin-bottom: 1%;
+    align-items: center;
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    
+    @media screen and (max-width: 512px) {
+        width: 90%;
+        margin-left: 5%;
+        right: 0;
+        bottom: 0;
+    }
+
+    form {
+        width: calc(100% - 32px);
+        background-color: #202632;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 28px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        textarea {
+            background-color: #171b21;
+            width: 100%;
+            min-height: 30px;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            resize: none;
+            color: #F5F5F5;
+            padding-left: 8px;
+            padding-top: 8px;
+            position: relative;
+            top: 16px;
+            right: 4px;
+        }
+
+        .mainPost {
+            width: 80%;
+        }
+
+        .sendPost {
+            font-family: 'Montserrat';
+            padding-top: 16px;
+            display: flex;
+        }
+
+        .postContent {
+            font-family: 'Montserrat';
+            margin-left: 30px;
+            text-align: center;
+            gap: 10px;
+            outline: none;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(128deg, #4E81C2 60%, #FFF 100%);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            width: 130px;
+            height: 40px;
+            margin-top: 8px;
+        }
+    }
+
+    @media screen and (max-width: 512px) {
+        margin-right: 5%;
+        margin-bottom: 15%;
+    }
+
+    .disconnect-home-post {
+        background-color: #202632;
+        border-radius: 12px;
+        padding: 1em;
+        height: 15vh;
+        text-align: center;
+
+        p {
+            color: white;
+        }
+
+        .btn-disconnect-post {
+            display: flex;
+            justify-content: space-evenly;
+
+            button {
+                width: 126px;
+                height: 38px;
+            }
+
+            .btn-connect {
+                border-radius: 15px;
+                gap: 10px;
+                background: linear-gradient(to right, #4E81C2 75%, #FFFFFF);
+                color: white;
+                font-size: 14px;
+                line-height: 22px;
+                cursor: pointer;
+            }
+
+            .btn-signUp {
+                border-radius: 15px;
+                border-color: #4E81C2;
+                gap: 10px;
+                background-color: #171B21;
+                color: white;
+                font-size: 14px;
+                line-height: 22px;
+                cursor: pointer;
+            }
+        }
+    }
+}

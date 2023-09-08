@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-// import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../scss/_login.scss';
 
 const LogIn = () => {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [msgPassword, setMsgPassword] = useState('');
@@ -41,7 +41,7 @@ const LogIn = () => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('id', response.data.userID);
           setMsgPassword(response.data.message);
-          // navigate('/');
+          navigate('/');
         })
         .catch(error => {
           console.error('Erreur lors de l\'envoi', error);
@@ -69,12 +69,8 @@ const LogIn = () => {
           <button type='submit' className='confirm'>Connection</button>
           {/* <Link to="/"><Button2 textIn="Retourner à l'accueil" /></Link> */}
         </div>
-
       </form>
-
     </div>
-
-
   );
 };
 
