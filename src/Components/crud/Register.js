@@ -46,20 +46,6 @@ function Register() {
       });
   };
 
-  const deleteUser = () => {
-    // Vous pouvez utiliser une requête axios pour supprimer l'utilisateur en fonction de son identifiant ou de son adresse e-mail, en supposant que vous avez une API pour gérer cela.
-    // Par exemple :
-    axios
-      .delete(`http://localhost:3001/users/${mailReg}`)
-      .then((response) => {
-        console.log("Utilisateur supprimé avec succès");
-        // Vous pouvez rediriger l'utilisateur vers une autre page ou effectuer une action appropriée après la suppression.
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la suppression de l'utilisateur", error);
-      });
-  };
-
   return (
     <section>
       <div className="register-container">
@@ -144,9 +130,6 @@ function Register() {
             value="Confirmer l'inscription"
           >
             Confirmer l'inscription
-          </button>
-          <button className="btn btn-danger mt-1" onClick={deleteUser}>
-            Supprimer l'utilisateur
           </button>
         </form>
       </div>

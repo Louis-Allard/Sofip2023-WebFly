@@ -5,8 +5,8 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const bcrypt = require('bcryptjs-react');
-const transporter = require('./transporter');
+const bcrypt = require("bcryptjs-react");
+const transporter = require("./transporter");
 
 const { Server } = require("socket.io");
 app.use(cors());
@@ -22,14 +22,14 @@ io.on("connection", (socket) => {
   socket.on("join_room", (data) => {
     socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
-  })
+  });
   socket.on("send_message", (data) => {
     socket.to(data.room).emit("receive_message", data);
-  })
+  });
   socket.on("disconnect", () => {
     console.log("User disconnected", socket.id);
-  })
-})
+  });
+});
 //REQUETES
 const { connexion, etatEnLigne } = require("./Requetes/connexion");
 const utilisateur = require("./Requetes/utilisateurs");
@@ -37,9 +37,9 @@ const deconnexion = require("./Requetes/deconnexion");
 const register = require("./Requetes/register");
 const modifProfil = require("./Requetes/modifProfil");
 const profil = require("./Requetes/profil");
-const changePassword = require('./Requetes/changePassword');
-const mail = require('./Requetes/mail');
-const checkEmail = require('./Requetes/checkEmail');
+const changePassword = require("./Requetes/changePassword");
+const mail = require("./Requetes/mail");
+const checkEmail = require("./Requetes/checkEmail");
 
 dotenv.config();
 app.use(express.json());
