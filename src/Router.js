@@ -8,6 +8,7 @@ import profil from "./main/profil";
 import editprofil from "./Components/EditProfil";
 import ChangePassword from "./Components/changePassword";
 import Join from "./Components/Join";
+import UserList from "./Components/crud/UserList";
 
 const Router = () => {
   return (
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/editprofil" Component={editprofil} />
         <Route path="/changePassword" Component={ChangePassword} />
         <Route path="/join" Component={Join} />
+        <Route path="/userlist" Component={UserList} />
       </Routes>
     </div>
   );

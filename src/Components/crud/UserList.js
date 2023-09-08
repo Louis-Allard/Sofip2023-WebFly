@@ -6,7 +6,7 @@ function UserList() {
 
   useEffect(() => {
     axios
-      .get("/api/users") // Utilisez l'URL relative correspondante
+      .get("/api/utilisateurs") // Utilisez l'URL relative correspondante
       .then((response) => {
         setUsers(response.data);
       })
@@ -20,10 +20,12 @@ function UserList() {
 
   const handleDeleteUser = (userId) => {
     axios
-      .delete(`http://localhost:3001/users/${userId}`) // Assurez-vous que l'URL correspond à votre backend
+      .delete(`/api/utilisateurs/${userId}`) // Assurez-vous que l'URL correspond à votre backend
       .then((response) => {
         // Mettez à jour l'état des utilisateurs après la suppression
-        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+        setUsers((prevUsers) =>
+          prevUsers.filter((user) => user.ID_UTILISATEUR !== userId)
+        );
       })
       .catch((error) => {
         console.error(
@@ -38,9 +40,11 @@ function UserList() {
       <h2>Liste des utilisateurs inscrits</h2>
       <ul>
         {users.map((user) => (
-          <li key={user.id}>
-            {user.name}
-            <button onClick={() => handleDeleteUser(user.id)}>Supprimer</button>
+          <li key={user.ID_UTILISATEUR}>
+            {user.NOM} {user.PRENOM}
+            <button onClick={() => handleDeleteUser(user.ID_UTILISATEUR)}>
+              Supprimer
+            </button>
           </li>
         ))}
       </ul>
