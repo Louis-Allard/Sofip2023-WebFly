@@ -36,18 +36,21 @@ function UserList() {
   };
 
   return (
-    <div>
+    <div className="list-container">
       <h2>Liste des utilisateurs inscrits</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.ID_UTILISATEUR}>
-            {user.NOM} {user.PRENOM}
-            <button onClick={() => handleDeleteUser(user.ID_UTILISATEUR)}>
-              Supprimer
-            </button>
-          </li>
-        ))}
-      </ul>
+
+      {users.map((user) => (
+        <div className="user-info" key={user.ID_UTILISATEUR}>
+          <p>{user.NOM}</p>
+          <p>{user.PRENOM}</p>
+          <button
+            className="btn btn-warning"
+            onClick={() => handleDeleteUser(user.ID_UTILISATEUR)}
+          >
+            Supprimer
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
