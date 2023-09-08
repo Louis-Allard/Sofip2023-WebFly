@@ -1,5 +1,5 @@
-// import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Collapsible from 'react-collapsible';
 import '../scss/_sidebar.scss';
 import company from '../img/apartment_FILL0_wght400_GRAD0_opsz48.png';
@@ -27,35 +27,23 @@ const Sidebar = (props) => {
   return (
     <div className="sidebarleft">
       <div className='sideleft'>
-        <a href="/" className={cls0}><span className='navLink'>Entreprises</span></a>
-        <a href="/" className={cls1}><span className='navLink'>Comptes Utilisateurs</span></a>
+        <Link className={cls0} to={`/companies`}><span className='navLink'>Entreprises</span></Link>
+        <Link className={cls1} to={`/users`}><span className='navLink'>Comptes Utilisateurs</span></Link>
         <Collapsible trigger={<div>Messagerie</div>} transitionTime="50" className={`navLinkA ${cls2}`} openedClassName={`navLinkOpened ${cls2}`}>
           <div className="overflow">
-            <a href="/" className="red"><span className='navLinkSubA'>Entreprise A</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise B</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise C</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise D</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise E</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise F</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise G</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise H</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise I</span></a>
-            <a href="/" className="red"><span className='navLinkSub'>Entreprise J</span></a>
+          <Link className="red" to={`/message/0`}><span className='navLinkSubA'>Entreprise A</span></Link>
+          <Link className="red" to={`/message/0`}><span className='navLinkSub'>Entreprise B</span></Link>
           </div>
         </Collapsible>
       </div>
       <div className='sidedown'>
-        <a href="/" className="red"><span className='navLinkLogout'>Déconnection</span></a>
-        {/* <Link className="routNav" to={`http://localhost:3000/market`}><span className='isConnected'>Messagerie</span></Link>
-        <Link className="routNav" to={`http://localhost:3000/openwork`}><span className='isConnected'>Entreprises</span></Link>
-        <Link className="routNav" to={`http://localhost:3000/friends/#`}><span className='isConnected'>Comptes Utilisateurs</span></Link>
-        <Link className="routNav" to={`http://localhost:3000/ded`}>Déconnexion</Link> */}
+        <Link className="red" to={`/logout`}><span className='navLinkLogout'>Déconnection</span></Link>
       </div>
       <div className="responsive">
-          <a href="/" className={cls0}><img src={company} alt="company" /></a>
-          <a href="/" className={cls1}><img src={user} alt="user" /></a>
-          <a href="/" className={cls2}><img src={message} alt="message" /></a>
-          <a href="/" className="red"><img src={logout} alt="logout" /></a>
+          <Link className={cls0} to={`/companies`}><img src={company} alt="company" /></Link>
+          <Link className={cls1} to={`/users`}><img src={user} alt="user" /></Link>
+          <Link className={cls2} to={`/message/0`}><img src={message} alt="message" /></Link>
+          <Link className="red" to={`/logout`}><img src={logout} alt="logout" /></Link>
       </div>
     </div>
   );

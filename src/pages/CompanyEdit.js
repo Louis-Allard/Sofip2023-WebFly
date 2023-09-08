@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-// import { Link } from "react-router-dom";
 // import { SHA256 } from 'crypto-js';
 import '../scss/_companyreg.scss';
 
@@ -102,7 +101,6 @@ const CompanyRegister = () => {
 
           <div className='element_button'>
             <input type="submit" value="Modifier" name="confirm" className="confirm_company" />
-            {/* <Link to="/"><Button2 textIn="Retourner à l'accueil" /></Link> */}
           </div>
         </div>
       </form>

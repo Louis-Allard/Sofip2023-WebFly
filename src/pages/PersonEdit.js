@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-// import { Link } from "react-router-dom";
 // import { SHA256 } from 'crypto-js';
 import '../scss/_personreg.scss';
 
@@ -100,25 +99,6 @@ const PersonRegister = () => {
             <label className='champForm' htmlFor="levelStudy">Entreprise : </label>
             <select className='txtmailpass' value="{selectedValue}" onChange="{handleSelectChange}">
               <option value="">1</option>
-              <option value="">2</option>
-              <option value="">3</option>
-              <option value="">4</option>
-              <option value="">5</option>
-              <option value="">6</option>
-              <option value="">7</option>
-              <option value="">8</option>
-              <option value="">9</option>
-              <option value="">10</option>
-              <option value="">11</option>
-              <option value="">12</option>
-              <option value="">13</option>
-              <option value="">14</option>
-              <option value="">15</option>
-              <option value="">16</option>
-              <option value="">17</option>
-              <option value="">18</option>
-              <option value="">19</option>
-              <option value="">20</option>
               {/* {dataStudy && dataStudy.map((option) => (
                 <option key={option.ID_LEVELSTUDY} value={option.ID_LEVELSTUDY}>
                   {option.WORDING_LEVELSTUDY}
@@ -129,7 +109,6 @@ const PersonRegister = () => {
 
           <div className="element_button">
             <input type="submit" value="Modifier" name="confirm" className="confirm" />
-            {/* <Link to="/"><Button2 textIn="Retourner à l'accueil" /></Link> */}
           </div>
         </div>
       </form>
