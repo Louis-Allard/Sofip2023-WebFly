@@ -39,7 +39,7 @@ function Register() {
       })
       .then((response) => {
         console.log("Insertion réussie");
-        navigate("/login");
+        navigate("/");
       })
       .catch((error) => {
         console.error("Erreur lors de l'insertion", error);
