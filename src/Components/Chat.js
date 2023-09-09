@@ -39,7 +39,6 @@ const Chat = ({socket, nom, room}) => {
 
         {/* BODY */}
         <div className='chat-body'>
-            <div className='message-container'>
             {messageList.map((messageContent, index) => {
                 return (
                 <div className='message' key={index} id={nom === messageContent.author ? "you" : "other"}>
@@ -55,14 +54,13 @@ const Chat = ({socket, nom, room}) => {
                 </div>
                 )
             })}
-            </div>
         </div>
 
         {/*FOOTER*/}
         <div className='chat-footer'>
         <div className='form'>
             <form className='formAnswer' id="form" action='#'>
-                <input type='text'
+                <textarea type='text'
                 className='form-control'
                 value={currentMessage} 
                 onChange={(event) => {setCurrentMessage(event.target.value);}} 

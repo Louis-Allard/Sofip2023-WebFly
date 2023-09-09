@@ -17,7 +17,8 @@ const Join = () => {
     }
     return (
         <section>
-            {!showChat ? (
+        {!showChat ? (
+        <div className='pageJoin'>
             <div className='blocJoin'>
                     <h3>Join a chat</h3>                
                     <div className='join'>
@@ -39,11 +40,12 @@ const Join = () => {
                     <button className='btn btn-secondary' onClick={joinRoom} type='submit'>Rejoindre</button>
                 </div>
             </div>
-            )
-            :
-            (
-            <Chat socket={socket} nom={nom} room={room}/>
-            )}
+        </div>
+        )
+        :
+        (
+        <Chat socket={socket} nom={nom} room={room}/>
+        )}
         </section>
     );
 };
