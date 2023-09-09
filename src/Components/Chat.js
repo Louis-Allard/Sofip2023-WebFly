@@ -34,7 +34,7 @@ const Chat = ({socket, nom, room}) => {
         <div className='blocChat'>
         {/* HEADER */}
         <div className='chat-header'>
-            <p>Live Chat</p>
+            <p>Chat</p>
         </div>
 
         {/* BODY */}

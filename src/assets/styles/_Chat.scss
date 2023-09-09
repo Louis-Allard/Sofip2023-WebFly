@@ -18,7 +18,7 @@
         margin-left: 10px;
         padding-right: 10px;
         overflow-y: scroll;
-        height: 85vh;
+        height: 86vh;
         padding-bottom:180px;
         .message-content{
             display: flex;
@@ -84,7 +84,7 @@
         border-radius: 50px;
     }
     .chat-footer{
-        height: 9vh;
+        height: 8vh;
         width: 60%;
         display: block;
         position: fixed;
@@ -107,8 +107,9 @@
                     height: 30px;
                 }
             }
+            textarea {
+                resize: none;
+            }
         }  
     }
-    
-
 }
