@@ -21,10 +21,11 @@ const FormLogin = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
+    const [errMail, setErrMail] = useState(false);
 
     useEffect(() => {
         if (connected) {
-            navigate("/");
+            navigate("/join");
         }
     }, [connected, navigate]);
 
@@ -102,7 +103,20 @@ const FormLogin = () => {
         if (data) {
             try {
                 const response = await axios.post('http://localhost:3001/checkEmail', data);
-                console.log('Réponse de la requête: ', response.data);
+                console.log(response.data);
+                const id = response.data;
+
+                if (response.data === false) {
+                    setErrMail(true);
+                } else {
+                    setErrMail(false);
+                    const response2 = await axios.put(`http://localhost:3001/createToken/${id}`)
+                    console.log(response2.data);
+                    const token = response2.data.token;
+
+                    const response3 = await axios.post(`http://localhost:3001/mail`, { mail2, token })
+                    console.log(response3.data);
+                }
 
             } catch (error) {
                 console.error('Erreur lors de l\'envoi', error);
@@ -130,7 +144,7 @@ const FormLogin = () => {
                     )}
                     <button type="submit" className="btn btn-primary mb-2">Connexion</button><br />
                 </form>
-                <button onClick={() => { setModal(true) }}>mot de passe oublié?</button>
+                <button className="btn btn-secondary mb-3" onClick={() => { setModal(true) }}>mot de passe oublié?</button>
 
                 {modal && (
                     <div className="page-shadow">
@@ -140,7 +154,10 @@ const FormLogin = () => {
                             </span>
                             <form action="" onSubmit={submitMail}>
                                 <label htmlFor="inputmail" className="form-label">Adresse mail:</label>
-                                <input type="text" className="form-control mb-3" id="inputmail" onChange={(e) => { setMail2(e.target.value) }} />
+                                <input type="email" className="form-control mb-3" id="inputmail" onChange={(e) => { setMail2(e.target.value) }} />
+                                {errMail && (
+                                    <p className="text-danger">Adresse mail Inconnue</p>
+                                )}
                                 <button type="submit" className="btn btn-secondary mb-2">envoyer</button>
                             </form>
                         </div>

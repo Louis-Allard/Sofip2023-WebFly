@@ -7,6 +7,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const bcrypt = require('bcryptjs-react');
 const transporter = require('./transporter');
+const jwt = require('jsonwebtoken');
 
 const { Server } = require("socket.io");
 app.use(cors());
@@ -40,6 +41,9 @@ const profil = require("./Requetes/profil");
 const changePassword = require('./Requetes/changePassword');
 const mail = require('./Requetes/mail');
 const checkEmail = require('./Requetes/checkEmail');
+const verifyToken = require("./Requetes/tokenVerif");
+const createToken = require("./Requetes/createToken");
+const resetMdp = require("./Requetes/resetMdp");
 
 dotenv.config();
 app.use(express.json());
@@ -74,3 +78,6 @@ modifProfil(app, connection);
 changePassword(app, connection, bcrypt);
 mail(app, transporter);
 checkEmail(app, connection);
+verifyToken(app, jwt);
+createToken(app, connection, jwt);
+resetMdp(app, connection);

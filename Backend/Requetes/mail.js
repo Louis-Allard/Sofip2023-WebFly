@@ -1,12 +1,14 @@
 const mail = (app, transporter) => {
 
     app.post('/mail', (req, res) => {
+        const mail = req.body.mail2;
+        const token = req.body.token;
 
         const mailOptions = {
             from: 'nicolas.dupontnew@gmail.com',
-            to: 'nicolas.dupont59176@gmail.com',
-            subject: 'TEST',
-            text: 'TEST',
+            to: mail,
+            subject: 'Réinitialisation de votre mot de passe',
+            text: `Bonjour, suivez le lien suivant pour réinitialiser votre mot de passe : http://localhost:3000/reset/${token}`
         };
 
         // Envoyez l'e-mail

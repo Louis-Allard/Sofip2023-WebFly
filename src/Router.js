@@ -8,6 +8,7 @@ import profil from "./main/profil";
 import editprofil from "./Components/EditProfil";
 import ChangePassword from "./Components/changePassword";
 import Join from './Components/Join';
+import reset from "./main/reset";
 
 const Router = () => {
   return (
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/editprofil" Component={editprofil} />
         <Route path="/changePassword" Component={ChangePassword} />
         <Route path="/join" Component={Join} />
+        <Route path="/reset/:token" Component={reset} />
       </Routes>
     </div>
   );

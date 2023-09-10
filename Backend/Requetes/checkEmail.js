@@ -12,9 +12,9 @@ const checkEmail = (app, connection) => {
             } else {
                 console.log(result);
                 if (result.length === 0) {
-                    res.status(500).json({ message: "Profil non trouvé" });
+                    res.status(200).send(false);
                 } else {
-                    const profileData = result[0];
+                    const profileData = result[0].ID_UTILISATEUR;
                     res.status(200).json(profileData);
                 }
             }
