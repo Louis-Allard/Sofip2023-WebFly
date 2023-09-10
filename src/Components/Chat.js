@@ -62,6 +62,7 @@ const Chat = ({socket, nom, room}) => {
             <form className='formAnswer' id="form" action='#'>
                 <textarea type='text'
                 className='form-control'
+                rows="2" cols="50" maxLength="200"
                 value={currentMessage} 
                 onChange={(event) => {setCurrentMessage(event.target.value);}} 
                 onKeyDown={(event) => {event.key === "enter" && sendMessage();}} 
