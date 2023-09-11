@@ -9,19 +9,21 @@ import editprofil from "./Components/EditProfil";
 import ChangePassword from "./Components/changePassword";
 import reset from "./main/reset";
 import Join from './main/join';
+import UserList from "./Components/crud/UserList";
 
 const Router = () => {
   return (
     <div>
       <Header />
       <Routes>
-        <Route path='/' Component={login} />
+        <Route path="/" Component={login} />
         <Route path="/register" Component={register} />
         <Route path="/profil" Component={profil} />
         <Route path="/editprofil" Component={editprofil} />
         <Route path="/changePassword" Component={ChangePassword} />
         <Route path="/join" Component={Join} />
         <Route path="/reset/:token" Component={reset} />
+        <Route path="/userlist" Component={UserList} />
       </Routes>
     </div>
   );

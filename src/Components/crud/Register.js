@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import bcrypt from 'bcryptjs-react';
+import axios from "axios";
+import bcrypt from "bcryptjs-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -24,7 +24,7 @@ function Register() {
     const saltRounds = 10; // Nombre de "tours" pour renforcer le hachage
     const hashed = await bcrypt.hash(e.target.value, saltRounds);
     setHashedPassword(hashed);
-  }
+  };
 
   const register = (event) => {
     event.preventDefault();
