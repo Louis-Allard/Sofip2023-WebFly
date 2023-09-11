@@ -3,12 +3,11 @@ const sql = require("../db/db.config");
 const Entreprise = function (entreprise){
     this.nom = entreprise.nom;
     this.siret = entreprise.siret;
-    this.adresse = entreprise.adresse;
-    this.create_at = entreprise.create_at
+    this.adresse = entreprise.adresse
 }
 
 Entreprise.findAll = (result) => {
-    sql.query("SELECT id, nom, siret, adresse, create_at FROM entreprises", (err, res) => {
+    sql.query("SELECT id, nom, siret, adresse FROM entreprises", (err, res) => {
       if (err) {
         console.log("Erreur :", err);
         result(null, err);
@@ -21,7 +20,7 @@ Entreprise.findAll = (result) => {
 };
 
 Entreprise.findById = (id, result) => {
-    sql.query("SELECT nom, siret, adresse, create_at FROM entreprises WHERE id = ?", id, (err, res) => {
+    sql.query("SELECT nom, siret, adresse FROM entreprises WHERE id = ?", id, (err, res) => {
         if (err) {
         console.log("Erreur :", err);
         result(err, null);
@@ -51,8 +50,8 @@ Entreprise.create = (newEntreprise, result) => {
 
 Entreprise.update = (id, entreprise, result) => {
     sql.query(
-        'UPDATE adresses SET nom = ? , siret = ?, adresse = ?, create_at = ? WHERE id = ?',
-        [ entreprise.nom, entreprise.siret, entreprise.adresse, entreprise.create_at, id],
+        'UPDATE adresses SET nom = ? , siret = ?, adresse = ? WHERE id = ?',
+        [ entreprise.nom, entreprise.siret, entreprise.adresse, id],
         (err, res) => {
             if (err) {
                 console.log('Erreur :', err);
