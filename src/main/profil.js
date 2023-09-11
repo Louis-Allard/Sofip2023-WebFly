@@ -23,16 +23,16 @@ const Profil = () => {
       <h2>Profil de l'utilisateur</h2>
       <div className="containerProf">
         <p>
-          Nom : <spam className="spam">{data.NOM}</spam>
+          Nom : <span className="span">{data.NOM}</span>
         </p>
         <p>
-          Prénom : <spam className="spam">{data.PRENOM}</spam>
+          Prénom : <span className="span">{data.PRENOM}</span>
         </p>
         <p>
-          Adresse e-mail : <spam className="spam">{data.EMAIL}</spam>
+          Adresse e-mail : <span className="span">{data.EMAIL}</span>
         </p>
         <p>
-          Entreprise : <spam className="spam">{data.ENTREPRISE}</spam>
+          Entreprise : <span className="span">{data.ENTREPRISE}</span>
         </p>
         <Link to="/EditProfil">
           <button className="btn btn-outline-success">Modif profil</button>
