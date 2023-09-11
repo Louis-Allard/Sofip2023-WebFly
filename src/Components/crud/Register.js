@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import bcrypt from 'bcryptjs-react';
+import axios from "axios";
+import bcrypt from "bcryptjs-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Register() {
   // INITIALISATION DES VALEURS
-  const role = useSelector((state) => state.role);
+  // const role = useSelector((state) => state.role);
   const [mailReg, setMailReg] = useState('');
   const [nomReg, setNomReg] = useState('');
   const [prenomReg, setPrenomReg] = useState('');
@@ -14,17 +14,17 @@ function Register() {
   const [hashedPassword, setHashedPassword] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (role !== 'admin') {
-      navigate('/');
-    }
-  }, [role, navigate])
+  // useEffect(() => {
+  //   if (role !== 'admin') {
+  //     navigate('/');
+  //   }
+  // }, [role, navigate])
 
   const handleChangePassword = async (e) => {
     const saltRounds = 10; // Nombre de "tours" pour renforcer le hachage
     const hashed = await bcrypt.hash(e.target.value, saltRounds);
     setHashedPassword(hashed);
-  }
+  };
 
   const register = (event) => {
     event.preventDefault();
@@ -39,7 +39,7 @@ function Register() {
       })
       .then((response) => {
         console.log("Insertion réussie");
-        navigate("/login");
+        navigate("/");
       })
       .catch((error) => {
         console.error("Erreur lors de l'insertion", error);
