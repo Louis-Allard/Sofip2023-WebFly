@@ -17,9 +17,10 @@ const Join = () => {
     }
     return (
         <section>
-            {!showChat ? (
+        {!showChat ? (
+        <div className='pageJoin'>
             <div className='blocJoin'>
-                    <h3>Join a chat</h3>                
+                    <h3>Rejoindre un salon</h3>                
                     <div className='join'>
 
                     <input type='text' 
@@ -31,7 +32,7 @@ const Join = () => {
                     />
                     <input type='text'
                         className='form-control' 
-                        placeholder='room' 
+                        placeholder='salon' 
                         onChange={(event) => {
                         setRoom(event.target.value);
                     }}
@@ -39,11 +40,12 @@ const Join = () => {
                     <button className='btn btn-secondary' onClick={joinRoom} type='submit'>Rejoindre</button>
                 </div>
             </div>
-            )
-            :
-            (
-            <Chat socket={socket} nom={nom} room={room}/>
-            )}
+        </div>
+        )
+        :
+        (
+        <Chat socket={socket} nom={nom} room={room}/>
+        )}
         </section>
     );
 };

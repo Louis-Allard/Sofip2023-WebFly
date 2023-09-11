@@ -4,6 +4,7 @@ import FullCalendar from "@fullcalendar/react"; // Assurez-vous d'installer @ful
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { Link } from "react-router-dom";
 import eventService from "../services/eventService.js";
+import { useSelector } from "react-redux";
 
 const Agenda = () => {
   const [events, setEvents] = useState([]);
@@ -32,12 +33,16 @@ const Agenda = () => {
   }, []);
   const handleEventRemove = (event) => {
     // Supprimez l'événement de la liste
-    const updatedEvents = events.filter((e) => e.id !== event.id);
+    const updatedEvents = events.filter(
+      (e) => e.ID_CALENDRIER !== event.ID_CALENDRIER
+    );
     setEvents(updatedEvents);
   };
 
+  const id = useSelector((state) => state.idUser);
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const title = e.target.title.value;
     const date = e.target.date.value;
     const newEvent = { id: events.length + 1, title, date };
@@ -89,7 +94,7 @@ const Agenda = () => {
 
   return (
     <div className="container">
-      <Link to="/adminPanel" className="btn btn-primary mb-3">
+      <Link to="/joint" className="btn btn-primary mb-3">
         <i className="bi bi-chevron-left"></i> Retour
       </Link>
       <h1>Agenda</h1>
@@ -121,8 +126,8 @@ const Agenda = () => {
         <h3>Rendez-vous existants</h3>
         <ul>
           {events.map((event) => (
-            <li key={event.id}>
-              {event.title} - {event.date}
+            <li key={event.ID_CALENDRIER}>
+              {event.TITLE} - {event.DATE_CALENDRIER}
               <button
                 className="btn btn-link"
                 onClick={(e) => handleEdit(e, event)}
@@ -147,7 +152,7 @@ const Agenda = () => {
                     type="text"
                     name="title"
                     className="form-control"
-                    value={editingEvent.title}
+                    value={editingEvent.TITLE}
                     onChange={handleEditTitle}
                     required
                   />
@@ -158,7 +163,7 @@ const Agenda = () => {
                     type="date"
                     name="date"
                     className="form-control"
-                    value={editingEvent.date}
+                    value={editingEvent.DATE_CALENDRIER}
                     onChange={handleEditDate}
                     required
                   />

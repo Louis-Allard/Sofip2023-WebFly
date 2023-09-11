@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import smiley from "../assets/icons/smiley.png";
 import file from "../assets/icons/file.png";
 import calendar from "../assets/icons/calendar.png";
-
+import { Link } from "react-router-dom";
 const Chat = ({ socket, nom, room }) => {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
@@ -33,41 +33,42 @@ const Chat = ({ socket, nom, room }) => {
     <div className="blocChat">
       {/* HEADER */}
       <div className="chat-header">
-        <p>Live Chat</p>
+        <p>Chat</p>
       </div>
 
       {/* BODY */}
       <div className="chat-body">
-        <div className="message-container">
-          {messageList.map((messageContent, index) => {
-            return (
-              <div
-                className="message"
-                key={index}
-                id={nom === messageContent.author ? "you" : "other"}
-              >
-                <div>
-                  <div className="message-meta">
-                    <p id="author">{messageContent.author}</p>
-                    <p id="time">{messageContent.time}</p>
-                  </div>
-                  <div className="message-content">
-                    <p>{messageContent.message}</p>
-                  </div>
+        {messageList.map((messageContent, index) => {
+          return (
+            <div
+              className="message"
+              key={index}
+              id={nom === messageContent.author ? "you" : "other"}
+            >
+              <div>
+                <div className="message-meta">
+                  <p id="author">{messageContent.author}</p>
+                  <p id="time">{messageContent.time}</p>
+                </div>
+                <div className="message-content">
+                  <p>{messageContent.message}</p>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
 
       {/*FOOTER*/}
       <div className="chat-footer">
         <div className="form">
           <form className="formAnswer" id="form" action="#">
-            <input
+            <textarea
               type="text"
               className="form-control"
+              rows="2"
+              cols="50"
+              maxLength="200"
               value={currentMessage}
               onChange={(event) => {
                 setCurrentMessage(event.target.value);
@@ -84,7 +85,9 @@ const Chat = ({ socket, nom, room }) => {
             </button>
             <img className="ms-2" src={smiley} alt="smiley" />
             <img className="ms-2" src={file} alt="fichier" />
-            <img className="ms-2" src={calendar} alt="calendrier" />
+            <Link to="/Agenda">
+              <img className="ms-2" src={calendar} alt="calendrier" />
+            </Link>
           </form>
         </div>
       </div>

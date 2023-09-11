@@ -7,6 +7,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const bcrypt = require("bcryptjs-react");
 const transporter = require("./transporter");
+const jwt = require("jsonwebtoken");
 
 const { Server } = require("socket.io");
 app.use(cors());
@@ -17,15 +18,32 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+
+// GESTION DE CONNECTION SOCKET IO
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
   socket.on("join_room", (data) => {
     socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
+  // GESTION D'ENVOI DE MESSAGE
   socket.on("send_message", (data) => {
+    // INSERER DANS LA BASE DONNEE
+    const { message, author } = data;
+    const sql = "INSERT INTO message (CONTENU, ID_UTILISATEUR) VALUES (?, ?)";
+    connection.query(sql, [message, author], (err, result) => {
+      if (err) {
+        console.error("Erreur lors de l'insertion du message :", err);
+      } else {
+        console.log("Message inséré dans la base de données");
+        io.emit("send_message", data);
+      }
+    });
     socket.to(data.room).emit("receive_message", data);
   });
+  // GESTION D'ENVOI D'EMOJI
+
+  // GESTION DE DECONNEXION
   socket.on("disconnect", () => {
     console.log("User disconnected", socket.id);
   });
@@ -40,6 +58,10 @@ const profil = require("./Requetes/profil");
 const changePassword = require("./Requetes/changePassword");
 const mail = require("./Requetes/mail");
 const checkEmail = require("./Requetes/checkEmail");
+const verifyToken = require("./Requetes/tokenVerif");
+const createToken = require("./Requetes/createToken");
+const resetMdp = require("./Requetes/resetMdp");
+const event = require("./Requetes/event");
 
 dotenv.config();
 app.use(express.json());
@@ -104,3 +126,7 @@ modifProfil(app, connection);
 changePassword(app, connection, bcrypt);
 mail(app, transporter);
 checkEmail(app, connection);
+verifyToken(app, jwt);
+createToken(app, connection, jwt);
+resetMdp(app, connection);
+event(app, connection);
