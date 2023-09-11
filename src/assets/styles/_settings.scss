@@ -1,33 +1,35 @@
 // SCSS GLOBAL
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body::after {
-    content: "";
-    background-image: url("../6016317.jpg");
-    opacity: 0.9; 
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: fixed;
-    z-index: -1;
-    pointer-events: none;
-  }
-  
-  body {
-    background-color: rgba(255, 255, 255, 1); /* Couleur de fond du contenu principal */
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    // overflow-y: hidden;
-  }
-.form-control:focus {
-    border-color: transparent !important;
-    box-shadow: 0 0 5px rgb(255, 255, 255) !important;
+  content: "";
+  background-image: url("../6016317.jpg");
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
 }
 
-button{
-    border: transparent;
+body {
+  background-color: rgba(255, 255, 255, 1);
+  /* Couleur de fond du contenu principal */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  // overflow-y: hidden;
+}
+
+.form-control:focus {
+  border-color: transparent !important;
+  box-shadow: 0 0 5px rgb(255, 255, 255) !important;
+}
+
+button {
+  border: transparent;
 }
