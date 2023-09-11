@@ -8,8 +8,9 @@ import profil from "./main/profil";
 import editprofil from "./Components/EditProfil";
 import ChangePassword from "./Components/changePassword";
 import reset from "./main/reset";
-import Join from './main/join';
+import Join from "./main/join";
 import UserList from "./Components/crud/UserList";
+import Agenda from "./Components/Agenda";
 
 const Router = () => {
   return (
@@ -24,6 +25,7 @@ const Router = () => {
         <Route path="/join" Component={Join} />
         <Route path="/reset/:token" Component={reset} />
         <Route path="/userlist" Component={UserList} />
+        <Route path="/agenda" Component={Agenda} />
       </Routes>
     </div>
   );

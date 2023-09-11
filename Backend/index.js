@@ -5,9 +5,9 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const bcrypt = require('bcryptjs-react');
-const transporter = require('./transporter');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs-react");
+const transporter = require("./transporter");
+const jwt = require("jsonwebtoken");
 
 const { Server } = require("socket.io");
 app.use(cors());
@@ -25,7 +25,7 @@ io.on("connection", (socket) => {
   socket.on("join_room", (data) => {
     socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
-  })
+  });
   // GESTION D'ENVOI DE MESSAGE
   socket.on("send_message", (data) => {
     // INSERER DANS LA BASE DONNEE
@@ -33,14 +33,14 @@ io.on("connection", (socket) => {
     const sql = 'INSERT INTO message (CONTENU, ID_AUTHOR) VALUES (?, ?)';
     connection.query(sql, [message, id], (err, result) => {
       if (err) {
-        console.error('Erreur lors de l\'insertion du message :', err);
+        console.error("Erreur lors de l'insertion du message :", err);
       } else {
-        console.log('Message inséré dans la base de données');
-        io.emit('send_message', data);
+        console.log("Message inséré dans la base de données");
+        io.emit("send_message", data);
       }
     });
     socket.to(data.room).emit("receive_message", data);
-  })
+  });
   // GESTION D'ENVOI D'EMOJI
 
   // GESTION DE DECONNEXION
@@ -55,14 +55,15 @@ const deconnexion = require("./Requetes/deconnexion");
 const register = require("./Requetes/register");
 const modifProfil = require("./Requetes/modifProfil");
 const profil = require("./Requetes/profil");
-const changePassword = require('./Requetes/changePassword');
-const mail = require('./Requetes/mail');
-const checkEmail = require('./Requetes/checkEmail');
+const changePassword = require("./Requetes/changePassword");
+const mail = require("./Requetes/mail");
+const checkEmail = require("./Requetes/checkEmail");
 const verifyToken = require("./Requetes/tokenVerif");
 const createToken = require("./Requetes/createToken");
 const resetMdp = require("./Requetes/resetMdp");
 const deleteUser = require("./Requetes/deleteUser");
 const usersEntreprise = require("./Requetes/usersEntreprise");
+const event = require("./Requetes/event");
 
 dotenv.config();
 app.use(express.json());
@@ -102,3 +103,4 @@ createToken(app, connection, jwt);
 resetMdp(app, connection);
 deleteUser(app, connection);
 usersEntreprise(app, connection);
+event(app, connection);
