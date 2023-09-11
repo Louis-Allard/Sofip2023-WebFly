@@ -7,7 +7,6 @@ import CompanyEdit from './pages/CompanyEdit';
 import Accounts from './pages/Accounts';
 import Companies from './pages/Companies';
 import MessageBoard from './pages/MessageBoard';
-import Messenger from './pages/Messenger';
 import './App.css';
 
 function App() {
@@ -25,7 +24,6 @@ function App() {
           <Route path="/users" Component={Accounts} />
           <Route path="/companies" Component={Companies} />
           <Route path="/message_list" Component={MessageBoard} />
-          <Route path={`/message/${id}`} Component={Messenger} />
         </Routes>
       </Router>
     </div>
