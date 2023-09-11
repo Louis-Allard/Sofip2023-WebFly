@@ -1,0 +1,52 @@
+.messagerie_container {
+    width: 100%;
+    height: 100vh;
+    .messagerie {
+        width: 100%;
+        height: 70vh;
+        border: solid 1px black;
+        margin-bottom: 10px;
+
+        .chats {
+            width: 100%;
+            height: 90%;
+            overflow-y: scroll; /* Ajoutez une barre de défilement si nécessaire */
+            .message {
+                clear: both;
+                padding: 5px;
+                margin: 5px;
+                max-width: 70%; /* Limitez la largeur des messages pour éviter qu'ils ne deviennent trop longs */
+                word-wrap: break-word; /* Assurez-vous que les mots longs sont coupés */
+            }
+            .message-recepteur {
+                float: left; /* Alignez les messages reçus à gauche */
+                background-color: #e6e6e6; /* Couleur de fond pour les messages reçus */
+            }
+
+            .message-emetteur {
+                float: right; /* Alignez les messages émis à droite */
+                background-color: #007bff; /* Couleur de fond pour les messages émis */
+                color: #fff; /* Couleur du texte pour les messages émis */
+            }
+        }
+    }
+
+    .catMessagerWrite {
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        align-items: center;
+        border: solid 1px black;
+        flex-direction: column;
+        .selectcat {
+            width: 50%;
+            height: 25px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        .messageWriteArea {
+            width: 90%;
+            margin-bottom: 10px;
+        }
+    }
+}

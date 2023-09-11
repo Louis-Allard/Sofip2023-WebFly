@@ -4,7 +4,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-const bcryptjs = require("bcryptjs");
+const bcryptjs = require("bcryptjs-react");
 
 const app = express();
 app.use(cors());
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "admin",
     database: "webfly",
 });
 
@@ -72,10 +72,8 @@ app.post("/connexion", (req, res) => {
                     message: "Mot de passe incorrect",
                 });
             } else {
-                console.log("ok");
-                //A
-                const userId = user.id;
-                const token = jwt.sign({ userId }, "RANDOM_TOKEN_SECRET", {
+                const adminId = user.id;
+                const token = jwt.sign({ adminId }, "RANDOM_TOKEN_SECRET", {
                     expiresIn: "24h",
                 });
                 //
@@ -84,6 +82,7 @@ app.post("/connexion", (req, res) => {
                         success: true,
                         message: "Connexion admin réussie",
                         token,
+                        adminId,
                         admin: true,
                     });
                 } else {
@@ -110,7 +109,7 @@ app.post("/ajouterUtilisateur", async (req, res) => {
     console.log(req.body);
 
     try {
-        const sql = `INSERT INTO utilisateur (nom, email, mot_de_passe) VALUES (?, ?, ?)`;
+        const sql = `INSERT INTO utilisateur (nom_utilisateur, email, mot_de_passe) VALUES (?, ?, ?)`;
         con.query(sql, [nom, email, password], (err, result) => {
             if (err) {
                 console.error("Erreur lors de l'insertion des données :", err);
@@ -201,6 +200,77 @@ app.post("/update_User/:userId", async (req, res) => {
         });
     }
 });
+
+//recuperrer les message en fonction de la discution
+app.get("/messagerie", (req, res) => {
+    const sql = `select message_id,admin_id,utilisateur_id,categorie_id,message_text,date_envoi,lu,emetteur,discution_id,nom_categorie,admin.nom_admin,admin.prenom_admin,utilisateur.nom_utilisateur from messages 
+    INNER JOIN admin on admin_id = admin.id 
+    INNER JOIN utilisateur ON utilisateur_id = utilisateur.id 
+    INNER JOIN categorie ON categorie_id = categorie.id
+    ORDER BY date_envoi ASC`;
+    con.query(sql, (err, data) => {
+        if (err) {
+            console.log("err2 ", err);
+            return res.json(err);
+        }
+        return res.json(data);
+    });
+});
+
+//recuperre les categorie 
+app.get("/categorie", (req, res) => {
+    const sql = `SELECT * FROM webfly.categorie;`;
+    con.query(sql, (err, data) => {
+        if (err) {
+            console.log("err2 ", err);
+            return res.json(err);
+        }
+        return res.json(data);
+    });
+});
+
+//ajouter un message
+app.post("/ajouterMessage", async (req, res) => {
+    const {
+        adminID,
+        utilisateurID,
+        categorieId,
+        message,
+        emetteur,
+        discutionID,
+    } = req.body;
+    console.log(req.body)
+    try {
+        const sql = `INSERT INTO messages (admin_id, utilisateur_id, categorie_id, message_text, emetteur, discution_id) VALUES (?, ?, ?, ?, ?, ?)`;
+
+        con.query(
+            sql,
+            [adminID, utilisateurID, categorieId, message, emetteur, discutionID],
+            (err, result) => {
+                if (err) {
+                    console.error("Erreur lors de l'insertion des données :", err);
+                    res.status(500).json({
+                        success: false,
+                        message: "Erreur lors de l'enregistrement du message",
+                    });
+                } else {
+                    res.status(200).json({
+                        success: true,
+                        message: "Message enregistré avec succès",
+                    });
+                }
+            }
+        );
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Erreur lors de l'enregistrement du message",
+        });
+    }
+});
+
+
 
 app.listen(PORT, () => {
     console.log(`mon backend : ${PORT}`);

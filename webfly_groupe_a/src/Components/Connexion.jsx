@@ -16,13 +16,13 @@ function Connexion() {
                 "http://localhost:3001/connexion",
                 { email, password }
             );
-            const { success, message, token, admin } = response.data;
+            const { success, message, token, admin, adminId } = response.data;
 
             setMessage(message);
             if (success && admin) {
-                navigate("/ConnexionAdminOk", { state: { token: token } });
+                navigate("/ConnexionAdminOk", { state: { token: token, userId: adminId } });
             } else if (success && !admin) {
-                navigate("/ConnexionUserOk", { state: { token: token } });
+                navigate("/ConnexionUserOk", { state: { token: token, userId: adminId } });
             } else {
                 navigate("/");
             }

@@ -4,6 +4,8 @@ import ConnexionAdminOk from "./Components/ConnexionAdminOk";
 import ConnexionUserOk from "./Components/ConnexionUserOk";
 import AjouterUtilisateur from "./Components/AjouterUtilisateur";
 import ListerUtilisateur from "./Components/ListerUtilisateur";
+import Messagerie from "./Components/Messagerie";
+
 
 function Routers() {
     return (
@@ -11,11 +13,9 @@ function Routers() {
             <Route path="/" element={<Connexion />} />
             <Route path="/ConnexionAdminOk" element={<ConnexionAdminOk />} />
             <Route path="/ConnexionUserOk" element={<ConnexionUserOk />} />
-            <Route
-                path="/AjouterUtilisateur"
-                element={<AjouterUtilisateur />}
-            />
+            <Route path="/AjouterUtilisateur" element={<AjouterUtilisateur />}/>
             <Route path="/ListerUtilisateur" element={<ListerUtilisateur />} />
+            <Route path="/Messagerie" element={<Messagerie/>} />
         </Routes>
     );
 }
