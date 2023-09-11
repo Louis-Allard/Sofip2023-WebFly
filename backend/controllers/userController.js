@@ -47,6 +47,7 @@ exports.findById = (req, res) => {
         firstname: req.body.firstname,
         email: req.body.email,
         password: req.body.password,
+        isCM: req.body.isCM
       
     });
   
