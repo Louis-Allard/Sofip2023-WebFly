@@ -7,8 +7,8 @@ import login from "./main/login";
 import profil from "./main/profil";
 import editprofil from "./Components/EditProfil";
 import ChangePassword from "./Components/changePassword";
-import Join from './Components/Join';
 import reset from "./main/reset";
+import Join from './main/join';
 
 const Router = () => {
   return (

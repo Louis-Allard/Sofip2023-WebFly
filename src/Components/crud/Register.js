@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 function Register() {
   // INITIALISATION DES VALEURS
-  const role = useSelector((state) => state.role);
+  // const role = useSelector((state) => state.role);
   const [mailReg, setMailReg] = useState('');
   const [nomReg, setNomReg] = useState('');
   const [prenomReg, setPrenomReg] = useState('');
@@ -14,11 +14,11 @@ function Register() {
   const [hashedPassword, setHashedPassword] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (role !== 'admin') {
-      navigate('/');
-    }
-  }, [role, navigate])
+  // useEffect(() => {
+  //   if (role !== 'admin') {
+  //     navigate('/');
+  //   }
+  // }, [role, navigate])
 
   const handleChangePassword = async (e) => {
     const saltRounds = 10; // Nombre de "tours" pour renforcer le hachage
@@ -39,7 +39,7 @@ function Register() {
       })
       .then((response) => {
         console.log("Insertion réussie");
-        navigate("/join");
+        navigate("/");
       })
       .catch((error) => {
         console.error("Erreur lors de l'insertion", error);

@@ -18,15 +18,32 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+
+// GESTION DE CONNECTION SOCKET IO
 io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
   socket.on("join_room", (data) => {
     socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   })
+  // GESTION D'ENVOI DE MESSAGE
   socket.on("send_message", (data) => {
+    // INSERER DANS LA BASE DONNEE
+    const { message, author } = data;
+    const sql = 'INSERT INTO message (CONTENU, ID_UTILISATEUR) VALUES (?, ?)';
+    connection.query(sql, [message, author], (err, result) => {
+      if (err) {
+        console.error('Erreur lors de l\'insertion du message :', err);
+      } else {
+        console.log('Message inséré dans la base de données');
+        io.emit('send_message', data);
+      }
+    });
     socket.to(data.room).emit("receive_message", data);
   })
+  // GESTION D'ENVOI D'EMOJI
+
+  // GESTION DE DECONNEXION
   socket.on("disconnect", () => {
     console.log("User disconnected", socket.id);
   })
