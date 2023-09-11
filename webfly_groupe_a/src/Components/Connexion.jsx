@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Connexion() {
@@ -17,16 +17,17 @@ function Connexion() {
                 { email, password }
             );
             const { success, message, token, admin } = response.data;
+
             setMessage(message);
             if (success && admin) {
                 navigate("/ConnexionAdminOk", { state: { token: token } });
-            } else if (success && !admin){
+            } else if (success && !admin) {
                 navigate("/ConnexionUserOk", { state: { token: token } });
             } else {
-                navigate("/")
+                navigate("/");
             }
         } catch (error) {
-            console.log(error);
+            console.log("ERROR : ", error);
         }
     };
 
@@ -38,7 +39,6 @@ function Connexion() {
             <form className="connexion" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="email">E-mail</label>
-                    
 
                     <input
                         id="email"
@@ -52,7 +52,6 @@ function Connexion() {
 
                 <div>
                     <label htmlFor="password">Mot de passe</label>
-                    
 
                     <input
                         id="password"

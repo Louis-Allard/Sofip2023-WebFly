@@ -1,12 +1,12 @@
-import React,{useState} from 'react';
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import bcrypt from 'bcryptjs';
+// import { useNavigate } from "react-router-dom";
+import bcrypt from "bcryptjs-react";
 
-function Ajouter_utilisateur() {
-    const navigate = useNavigate();
+function AjouterUtilisateur() {
+    // const navigate = useNavigate();
     const [successMessage, setSuccessMessage] = useState("");
 
     const initialValues = {
@@ -30,7 +30,7 @@ function Ajouter_utilisateur() {
             .min(6, "Le mot de passe doit avoir plus de 6 caractères")
             .max(100, "Le mot de passe doit faire moins de 100 caractères")
             .matches(
-                /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*?&-]/,
+                /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&+-])[A-Za-z\d@$!%*?&-]/,
                 "Le mot de passe doit contenir au moins une majuscule, un chiffre et un caractère spécial (!@#$%^&*-)."
             )
             .required("Champ requis"),
@@ -45,19 +45,24 @@ function Ajouter_utilisateur() {
     const handleSubmit = async (values) => {
         try {
             const saltRounds = 10;
-            const hashedPassword = await bcrypt.hash(values.password, saltRounds);
+
+            const hashedPassword = bcrypt.hashSync(values.password, saltRounds);
 
             const response = await axios.post(
                 "http://localhost:3001/ajouterUtilisateur",
-                { nom: values.nom, email: values.email, password: hashedPassword }
+                {
+                    nom: values.nom,
+                    email: values.email,
+                    password: hashedPassword,
+                }
             );
-            
+
             const { success } = response.data;
-            
+
             if (success) {
-                setSuccessMessage("la TMA a bien été ajouter")
+                setSuccessMessage("la TMA a bien été ajouter");
             } else {
-                setSuccessMessage("")
+                setSuccessMessage("");
             }
         } catch (error) {
             console.log(error);
@@ -66,7 +71,6 @@ function Ajouter_utilisateur() {
 
     return (
         <div>
-
             <h2>Inscription</h2>
             <Formik
                 initialValues={initialValues}
@@ -108,7 +112,9 @@ function Ajouter_utilisateur() {
                     </div>
 
                     <div>
-                        <label htmlFor="repeatPassword">Répéter le mot de passe:</label>
+                        <label htmlFor="repeatPassword">
+                            Répéter le mot de passe:
+                        </label>
                         <Field
                             type="password"
                             id="repeatPassword"
@@ -130,4 +136,4 @@ function Ajouter_utilisateur() {
     );
 }
 
-export default Ajouter_utilisateur;
+export default AjouterUtilisateur;
