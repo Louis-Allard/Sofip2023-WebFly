@@ -43,8 +43,7 @@ exports.create = (req, res) => {
     const newEntreprise = new Entreprise({
         nom: req.body.nom,
         siret: req.body.siret,
-        adresse: req.body.adresse,
-        create_at: req.body.create_at,
+        adresse: req.body.adresse.id
         
     });
 
@@ -72,8 +71,7 @@ exports.update = (req, res) => {
     const updated = new Entreprise({
         nom: req.body.nom,
         siret: req.body.siret,
-        adresse: req.body.adresse,
-        create_at: req.body.create_at,
+        adresse: req.body.adresse
         
     });
 
