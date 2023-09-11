@@ -6,7 +6,7 @@ function UserList() {
 
   useEffect(() => {
     axios
-      .get("/api/utilisateurs") // Utilisez l'URL relative correspondante
+      .get("/users") // Utilisez l'URL relative correspondante
       .then((response) => {
         setUsers(response.data);
       })

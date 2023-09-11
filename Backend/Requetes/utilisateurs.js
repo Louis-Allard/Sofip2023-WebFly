@@ -10,7 +10,7 @@ const utilisateur = (app, connection) => {
                 return res.status(500).send('Erreur lors de la requête à la base de données.');
             }
             // Traitez les résultats ici et renvoyez-les au client
-            res.json(results);
+            res.status(200).json(results);
         });
     });
 

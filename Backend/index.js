@@ -29,9 +29,9 @@ io.on("connection", (socket) => {
   // GESTION D'ENVOI DE MESSAGE
   socket.on("send_message", (data) => {
     // INSERER DANS LA BASE DONNEE
-    const { message, author } = data;
-    const sql = 'INSERT INTO message (CONTENU, ID_UTILISATEUR) VALUES (?, ?)';
-    connection.query(sql, [message, author], (err, result) => {
+    const { id, message } = data;
+    const sql = 'INSERT INTO message (CONTENU, ID_AUTHOR) VALUES (?, ?)';
+    connection.query(sql, [message, id], (err, result) => {
       if (err) {
         console.error('Erreur lors de l\'insertion du message :', err);
       } else {
@@ -61,6 +61,8 @@ const checkEmail = require('./Requetes/checkEmail');
 const verifyToken = require("./Requetes/tokenVerif");
 const createToken = require("./Requetes/createToken");
 const resetMdp = require("./Requetes/resetMdp");
+const deleteUser = require("./Requetes/deleteUser");
+const usersEntreprise = require("./Requetes/usersEntreprise");
 
 dotenv.config();
 app.use(express.json());
@@ -85,36 +87,6 @@ connection.connect((err) => {
   }
 });
 
-// Route pour récupérer la liste des utilisateurs
-app.get("/api/utilisateurs", (req, res) => {
-  const sql = "SELECT * FROM utilisateur"; // Assurez-vous que la table s'appelle "utilisateur" dans votre base de données
-  connection.query(sql, (err, result) => {
-    if (err) {
-      console.error(
-        "Erreur lors de la récupération des utilisateurs depuis la base de données : ",
-        err
-      );
-      res.status(500).send("Erreur serveur");
-    } else {
-      res.status(200).json(result);
-    }
-  });
-});
-
-// Route pour supprimer un utilisateur par ID
-app.delete("/api/utilisateurs/:userId", (req, res) => {
-  const userId = req.params.userId;
-  const sql = "DELETE FROM utilisateur WHERE ID_UTILISATEUR = ?";
-  connection.query(sql, [userId], (err, result) => {
-    if (err) {
-      console.error("Erreur lors de la suppression de l'utilisateur : ", err);
-      res.status(500).send("Erreur serveur");
-    } else {
-      res.status(200).send("Utilisateur supprimé avec succès");
-    }
-  });
-});
-
 connexion(app, connection);
 utilisateur(app, connection);
 etatEnLigne(app, connection);
@@ -128,3 +100,5 @@ checkEmail(app, connection);
 verifyToken(app, jwt);
 createToken(app, connection, jwt);
 resetMdp(app, connection);
+deleteUser(app, connection);
+usersEntreprise(app, connection);
