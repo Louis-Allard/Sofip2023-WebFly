@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
 import LogIn from './pages/LogIn';
 import PersonRegister from './pages/PersonRegister';
 import CompanyRegister from './pages/CompanyRegister';
@@ -16,7 +17,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/login" Component={LogIn} />
+          <Route path="/" Component={LogIn} />
+          <Route path="/dashboard" Component={Dashboard} />
           <Route path="/register_user" Component={PersonRegister} />
           <Route path="/register_company" Component={CompanyRegister} />
           <Route path="/edit_user" Component={PersonEdit} />

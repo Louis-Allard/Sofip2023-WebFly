@@ -41,7 +41,7 @@ const LogIn = () => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('id', response.data.userID);
           setMsgPassword(response.data.message);
-          navigate('/');
+          navigate('/dashboard');
         })
         .catch(error => {
           console.error('Erreur lors de l\'envoi', error);
