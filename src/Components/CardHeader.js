@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const CardHeader = () => {
@@ -8,9 +9,9 @@ const CardHeader = () => {
     const nom = useSelector((state) => state.nom);
     return (
         <div className='cardHeader d-flex'>
-            <div className='mx-2'>{role === 'admin' ? role : ''}</div>
-            <div className='mx-2'>{prenom} {nom}</div>
-            <div className='mx-2'>{connected ? 'En Ligne' : ''}</div>
+            <Link to="/home-admin"><p className='text-danger'>{role === 'admin' ? role : ''}</p></Link>
+            <Link to="/profil"><p className='text-primary'>{prenom} {nom}</p></Link>
+            <p>{connected ? 'En Ligne' : ''}</p>
         </div>
     );
 };

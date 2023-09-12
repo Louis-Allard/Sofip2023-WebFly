@@ -64,6 +64,9 @@ const resetMdp = require("./Requetes/resetMdp");
 const deleteUser = require("./Requetes/deleteUser");
 const usersEntreprise = require("./Requetes/usersEntreprise");
 const event = require("./Requetes/event");
+const addInvite = require("./Requetes/addInvite");
+const getInvite = require("./Requetes/getInvite");
+const deleteInvite = require("./Requetes/deleteInvite");
 
 dotenv.config();
 app.use(express.json());
@@ -104,3 +107,6 @@ resetMdp(app, connection);
 deleteUser(app, connection);
 usersEntreprise(app, connection);
 event(app, connection);
+addInvite(app, connection);
+getInvite(app, connection);
+deleteInvite(app, connection);

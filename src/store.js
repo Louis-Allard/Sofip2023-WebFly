@@ -13,7 +13,8 @@ const initStore = {
   entreprise: '',
   nom: '',
   prenom: '',
-  role: ''
+  role: '',
+  destinataireTchat: '',
 };
 
 // Actions creators
@@ -44,6 +45,11 @@ const setPrenom = (value) => ({
 
 const setRole = (value) => ({
   type: "setRole",
+  payload: value,
+});
+
+const setDestinataireTchat = (value) => ({
+  type: "setDestinataireTchat",
   payload: value,
 });
 
@@ -80,6 +86,11 @@ const rootReducers = (state = initStore, action) => {
         ...state,
         role: action.payload,
       };
+    case "setDestinataireTchat":
+      return {
+        ...state,
+        destinataireTchat: action.payload,
+      };
     default:
       return state;
   }
@@ -95,4 +106,4 @@ const persistedReducer = persistReducer(persistConfig, rootReducers);
 const store = legacy_createStore(persistedReducer, composeWithDevTools());
 const persistor = persistStore(store);
 
-export { store, persistor, setConnected, setIdUser, setEntreprise, setNom, setPrenom, setRole };
+export { store, persistor, setConnected, setIdUser, setEntreprise, setNom, setPrenom, setRole, setDestinataireTchat };

@@ -1,3 +1,4 @@
+@media screen and (min-width: 781px) {
 .collab {
     width: 40%;
     float: left;
@@ -39,4 +40,100 @@
         }
     }
 
+}
+}
+
+@media screen and (min-width: 568px) and (max-width: 780px) {
+    .collab {
+        width: 40%;
+        float: left;
+    
+        .pointer:hover {
+            cursor: pointer;
+        }
+    
+        .interlocuteur {
+            display: flex;
+            height: 100px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(218, 208, 208, 0.5);
+    
+        }
+    
+        .listCollab {
+            .titreCollab {
+                text-decoration: underline;
+            }
+    
+            img {
+                width: 15px;
+                border-radius: 20px;
+            }
+    
+            .online {
+                background: linear-gradient(217deg, rgba(255, 255, 255, 0.8), rgba(255, 0, 0, 0) 70.71%),
+                    linear-gradient(127deg, rgb(21, 75, 21), rgb(0, 255, 0) 70.71%),
+                    linear-gradient(336deg, rgba(82, 156, 76, 0.8), rgb(30, 255, 0) 70.71%);
+            }
+    
+            .offline {
+                background: linear-gradient(217deg, rgba(255, 255, 255, 0.8), rgba(255, 0, 0, 0) 70.71%),
+                    linear-gradient(127deg, rgb(75, 21, 21), rgb(255, 0, 0) 70.71%),
+                    linear-gradient(336deg, rgba(156, 76, 76, 0.8), rgb(255, 0, 0) 70.71%);
+            }
+        }
+    
+    }
+}
+
+@media screen and (max-width: 567px) {
+    .collab {
+        width:100%;
+        border-bottom: 1px solid rgba(218, 208, 208, 0.5);
+
+    
+        .pointer:hover {
+            cursor: pointer;
+        }
+    
+        .interlocuteur {
+            display: flex;
+            height: 40px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(218, 208, 208, 0.5);
+    
+        }
+    
+        .listCollab {
+            .titreCollab {
+                text-decoration: underline;
+            }
+            .overflow{
+                overflow-x: scroll;
+                width: 100vw;
+                display: inline-flex;
+            }
+    
+            img {
+                width: 15px;
+                border-radius: 20px;
+            }
+    
+            .online {
+                background: linear-gradient(217deg, rgba(255, 255, 255, 0.8), rgba(255, 0, 0, 0) 70.71%),
+                    linear-gradient(127deg, rgb(21, 75, 21), rgb(0, 255, 0) 70.71%),
+                    linear-gradient(336deg, rgba(82, 156, 76, 0.8), rgb(30, 255, 0) 70.71%);
+            }
+    
+            .offline {
+                background: linear-gradient(217deg, rgba(255, 255, 255, 0.8), rgba(255, 0, 0, 0) 70.71%),
+                    linear-gradient(127deg, rgb(75, 21, 21), rgb(255, 0, 0) 70.71%),
+                    linear-gradient(336deg, rgba(156, 76, 76, 0.8), rgb(255, 0, 0) 70.71%);
+            }
+        }
+    }
 }

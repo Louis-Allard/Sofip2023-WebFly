@@ -8,7 +8,8 @@ import { useSelector } from "react-redux";
 
 const Agenda = () => {
   const [events, setEvents] = useState([]);
-
+  const [existingEvents, setExistingEvents] = useState([]);
+  const [editingEvent, setEditingEvent] = useState(null);
   const handleEventAdd = async (event) => {
     try {
       await eventService.addEvent(event);
@@ -19,8 +20,14 @@ const Agenda = () => {
   };
   const fetchEvents = async () => {
     try {
-      const events = await eventService.fetchEvents();
-      setEvents(events);
+      const fetchedEvents = await eventService.fetchEvents();
+      const formattedEvents = fetchedEvents.map((event) => ({
+        id: event.ID_CALENDRIER,
+        title: event.TITLE,
+        start: event.DATE_CALENDRIER,
+      }));
+      setEvents(formattedEvents);
+      setExistingEvents(fetchedEvents); // Mettez à jour les rendez-vous existants
     } catch (error) {
       console.error(error);
     }
@@ -31,7 +38,13 @@ const Agenda = () => {
   useEffect(() => {
     fetchEvents();
   }, []);
-  const handleEventRemove = (event) => {
+  const handleEventRemove = async (event) => {
+    try {
+      await eventService.removeEvent(event.ID_CALENDRIER);
+      fetchEvents(); // Mettez à jour les événements localement en appelant fetchEvents
+    } catch (error) {
+      console.error(error);
+    }
     // Supprimez l'événement de la liste
     const updatedEvents = events.filter(
       (e) => e.ID_CALENDRIER !== event.ID_CALENDRIER
@@ -45,11 +58,10 @@ const Agenda = () => {
 
     const title = e.target.title.value;
     const date = e.target.date.value;
-    const newEvent = { id: events.length + 1, title, date };
+    const newEvent = { id: events.length + 1, title, date, id };
     handleEventAdd(newEvent);
     e.target.reset();
   };
-  const [editingEvent, setEditingEvent] = useState(null);
 
   const handleEdit = (e, event) => {
     e.preventDefault();
@@ -64,22 +76,30 @@ const Agenda = () => {
     setEditingEvent(null); // Remettre à zéro l'événement en cours de modification
   };
 
-  const handleDelete = (e, event) => {
+  const handleDelete = async (e, event) => {
     e.preventDefault();
-    handleEventRemove(event);
+    try {
+      await eventService.removeEvent(event.ID_CALENDRIER);
+      // Mettez à jour à la fois events et existingEvents
+      const updatedEvents = events.filter((e) => e.id !== event.ID_CALENDRIER);
+      setEvents(updatedEvents);
+      setExistingEvents(updatedEvents);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleEditTitle = (e) => {
     setEditingEvent({
       ...editingEvent,
-      title: e.target.value,
+      TITLE: e.target.value,
     });
   };
 
   const handleEditDate = (e) => {
     setEditingEvent({
       ...editingEvent,
-      date: e.target.value,
+      DATE_CALENDRIER: e.target.value,
     });
   };
 
@@ -94,7 +114,7 @@ const Agenda = () => {
 
   return (
     <div className="container">
-      <Link to="/joint" className="btn btn-primary mb-3">
+      <Link to={`/join/${Math.floor(Math.random() * 1000)}`} className="btn btn-primary mb-3">
         <i className="bi bi-chevron-left"></i> Retour
       </Link>
       <h1>Agenda</h1>
@@ -125,7 +145,7 @@ const Agenda = () => {
       <div className="mt-3">
         <h3>Rendez-vous existants</h3>
         <ul>
-          {events.map((event) => (
+          {existingEvents.map((event) => (
             <li key={event.ID_CALENDRIER}>
               {event.TITLE} - {event.DATE_CALENDRIER}
               <button

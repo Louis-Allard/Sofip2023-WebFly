@@ -25,7 +25,7 @@ const FormLogin = () => {
 
     useEffect(() => {
         if (connected) {
-            navigate("/join");
+            navigate(`/join/${Math.floor(Math.random() * 1000)}`);
         }
     }, [connected, navigate]);
 
@@ -76,7 +76,7 @@ const FormLogin = () => {
                         `http://localhost:3001/connexion/${response.data[0].ID_UTILISATEUR}`
                     );
                     console.log(connexion.data);
-                    navigate("/join");
+                    navigate(`/join/${Math.floor(Math.random() * 1000)}`);
                 } else {
                     // Authentification échouée
                     console.log("Authentification échouée");
@@ -130,7 +130,7 @@ const FormLogin = () => {
         <div className='form-login'>
             <div className="login-container">
                 <h1 className='text-center'>Connexion</h1>
-                <form className='border mt-5 p-3 form-connexion' onSubmit={handleSubmit}>
+                <form className='mt-5 p-3 form-connexion' onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="exampleInputEmail1" className="form-label">Adresse email:</label>
                         <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={mail} onChange={changeMail} />

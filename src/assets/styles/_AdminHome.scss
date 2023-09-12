@@ -1,0 +1,9 @@
+.buttonCrud{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button{
+        width: max-content;
+        margin-top: 100px;
+    }
+}
