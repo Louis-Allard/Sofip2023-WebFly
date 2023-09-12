@@ -24,7 +24,7 @@ const Accounts = () => {
 
     return (
         <div className="accounts">
-            <Sidebar id="0" />
+            <Sidebar id="1" />
             <DeleteModal />
             <div className='account_list'>
                 <div className='account_map'>
