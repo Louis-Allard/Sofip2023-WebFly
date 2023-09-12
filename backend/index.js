@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "admin",
+    password: "root",
     database: "webfly",
 });
 
@@ -135,7 +135,7 @@ app.post("/ajouterUtilisateur", async (req, res) => {
 
 //liste utilisateur
 app.get("/lister_utilisateur", (req, res) => {
-    const sql = `SELECT id,nom,email FROM webfly.utilisateur;`;
+    const sql = `SELECT id,nom_utilisateur,email FROM webfly.utilisateur;`;
     con.query(sql, (err, data) => {
         if (err) {
             console.log("err2 ", err);
@@ -175,7 +175,7 @@ app.post("/update_User/:userId", async (req, res) => {
     }
 
     try {
-        const sql = `UPDATE utilisateur SET nom = "${nom}", email = "${email}" where id = ${userId}`;
+        const sql = `UPDATE utilisateur SET nom_utilisateur = "${nom}", email = "${email}" where id = ${userId}`;
         con.query(sql, [nom, email], (err, result) => {
             if (err) {
                 console.error(
@@ -217,7 +217,7 @@ app.get("/messagerie", (req, res) => {
     });
 });
 
-//recuperre les categorie 
+//recuperre les categorie
 app.get("/categorie", (req, res) => {
     const sql = `SELECT * FROM webfly.categorie;`;
     con.query(sql, (err, data) => {
@@ -239,16 +239,26 @@ app.post("/ajouterMessage", async (req, res) => {
         emetteur,
         discutionID,
     } = req.body;
-    console.log(req.body)
+    console.log(req.body);
     try {
         const sql = `INSERT INTO messages (admin_id, utilisateur_id, categorie_id, message_text, emetteur, discution_id) VALUES (?, ?, ?, ?, ?, ?)`;
 
         con.query(
             sql,
-            [adminID, utilisateurID, categorieId, message, emetteur, discutionID],
+            [
+                adminID,
+                utilisateurID,
+                categorieId,
+                message,
+                emetteur,
+                discutionID,
+            ],
             (err, result) => {
                 if (err) {
-                    console.error("Erreur lors de l'insertion des données :", err);
+                    console.error(
+                        "Erreur lors de l'insertion des données :",
+                        err
+                    );
                     res.status(500).json({
                         success: false,
                         message: "Erreur lors de l'enregistrement du message",
@@ -269,8 +279,6 @@ app.post("/ajouterMessage", async (req, res) => {
         });
     }
 });
-
-
 
 app.listen(PORT, () => {
     console.log(`mon backend : ${PORT}`);

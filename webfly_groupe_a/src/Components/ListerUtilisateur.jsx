@@ -90,85 +90,80 @@ function ListerUtilisateur() {
                     <tr>
                         <th colspan="1">Nom TMA</th>
                         <th colspan="1">Email</th>
-                        <th colspan="1">Action</th>
-                        <th colspan="1">Action</th>
-                        {/* <th colspan="1"></th> */}
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        {userData.map((user) => (
-                            <div className="user" key={user.id}>
-                                {editingUserId === user.id ? (
-                                    <>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                name="nom"
-                                                value={editedValues.nom}
-                                                onChange={(e) =>
-                                                    setEditedValues({
-                                                        ...editedValues,
-                                                        nom: e.target.value,
-                                                    })
-                                                }
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                value={editedValues.email}
-                                                onChange={(e) =>
-                                                    setEditedValues({
-                                                        ...editedValues,
-                                                        email: e.target.value,
-                                                    })
-                                                }
-                                            />
-                                        </td>
-                                        <td>
-                                            <button
-                                                onClick={() =>
-                                                    handleUpdateUser(user.id)
-                                                }
-                                            >
-                                                Envoyer la modification
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button onClick={handleCancelEdit}>
-                                                Annuler
-                                            </button>
-                                        </td>
-                                    </>
-                                ) : (
-                                    <>
-                                        <td>{user.nom}</td>
-                                        <td>{user.email}</td>
-                                        <td>
-                                            <button
-                                                onClick={() =>
-                                                    handleEditUser(user.id)
-                                                }
-                                            >
-                                                Modifier
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button
-                                                onClick={() =>
-                                                    handleDeleteUser(user.id)
-                                                }
-                                            >
-                                                Supprimer
-                                            </button>
-                                        </td>
-                                    </>
-                                )}
-                            </div>
-                        ))}
-                    </tr>
+                    {userData.map((user) => (
+                        <tr className="user" key={user.id}>
+                            {editingUserId === user.id ? (
+                                <>
+                                    <td>
+                                        <input
+                                            type="text"
+                                            name="nom"
+                                            value={editedValues.nom}
+                                            onChange={(e) =>
+                                                setEditedValues({
+                                                    ...editedValues,
+                                                    nom: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={editedValues.email}
+                                            onChange={(e) =>
+                                                setEditedValues({
+                                                    ...editedValues,
+                                                    email: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                handleUpdateUser(user.id)
+                                            }
+                                        >
+                                            Envoyer la modification
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button onClick={handleCancelEdit}>
+                                            Annuler
+                                        </button>
+                                    </td>
+                                </>
+                            ) : (
+                                <>
+                                    <td>{user.nom_utilisateur}</td>
+                                    <td>{user.email}</td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                handleEditUser(user.id)
+                                            }
+                                        >
+                                            Modifier
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button
+                                            onClick={() =>
+                                                handleDeleteUser(user.id)
+                                            }
+                                        >
+                                            Supprimer
+                                        </button>
+                                    </td>
+                                </>
+                            )}
+                        </tr>
+                    ))}
                 </tbody>
             </table>
             <p>{SuccessMessage}</p>

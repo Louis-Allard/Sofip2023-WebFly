@@ -70,7 +70,7 @@ function AjouterUtilisateur() {
     };
 
     return (
-        <div>
+        <div className="registration-form">
             <h2>Inscription</h2>
             <Formik
                 initialValues={initialValues}
@@ -78,8 +78,8 @@ function AjouterUtilisateur() {
                 onSubmit={handleSubmit}
             >
                 <Form>
-                    <div>
-                        <label htmlFor="nom">Nom:</label>
+                    <div className="row">
+                        <label htmlFor="nom">Nom</label>
                         <Field type="text" id="nom" name="nom" />
                         <ErrorMessage
                             name="nom"
@@ -89,8 +89,8 @@ function AjouterUtilisateur() {
                         />
                     </div>
 
-                    <div>
-                        <label htmlFor="email">Email:</label>
+                    <div className="row">
+                        <label htmlFor="email">Email</label>
                         <Field type="email" id="email" name="email" />
                         <ErrorMessage
                             name="email"
@@ -100,8 +100,8 @@ function AjouterUtilisateur() {
                         />
                     </div>
 
-                    <div>
-                        <label htmlFor="password">Mot de passe:</label>
+                    <div className="row">
+                        <label htmlFor="password">Mot de passe</label>
                         <Field type="password" id="password" name="password" />
                         <ErrorMessage
                             name="password"
@@ -111,9 +111,9 @@ function AjouterUtilisateur() {
                         />
                     </div>
 
-                    <div>
+                    <div className="row">
                         <label htmlFor="repeatPassword">
-                            Répéter le mot de passe:
+                            Répéter le mot de passe
                         </label>
                         <Field
                             type="password"
