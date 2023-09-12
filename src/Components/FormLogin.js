@@ -25,7 +25,7 @@ const FormLogin = () => {
 
     useEffect(() => {
         if (connected) {
-            navigate("/join");
+            navigate(`/join/${Math.floor(Math.random() * 1000)}`);
         }
     }, [connected, navigate]);
 
@@ -76,7 +76,7 @@ const FormLogin = () => {
                         `http://localhost:3001/connexion/${response.data[0].ID_UTILISATEUR}`
                     );
                     console.log(connexion.data);
-                    navigate("/join");
+                    navigate(`/join/${Math.floor(Math.random() * 1000)}`);
                 } else {
                     // Authentification échouée
                     console.log("Authentification échouée");

@@ -22,7 +22,7 @@ const Router = () => {
         <Route path="/profil" Component={profil} />
         <Route path="/editprofil" Component={editprofil} />
         <Route path="/changePassword" Component={ChangePassword} />
-        <Route path="/join" Component={Join} />
+        <Route path="/join/:room" Component={Join} />
         <Route path="/reset/:token" Component={reset} />
         <Route path="/userlist" Component={UserList} />
         <Route path="/agenda" Component={Agenda} />
