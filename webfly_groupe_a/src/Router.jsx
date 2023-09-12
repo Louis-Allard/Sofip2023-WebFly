@@ -7,6 +7,7 @@ import ListerUtilisateur from "./Components/ListerUtilisateur";
 import Messagerie from "./Components/Messagerie";
 
 
+
 function Routers() {
     return (
         <Routes>
@@ -15,7 +16,7 @@ function Routers() {
             <Route path="/ConnexionUserOk" element={<ConnexionUserOk />} />
             <Route path="/AjouterUtilisateur" element={<AjouterUtilisateur />}/>
             <Route path="/ListerUtilisateur" element={<ListerUtilisateur />} />
-            <Route path="/Messagerie" element={<Messagerie/>} />
+            <Route path="/Messagerie/:userId/:discussionId" element={<Messagerie/>} />
         </Routes>
     );
 }

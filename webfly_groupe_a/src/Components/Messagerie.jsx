@@ -1,41 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
+import { connect } from 'react-redux'; 
 
-function Messagerie() {
+const mapStateToProps = (state) => {
+    const { discutionId, utilisateurId } = state.conversation;
+    return {
+        discutionId,
+        utilisateurId,
+    };
+};
+
+function Messagerie({ setShowMessagerie, discutionId, utilisateurId }) {
     const [messageData, setMessageData] = useState([]);
     const [catData, setCatData] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [customCategory, setCustomCategory] = useState('');
     const [messageText, setMessageText] = useState('');
-    const [message, setMessage] = useState(''); // Ajout de l'état message
-    const [refreshKey, setRefreshKey] = useState(0); // Clé de rafraîchissement
-    const location = useLocation();
-    const adminID = location.state.userId;
-    const utilisateurID = '3';
-    const discutionID = '1';
+    const [message, setMessage] = useState('');
+    const [refreshKey, setRefreshKey] = useState(0);
+    const location = useLocation()
+    
+    const adminID = "1";
+    const utilisateurID = utilisateurId;
+    const discutionID = discutionId;
 
     useEffect(() => {
-        // Récupérer les données de la messagerie depuis l'API
-        axios.get('http://localhost:3001/messagerie')
+        axios
+            .get(`http://localhost:3001/messagerie?discution_id=${discutionID}`)
             .then((response) => {
                 setMessageData(response.data);
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
-    }, [refreshKey]); // Rafraîchir lorsque la clé de rafraîchissement change
-    console.log(messageData)
+    }, [refreshKey, discutionID]);
+
     useEffect(() => {
-        // Récupérer les données des catégories depuis l'API
-        axios.get('http://localhost:3001/categorie')
+        axios
+            .get('http://localhost:3001/categorie')
             .then((response) => {
                 setCatData(response.data);
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
-    }, []);
+    }, [[discutionId, utilisateurId]]);
 
     const handleCategoryChange = (event) => {
         setSelectedCategory(event.target.value);
@@ -50,26 +60,21 @@ function Messagerie() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Préparez les données à envoyer au backend
         const messageDataToSend = {
             adminID,
             utilisateurID,
             categorieId: messageData.length === 0 ? selectedCategory : messageData[0].categorie_id,
             message: messageText,
-            emetteur: 'admin', // Vous pouvez définir l'émetteur ici
+            emetteur: location.pathname === "/ConnexionUserOk" ? 'utilisateur' : 'admin',
             discutionID,
         };
 
-        // Envoyer les données au backend
-        axios.post('http://localhost:3001/ajouterMessage', messageDataToSend)
+        axios
+            .post('http://localhost:3001/ajouterMessage', messageDataToSend)
             .then((response) => {
                 const { success, message, admin } = response.data;
-                setMessage(message); // Mettre à jour l'état message
-
-                // Rafraîchir la div de messagerie en changeant la clé de rafraîchissement
+                setMessage(message);
                 setRefreshKey((prevKey) => prevKey + 1);
-
-                // Réinitialiser le textarea
                 setMessageText('');
             })
             .catch((error) => {
@@ -77,12 +82,17 @@ function Messagerie() {
             });
     };
 
+    const handleMessageClick = () => {
+        setShowMessagerie(false);
+    };
     return (
         <div className='messagerie_container'>
             <div className='messagerie'>
-                {messageData.length === 0 ?
-                    <h3>{selectedCategory}</h3> : <h3> {messageData[0].nom_categorie} </h3>
-                }
+                {messageData.length === 0 ? (
+                    <h3>{messageData.nom}</h3>
+                ) : (
+                    <h3> {messageData[0].nom_categorie} </h3>
+                )}
                 <div className='chats'>
                     {messageData.map((message, index) => (
                         <div
@@ -91,7 +101,9 @@ function Messagerie() {
                                 message.emetteur === 'admin' ? 'message-recepteur' : 'message-emetteur'
                             }`}
                         >
-                            {message.emetteur === 'admin' ? `${message.nom_admin} ${message.prenom_admin}` : message.nom_utilisateur}
+                            {message.emetteur === 'admin'
+                                ? `${message.nom_admin} ${message.prenom_admin}`
+                                : message.nom_utilisateur}
                             <br />
                             {message.message_text}
                         </div>
@@ -135,6 +147,7 @@ function Messagerie() {
                         rows='10'
                     ></textarea>
                     <button type='submit'>Envoyer</button>
+                    <button onClick={handleMessageClick}>retour</button>
                 </form>
                 {message && <p>{message}</p>}
             </div>
@@ -142,4 +155,5 @@ function Messagerie() {
     );
 }
 
-export default Messagerie;
+// Connectez le composant au store Redux
+export default connect(mapStateToProps)(Messagerie);
