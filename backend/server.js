@@ -51,6 +51,9 @@ app.use("/entreprises", entrepriseRoutes);
 const userRoutes = require("./routes/userRoutes");
 app.use("/users", userRoutes);
 
+const conversationRoutes = require("./routes/conversationRoutes");
+app.use("/conversations", conversationRoutes);
+
 server.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
