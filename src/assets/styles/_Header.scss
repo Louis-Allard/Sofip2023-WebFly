@@ -1,3 +1,5 @@
+@media screen and (min-width: 781px) {
+
 .Header {
   border: 1px solid blue;
   display: flex;
@@ -49,5 +51,70 @@
   
   .card-header {
     margin-right: 2em;
+  }
+}
+}
+
+@media screen and (min-width: 568px) and (max-width: 780px) {
+}
+
+@media screen and (max-width: 567px) {
+  .Header {
+    width: 100%;
+    border: 1px solid blue;
+    display: flex;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #2d4a9847;
+  
+    img {
+      width: 180px;
+      height: 180px;
+      animation: scaleAndRotate 9s ease infinite;
+      
+    }
+  
+    .div-logo {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      overflow: hidden;
+    }
+  @keyframes scaleAndRotate {
+      0% {
+        transform: scale(1);
+        
+      }
+  
+      80% {
+        transform: scale(1.1) rotate(10deg);
+      }
+  
+      100% {
+        transform: scale(1);
+      }
+    }
+  
+    .connexion {
+      margin-right: 1em;
+    }
+  
+    h1 {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 3rem;
+      text-align: center;
+      color: #333;
+      animation: scaleAndRotate 3s ease infinite;
+    }
+    .card-header{
+      display: flex;
+      .cardHeader{
+        flex-direction: column;
+      }
+    }
+    .card-header p{
+      font-size: small;
+      text-align: center;
+    }
   }
 }

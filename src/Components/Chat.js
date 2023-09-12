@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import smiley from '../assets/icons/smiley.png';
 import file from '../assets/icons/file.png';
 import calendar from '../assets/icons/calendar.png';
 import { useSelector } from 'react-redux';

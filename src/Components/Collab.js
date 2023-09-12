@@ -35,9 +35,12 @@ const Collab = () => {
             </div>
             <div className='listCollab text-center'>
                 <h4 className='text-center titreCollab'>Collaborateurs</h4>
+                <div className='overflow'>
                 {data && data.map((item, index) => (
                     <p className='pointer' onClick={() => changeDest(item.PRENOM, item.NOM)} key={index}>{item.PRENOM} {item.NOM}<img className={`ms-2 ${item.ETAT === 'En Ligne' ? 'online' : 'offline'}`} src={etat} alt='etat' /></p>
                 ))}
+                </div>
+
             </div>
         </div>
     );

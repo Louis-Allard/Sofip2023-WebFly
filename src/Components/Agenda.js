@@ -94,7 +94,7 @@ const Agenda = () => {
 
   return (
     <div className="container">
-      <Link to="/joint" className="btn btn-primary mb-3">
+      <Link to="/join" className="btn btn-primary mb-3">
         <i className="bi bi-chevron-left"></i> Retour
       </Link>
       <h1>Agenda</h1>

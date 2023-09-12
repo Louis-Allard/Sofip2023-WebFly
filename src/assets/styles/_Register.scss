@@ -1,3 +1,4 @@
+@media screen and (min-width: 781px) {
 .register{
     margin-top: 10px;
     .formRegister{
@@ -8,6 +9,24 @@
             width: 50%;
             margin-left: 25%;
             margin-right: 25%;
+        }
+    }
+}
+}
+
+@media screen and (min-width: 568px) and (max-width: 780px) {
+}
+
+@media screen and (max-width: 567px) {
+    .register{
+        margin-top: 10px;
+        .formRegister{
+            width: 100%;
+            input{
+                width: 50%;
+                margin-left: 25%;
+                margin-right: 25%;
+            }
         }
     }
 }
