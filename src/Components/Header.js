@@ -41,7 +41,7 @@ const Header = () => {
   return (
     <div className="Header">
       <div className="div-logo">
-        <Link to="/join"><img src={image} alt="" /></Link>
+        <img src={image} alt="" />
       </div>
       <div className="card-header">
         <CardHeader />

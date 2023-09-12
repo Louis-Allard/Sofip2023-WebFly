@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import file from '../assets/icons/file.png';
 import calendar from '../assets/icons/calendar.png';
 import { useSelector } from 'react-redux';
@@ -73,7 +74,7 @@ const Chat = ({ socket, nom, room }) => {
                             placeholder='Votre message ...' id="input" autoComplete="off" />
                         <button onClick={sendMessage} className='btn btn-secondary ms-2'>Envoyer</button>
                         <img className='ms-2' src={file} alt='upload file'/>                            
-                        <img className='ms-2' src={calendar} alt='calendrier' />
+                        <Link to="/agenda"><img className="ms-2" src={calendar} alt="calendrier" /></Link>
                     </form>
                 </div>
             </div>

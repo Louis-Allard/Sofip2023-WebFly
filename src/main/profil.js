@@ -38,8 +38,10 @@ const Profil = () => {
           <button className="btn btn-outline-success">Modif profil</button>
         </Link>
         <Link to="/changePassword">
-          <button className="btn btn-outline-primary">Modif password</button>
+          <button className="btn btn-outline-primary ms-1">Modif password</button>
         </Link>
+        <Link to="/join" className="btn btn-primary ms-1"><i className="bi bi-chevron-left"></i> Retour</Link>
+
       </div>
     </div>
   );

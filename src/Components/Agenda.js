@@ -72,14 +72,14 @@ const Agenda = () => {
   const handleEditTitle = (e) => {
     setEditingEvent({
       ...editingEvent,
-      title: e.target.value,
+      TITLE: e.target.value,
     });
   };
 
   const handleEditDate = (e) => {
     setEditingEvent({
       ...editingEvent,
-      date: e.target.value,
+      DATE_CALENDRIER: e.target.value,
     });
   };
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import etat from '../assets/icons/etat.png';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -40,6 +41,7 @@ const Collab = () => {
                     <p className='pointer' onClick={() => changeDest(item.PRENOM, item.NOM)} key={index}>{item.PRENOM} {item.NOM}<img className={`ms-2 ${item.ETAT === 'En Ligne' ? 'online' : 'offline'}`} src={etat} alt='etat' /></p>
                 ))}
                 </div>
+                <Link to="/join" className="btn btn-outline-primary  mt-3"><i className="bi bi-chevron-left"></i> Retour</Link>
 
             </div>
         </div>
