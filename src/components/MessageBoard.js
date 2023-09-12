@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
-import DeleteModal from '../components/DeleteModal';
+import DeleteModal from './DeleteModal';
 import { useDispatch } from 'react-redux';
 import { setModal } from '../reducers';
 import '../scss/_messageboard.scss';
@@ -17,29 +16,29 @@ const MessageBoard = ({socket, username, conversation}) => {
         dispatch(setModal(true));
     };
 
-    const sendMessage = async () => {
-        if (currentMessage !== "") {
-          const messageData = {
-            conversation: conversation,
-            author: username,
-            message: currentMessage,
-            time:
-              new Date(Date.now()).getHours() +
-              ":" +
-              new Date(Date.now()).getMinutes(),
-          };
+    // const sendMessage = async () => {
+    //     if (currentMessage !== "") {
+    //       const messageData = {
+    //         conversation: conversation,
+    //         author: username,
+    //         message: currentMessage,
+    //         time:
+    //           new Date(Date.now()).getHours() +
+    //           ":" +
+    //           new Date(Date.now()).getMinutes(),
+    //       };
     
-          await socket.emit("send_message", messageData);
-          setMessageList((list) => [...list, messageData]);
-          setCurrentMessage("");
-        }
-      };
+    //       await socket.emit("send_message", messageData);
+    //       setMessageList((list) => [...list, messageData]);
+    //       setCurrentMessage("");
+    //     }
+    //   };
 
-      useEffect(() => {
-        socket.on("receive_message", (data) => {
-          setMessageList((list) => [...list, data]);
-        });
-      }, [socket]);
+    //   useEffect(() => {
+    //     socket.on("receive_message", (data) => {
+    //       setMessageList((list) => [...list, data]);
+    //     });
+    //   }, [socket]);
 
 
     // React.useEffect(() => {
@@ -51,7 +50,6 @@ const MessageBoard = ({socket, username, conversation}) => {
 
     return (
         <div className="messages">
-            <Sidebar id="2" />
             <DeleteModal />
             <div className='message_list'>
                 <div className="messages_map">

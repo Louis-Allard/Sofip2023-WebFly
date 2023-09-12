@@ -1,6 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
-// import axios from 'axios';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../reducers';
@@ -15,7 +13,7 @@ const DeleteModal = (props) => {
 
     return (
         <Modal className="deletemodal" isOpen={useSelector((state) => state.Reducers.modalOpen)}>
-            <p>{props.text || "J'ai besoin d'une phrase assez longue pour cette modale."}</p>
+            <p>{props.text}</p>
             <div>
                 <button className="yes">Oui</button>
                 <button className="no" onClick={setModalClosed}>Non</button>

@@ -24,7 +24,7 @@ const Companies = () => {
 
     return (
         <div className="companies">
-            <Sidebar id="1" />
+            <Sidebar id="0" />
             <DeleteModal />
             <div className='company_list'>
                 <div className="company_map">

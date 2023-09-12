@@ -7,7 +7,6 @@ import PersonEdit from './pages/PersonEdit';
 import CompanyEdit from './pages/CompanyEdit';
 import Accounts from './pages/Accounts';
 import Companies from './pages/Companies';
-import MessageBoard from './pages/MessageBoard';
 import './App.css';
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
           <Route path="/edit_company" Component={CompanyEdit} />
           <Route path="/users" Component={Accounts} />
           <Route path="/companies" Component={Companies} />
-          <Route path="/message_list" Component={MessageBoard} />
         </Routes>
       </Router>
     </div>
