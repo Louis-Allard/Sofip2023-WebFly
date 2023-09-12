@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "admin",
+    password: "root",
     database: "webfly",
 });
 
@@ -222,7 +222,7 @@ app.get("/messagerie", (req, res) => {
     });
 });
 
-//recuperre les categorie 
+//recuperre les categorie
 app.get("/categorie", (req, res) => {
     const sql = `SELECT * FROM webfly.categorie;`;
     con.query(sql, (err, data) => {
@@ -244,16 +244,26 @@ app.post("/ajouterMessage", async (req, res) => {
         emetteur,
         discutionID,
     } = req.body;
-    console.log(req.body)
+    console.log(req.body);
     try {
         const sql = `INSERT INTO messages (admin_id, utilisateur_id, categorie_id, message_text, emetteur, discution_id) VALUES (?, ?, ?, ?, ?, ?)`;
 
         con.query(
             sql,
-            [adminID, utilisateurID, categorieId, message, emetteur, discutionID],
+            [
+                adminID,
+                utilisateurID,
+                categorieId,
+                message,
+                emetteur,
+                discutionID,
+            ],
             (err, result) => {
                 if (err) {
-                    console.error("Erreur lors de l'insertion des données :", err);
+                    console.error(
+                        "Erreur lors de l'insertion des données :",
+                        err
+                    );
                     res.status(500).json({
                         success: false,
                         message: "Erreur lors de l'enregistrement du message",
