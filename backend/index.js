@@ -64,7 +64,7 @@ app.post("/connexion", (req, res) => {
                 message: err,
             });
         }
-        if (result.length === 1) {
+        if (result.length != 0) {
             const user = result[0];
             if (!bcryptjs.compareSync(password, user.mot_de_passe)) {
                 return res.json({
@@ -76,13 +76,13 @@ app.post("/connexion", (req, res) => {
                 const token = jwt.sign({ adminId }, "RANDOM_TOKEN_SECRET", {
                     expiresIn: "24h",
                 });
-                //
                 if (tableName === "admin") {
                     return res.json({
                         success: true,
                         message: "Connexion admin réussie",
                         token,
                         adminId,
+                        connecter: "admin",
                         admin: true,
                     });
                 } else {
@@ -90,6 +90,8 @@ app.post("/connexion", (req, res) => {
                         success: true,
                         message: "Connexion utilisateur réussie",
                         token,
+                        adminId,
+                        connecter: "utilisateur",
                         admin: false,
                     });
                 }
@@ -135,7 +137,7 @@ app.post("/ajouterUtilisateur", async (req, res) => {
 
 //liste utilisateur
 app.get("/lister_utilisateur", (req, res) => {
-    const sql = `SELECT id,nom,email FROM webfly.utilisateur;`;
+    const sql = `SELECT id,nom_utilisateur,email FROM webfly.utilisateur;`;
     con.query(sql, (err, data) => {
         if (err) {
             console.log("err2 ", err);
@@ -175,7 +177,7 @@ app.post("/update_User/:userId", async (req, res) => {
     }
 
     try {
-        const sql = `UPDATE utilisateur SET nom = "${nom}", email = "${email}" where id = ${userId}`;
+        const sql = `UPDATE utilisateur SET nom_utilisateur = "${nom}", email = "${email}" where id = ${userId}`;
         con.query(sql, [nom, email], (err, result) => {
             if (err) {
                 console.error(
@@ -203,10 +205,13 @@ app.post("/update_User/:userId", async (req, res) => {
 
 //recuperrer les message en fonction de la discution
 app.get("/messagerie", (req, res) => {
+    const discutionId = req.query;
+
     const sql = `select message_id,admin_id,utilisateur_id,categorie_id,message_text,date_envoi,lu,emetteur,discution_id,nom_categorie,admin.nom_admin,admin.prenom_admin,utilisateur.nom_utilisateur from messages 
     INNER JOIN admin on admin_id = admin.id 
     INNER JOIN utilisateur ON utilisateur_id = utilisateur.id 
     INNER JOIN categorie ON categorie_id = categorie.id
+    where discution_id = ${discutionId.discution_id}
     ORDER BY date_envoi ASC`;
     con.query(sql, (err, data) => {
         if (err) {
@@ -270,7 +275,25 @@ app.post("/ajouterMessage", async (req, res) => {
     }
 });
 
-
+app.get("/toutLesMessage", (req, res) => {
+    const sql = `SELECT m1.*, u.nom_utilisateur
+    FROM messages m1
+    INNER JOIN (
+        SELECT MAX(date_envoi) AS max_date, discution_id
+        FROM messages
+        WHERE emetteur = 'utilisateur'
+        GROUP BY discution_id
+    ) m2 ON m1.discution_id = m2.discution_id AND m1.date_envoi = m2.max_date
+    INNER JOIN utilisateur u ON m1.utilisateur_id = u.id
+    WHERE m1.emetteur = 'utilisateur';`;
+    con.query(sql, (err, data) => {
+        if (err) {
+            console.log("err2 ", err);
+            return res.json(err);
+        }
+        return res.json(data);
+    });
+});
 
 app.listen(PORT, () => {
     console.log(`mon backend : ${PORT}`);

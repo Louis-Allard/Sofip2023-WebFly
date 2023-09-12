@@ -144,7 +144,7 @@ function ListerUtilisateur() {
                                     </>
                                 ) : (
                                     <>
-                                        <td>{user.nom}</td>
+                                        <td>{user.nom_utilisateur}</td>
                                         <td>{user.email}</td>
                                         <td>
                                             <button
