@@ -11,6 +11,7 @@ import reset from "./main/reset";
 import Join from "./main/join";
 import UserList from "./Components/crud/UserList";
 import Agenda from "./Components/Agenda";
+import homeadmin from "./main/homeadmin";
 
 const Router = () => {
   return (
@@ -26,6 +27,8 @@ const Router = () => {
         <Route path="/reset/:token" Component={reset} />
         <Route path="/userlist" Component={UserList} />
         <Route path="/agenda" Component={Agenda} />
+        <Route path="/home-admin" Component={homeadmin} />
+
       </Routes>
     </div>
   );

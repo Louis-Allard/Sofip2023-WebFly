@@ -37,7 +37,7 @@
   }
 
   .connexion {
-    margin-right: 5em;
+    margin-right: 2em;
   }
 
   h1 {
@@ -49,8 +49,13 @@
   }
 
   
-  .card-header {
-    margin-right: 2em;
+  .card-header{
+    display: flex;
+    margin-right: 50px;
+  }
+  .card-header p{
+    text-align: center;
+    margin-right: 10px;
   }
 }
 }
