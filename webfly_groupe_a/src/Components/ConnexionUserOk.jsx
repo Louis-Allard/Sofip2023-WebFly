@@ -1,17 +1,23 @@
 import React,{useState} from 'react'
 import Messagerie from './Messagerie';
 import Navbar from './Navbar';
+import ListeMessage from './ListeMessage';
 
 
 function ConnexionUserOk() {
-        const [selectedComponent, setSelectedComponent] = useState(null);
-
+    const [selectedComponent, setSelectedComponent] = useState(null);
+    const [showMessagerie, setShowMessagerie] = useState(false);
+    
     const renderComponent = () => {
-        switch (selectedComponent) {
-            case "Messagerie":
-                return <Messagerie />;
-            default:
-                return null;
+        if (showMessagerie) {
+            return <Messagerie setShowMessagerie={setShowMessagerie}  />;
+        } else {
+            switch (selectedComponent) {
+                case "Messagerie":
+                    return <ListeMessage setShowMessagerie={setShowMessagerie} />;
+                default:
+                    return null;
+            }
         }
     };
 
