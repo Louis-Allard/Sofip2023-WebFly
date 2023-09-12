@@ -63,7 +63,7 @@ const FormReset = () => {
                 <h1>Lien Invalide ou expiré</h1>
             ) : (
                 <div>
-                    <h1>Réinitialisation du mot de passe</h1>
+                    <h1 className='text-center'>Réinitialisation du mot de passe</h1>
 
                     <form method="POST" className=" text-center  p-3" onSubmit={handleSubmit}>
 
@@ -71,7 +71,7 @@ const FormReset = () => {
                             <label htmlFor="Input" className="form-label">
                                 Nouveau mot de passe:
                             </label>
-                            <input type="password" className="form-control" id="mdp" name="mdp" autoComplete="off" value={mdp} onChange={(e) => {
+                            <input type="password" className="form-control inputReset" id="mdp" name="mdp" autoComplete="off" value={mdp} onChange={(e) => {
                                 setMdp(e.target.value)
                             }} />
                         </div>
@@ -80,7 +80,7 @@ const FormReset = () => {
                             <label htmlFor="Input" className="form-label">
                                 Confirmer nouveau mot de passe:
                             </label>
-                            <input type="password" className="form-control" id="confirmMdp" name="ConfirmMdp" autoComplete="off" value={confirmMdp} onChange={(e) => { setConfirmMdp(e.target.value) }} />
+                            <input type="password" className="form-control inputReset" id="confirmMdp" name="ConfirmMdp" autoComplete="off" value={confirmMdp} onChange={(e) => { setConfirmMdp(e.target.value) }} />
                         </div>
                         {errMdp && (
                             <p className='text-danger'>Les champs saisis ne sont pas identiques</p>

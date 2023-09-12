@@ -1,0 +1,16 @@
+@media screen and (min-width: 781px) {
+    .inputReset{
+        width: 40% !important;
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+}
+
+@media screen and (min-width: 568px) and (max-width: 780px) {
+}
+
+@media screen and (max-width: 567px) {
+    .inputReset{
+        width: 100%;
+    }
+}
