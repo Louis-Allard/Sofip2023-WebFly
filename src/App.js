@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LogIn from './pages/LogIn';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard.tsx';
 import PersonRegister from './pages/PersonRegister';
 import CompanyRegister from './pages/CompanyRegister';
 import PersonEdit from './pages/PersonEdit';

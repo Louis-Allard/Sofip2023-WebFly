@@ -15,12 +15,12 @@ const Accounts = () => {
         dispatch(setModal(true));
     };
 
-    // React.useEffect(() => {
-    //     axios.get('http://localhost:3001/accounts').then((res) => {
-    //         console.log(res.data);
-    //         setData(res.data);
-    //     });
-    // }, []);
+    React.useEffect(() => {
+        axios.get('http://localhost:3001/users').then((res) => {
+            console.log(res.data);
+            setData(res.data);
+        });
+    }, []);
 
     return (
         <div className="accounts">
