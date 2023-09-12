@@ -3,7 +3,7 @@ const sql = require("../db/db.config");
 const Entreprise = function (entreprise){
     this.nom = entreprise.nom;
     this.siret = entreprise.siret;
-    this.adresse = entreprise.adresse;
+    this.adresse = entreprise.adresse
 }
 
 Entreprise.findAll = (result) => {

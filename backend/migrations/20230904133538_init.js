@@ -9,7 +9,6 @@ exports.up = function(knex) {
     table.integer('numero_rue',255).notNullable();
     table.string('nom_rue', 255).notNullable();
     table.integer('codepostal').notNullable();
-    table.string('ville').notNullable();
   })
   .createTable('users', function(table){
     table.increments('id');
@@ -17,34 +16,18 @@ exports.up = function(knex) {
     table.string('firstname', 255).notNullable();
     table.string('email', 255).notNullable();
     table.string('password', 255).notNullable();
-    table.boolean('isCM').notNullable();
+    table.integer('adresse').unsigned().nullable();
+
+    table.foreign('adresse').references('id').inTable('adresses')
   })
   .createTable('entreprises', function(table){
     table.increments('id');
     table.string('nom', 255).notNullable();
     table.integer('siret', 14).notNullable();
     table.integer('adresse').unsigned().nullable();
-    table.timestamps(true, true)
+    table.date('create_at').notNullable();
 
     table.foreign('adresse').references('id').inTable('adresses')
-  })
-  .createTable('conversations', function(table){
-    table.increments('id');
-    table.integer('cm').notNullable();
-    table.integer('client').notNullable();
-
-    table.foreign('cm').references('id').inTable('users')
-    table.foreign('client').references('id').inTable('users')
-  })
-  .createTable('messages', function(table){
-    table.increments('id');
-    table.integer('conversation').notNullable();
-    table.integer('author').notNullable();
-    table.text('content').notNullable();
-    table.timestamps(true, true);
-
-    table.foreign('conversation').references('id').inTable('conversations')
-    table.foreign('author').references('id').inTable('users')
   })
 };
 
@@ -57,6 +40,4 @@ exports.down = function(knex) {
   .dropTable('adresses')
   .dropTable('users')
   .dropTable('entreprises')
-  .dropTable('messages')
-  .dropTable('conversations')
 };

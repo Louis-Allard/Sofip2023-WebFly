@@ -55,11 +55,11 @@ User.create = (newUser, result) => {
         return;
       }
       if (newUser.lastname.length < 3) {
-        result({ Error: "Error : Lastname must be more than 3 character" }, null);
+        result({ Error: "Error : Username must be more than 3 character" }, null);
         return;
       }
       if (newUser.firstname.length < 3) {
-        result({ Error: "Error : Firstname must be more than 3 character" }, null);
+        result({ Error: "Error : Username must be more than 3 character" }, null);
         return;
       }
       if (newUser.email.length < 3) {

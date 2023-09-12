@@ -6,7 +6,7 @@ const CompanyRegister = () => {
   const [companyName, setCompanyName] = useState('');
   const [siret, setSiret] = useState('');
   const [address, setAddress] = useState({
-    id: "",
+    id: 0,
     numero_rue: "",
     nom_rue: "",
     ville: "",
@@ -24,39 +24,43 @@ const CompanyRegister = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Envoyer une requête POST à votre endpoint d'insertion
-    if (address) {
+    postAdresse()
+  }
+
+  function postAdresse(callback){
     axios.post('http://localhost:3001/adresses/adresse', address)
-      .then((response) => {
+      .then((res) => {
         console.log('Insertion réussie');
-        setAddress(response.data);
-        console.log(response, response.data, address);
+        let update = {id: res.data.id}
+        console.log("update :" , update)
+        setAddress(address => ({...address, ...update}))
+        console.log("adresse " , address);
+        postEntreprise()
       })
       .catch((error) => {
         console.error('Erreur lors de l\'insertion', error);
       });
-    }
-    console.log(address)
+      
+  }
 
+  function postEntreprise(){
+    
     const data = {
       nom: companyName,
       siret: siret,
-      adresse: address.id
+      adresse: address
     };
     console.log(data);
 
-    if (data) {
       // Envoyer une requête POST à votre endpoint d'insertion
-      axios.post('http://localhost:3001/entreprises/entreprise', data)
-        .then(response => {
-          console.log('Insertion réussie');
-        })
-        .catch(error => {
-          console.error('Erreur lors de l\'insertion', error);
-        });
-    } else {
-      console.error('Erreur : valeur non définie');
-    }
-  };
+    axios.post('http://localhost:3001/entreprises/entreprise', data)
+      .then(response => {
+        console.log('Insertion réussie');
+      })
+      .catch(error => {
+        console.error('Erreur lors de l\'insertion', error);
+      });
+  }
 
   return (
     <div className="signup">

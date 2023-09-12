@@ -10,8 +10,8 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'root',
-      password: '',
+      user: 'webfly',
+      password: 'bLJ-9v7UFrhp(wdo',
       database: 'webfly',
       filename: './dev.mysql2'
     }
@@ -22,8 +22,8 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'root',
-      password: '',
+      user: 'webfly',
+      password: 'bLJ-9v7UFrhp(wdo',
       database: 'webfly',
     },
     pool: {
@@ -40,8 +40,8 @@ module.exports = {
     connection: {
       host: 'localhost',
       port: 3306,
-      user: 'root',
-      password: '',
+      user: 'webfly',
+      password: 'bLJ-9v7UFrhp(wdo',
       database: 'webfly'
     },
     pool: {

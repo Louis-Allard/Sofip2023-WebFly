@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+// import { SHA256 } from 'crypto-js';
 import '../scss/_personreg.scss';
 
 const PersonRegister = () => {
@@ -40,24 +41,21 @@ const PersonRegister = () => {
 
     // Insérer la valeur dans la base de données ici
     const data = {
-      lastname: lastname,
-      firstname: firstname,
-      password: password,
-      email: email,
-      isCM: false
+      v1: lastname,
+      v2: firstname,
+      v3: password,
+      v4: passwordConfirm,
+      v5: email,
+      // v6: selectedValue
     };
     console.log(data);
 
     if (data) {
       // Envoyer une requête POST à votre endpoint d'insertion
-      axios.post('http://localhost:3001/users/user', data)
+      axios.post('http://localhost:3001/signup', data)
         .then(response => {
           console.log('Insertion réussie');
-          setLastname('');
-          setFirstname('');
           setPassword('');
-          setPasswordConfirm('');
-          setEmail('');
         })
         .catch(error => {
           console.error('Erreur lors de l\'insertion', error);
@@ -69,7 +67,7 @@ const PersonRegister = () => {
 
   return (
     <div className="signup">
-      <form method="post" onSubmit={handleSubmit} className="signup_form_pers">
+      <form action="http://localhost:3001/signup" method="post" onSubmit={handleSubmit} className="signup_form_pers">
         <h1>Saisie des informations du nouveau contact</h1>
         <div className="trivial_pers">
           <div className="element_lastname">

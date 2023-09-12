@@ -7,9 +7,9 @@ import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Moment from 'react-moment';
-import Sidebar from './Sidebar';
-import DeleteModal from './DeleteModal';
-import Message from './Message';
+import Sidebar from '../components/Sidebar';
+import DeleteModal from '../components/DeleteModal';
+import Message from '../components/Message';
 
 function Messenger(props) {
     //   const params = useParams();

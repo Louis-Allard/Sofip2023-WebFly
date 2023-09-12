@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
@@ -7,13 +7,40 @@ import { useDispatch } from 'react-redux';
 import { setModal } from '../reducers';
 import '../scss/_messageboard.scss';
 
-const MessageBoard = () => {
-    const [data, setData] = React.useState(null);
+const MessageBoard = ({socket, username, conversation}) => {
+    const [data, setData] = useState(null);
+    const [currentMessage, setCurrentMessage] = useState();
+    const [messageList, setMessageList] = useState([]);
     const dispatch = useDispatch();
 
     const setModalOpen = () => {
         dispatch(setModal(true));
     };
+
+    const sendMessage = async () => {
+        if (currentMessage !== "") {
+          const messageData = {
+            conversation: conversation,
+            author: username,
+            message: currentMessage,
+            time:
+              new Date(Date.now()).getHours() +
+              ":" +
+              new Date(Date.now()).getMinutes(),
+          };
+    
+          await socket.emit("send_message", messageData);
+          setMessageList((list) => [...list, messageData]);
+          setCurrentMessage("");
+        }
+      };
+
+      useEffect(() => {
+        socket.on("receive_message", (data) => {
+          setMessageList((list) => [...list, data]);
+        });
+      }, [socket]);
+
 
     // React.useEffect(() => {
     //     axios.get('http://localhost:3001/messages').then((res) => {

@@ -1,4 +1,6 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
+// import axios from 'axios';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal } from '../reducers';

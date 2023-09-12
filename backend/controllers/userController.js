@@ -48,6 +48,7 @@ exports.findById = (req, res) => {
         email: req.body.email,
         password: req.body.password,
         isCM: req.body.isCM
+      
     });
   
     User.create(newUser, (err, data) => {

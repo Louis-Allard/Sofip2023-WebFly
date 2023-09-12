@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import io from "socket.io-client";
 import axios from 'axios';
 import '../scss/_login.scss';
+
+const socket = io.connect("http://localhost:3001");
 
 const LogIn = () => {
 
@@ -9,6 +12,13 @@ const LogIn = () => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [msgPassword, setMsgPassword] = useState('');
+  const [isconnecte, setIsConnecte] = useState(false);
+
+  const join = () => {
+    if(isconnecte){
+      socket.emit('join', mail);
+    }
+  }
 
 
   const handleChangeMail = (event) => {
@@ -41,7 +51,7 @@ const LogIn = () => {
           localStorage.setItem('token', response.data.token);
           localStorage.setItem('id', response.data.userID);
           setMsgPassword(response.data.message);
-          navigate('/dashboard');
+          navigate('/message_list');
         })
         .catch(error => {
           console.error('Erreur lors de l\'envoi', error);

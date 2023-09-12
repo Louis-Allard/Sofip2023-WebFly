@@ -4,9 +4,9 @@ const dotenv = require("dotenv");
 // Configurez votre connexion à la base de données MySQLco
 const connection = mysql.createConnection({
   host: "localhost",
-  user: "root",
+  user: "webfly",
   port: 3306,
-  password: "",
+  password: "bLJ-9v7UFrhp(wdo",
   database: "webfly",
 });
  
