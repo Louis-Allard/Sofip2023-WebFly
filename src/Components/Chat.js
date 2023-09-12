@@ -33,21 +33,7 @@ const Chat = ({ socket, nom, room }) => {
             setMessageList((list) => [...list, data]);
         });
     }, [socket]);
-
-
-    // AJOUTER UN FICHIER
-    const [fileName, setFileName] = useState("Aucun fichier sélectionné");
-
-  const handleFileChange = (event) => {
-    const files = event.target.files;
-    if (files.length > 0) {
-      const newFileName = files[0].name;
-      setFileName("Nom du fichier: " + newFileName);
-    } else {
-      setFileName("Aucun fichier sélectionné");
-    }
-  };
-
+    
     return (
         <div className='blocChat'>
             {/* HEADER */}
@@ -86,13 +72,7 @@ const Chat = ({ socket, nom, room }) => {
                             onKeyDown={(event) => { event.key === "enter" && sendMessage(); }}
                             placeholder='Votre message ...' id="input" autoComplete="off" />
                         <button onClick={sendMessage} className='btn btn-secondary ms-2'>Envoyer</button>
-                        <div className='ms-2'>
-                            <label htmlFor='fileInput'>
-                                <img src={file} alt='upload file'/>                            
-                                <span id='fileName'>{fileName}</span>
-                            </label>
-                            <input type='file' id='fileInput' onChange={handleFileChange} accept="image/png, image/jpeg"/>
-                        </div>
+                        <img className='ms-2' src={file} alt='upload file'/>                            
                         <img className='ms-2' src={calendar} alt='calendrier' />
                     </form>
                 </div>

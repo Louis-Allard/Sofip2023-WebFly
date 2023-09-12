@@ -1,3 +1,5 @@
+@media screen and (min-width: 781px) {
+
 .modifPro-container {
     margin-left: 30%;
     margin-top: 5%;
@@ -38,4 +40,90 @@
       }
     }
   }
+}
+
+@media screen and (min-width: 568px) and (max-width: 780px) {
+  .modifPro-container {
+    margin-top: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 0px 30px 30px 30px;
+    -moz-border-radius: 0px 30px 30px 30px;
+    -webkit-border-radius: 0px 30px 30px 30px;
+    border: 3px solid #c8303f;
+    border-right: #dededd;
+    border-bottom: #dededd;
+    Background-color:#dededd24;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 400px;
+    text-align: center;
   
+    h2 {
+      color: rgb(33, 37, 37);
+      font-size: xx-large;
+      margin-top: 40px;
+    }
+  
+    .containerProf {
+      margin-top: 50px;
+      margin-right: auto;
+      margin-left: auto;
+  
+      p {
+        font-weight: 400;
+        text-align: left;
+        display: flex; // Utilisez flex pour aligner les éléments <spam>
+        justify-content: space-between;
+        margin-left: 15%;
+      }
+  
+      .spam {
+        text-align: right;
+        margin-right: 25%; /* Pour aligner les <spam> à gauche */
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .modifPro-container {
+    margin-top: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 0px 30px 30px 30px;
+    -moz-border-radius: 0px 30px 30px 30px;
+    -webkit-border-radius: 0px 30px 30px 30px;
+    border: 3px solid #c8303f;
+    border-right: #dededd;
+    border-bottom: #dededd;
+    Background-color:#dededd24;
+    width: 100%;
+    height: 400px;
+    text-align: center;
+  
+    h2 {
+      color: rgb(33, 37, 37);
+      font-size: xx-large;
+      margin-top: 40px;
+    }
+  
+    .containerProf {
+      margin-top: 50px;
+      margin-right: auto;
+      margin-left: auto;
+  
+      p {
+        font-weight: 400;
+        text-align: left;
+        display: flex; // Utilisez flex pour aligner les éléments <spam>
+        justify-content: space-between;
+        margin-left: 15%;
+      }
+  
+      .spam {
+        text-align: right;
+        margin-right: 25%; /* Pour aligner les <spam> à gauche */
+      }
+    }
+  }
+}
