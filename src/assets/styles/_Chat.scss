@@ -111,6 +111,9 @@
             textarea {
                 resize: none;
             }
+            input[type=file]{
+                display: none;
+            }
         }  
     }
 }
