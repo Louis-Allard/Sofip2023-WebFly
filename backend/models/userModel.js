@@ -54,8 +54,12 @@ User.create = (newUser, result) => {
         result({ Error: "Error : Password must be 3 or more character" }, null);
         return;
       }
-      if (newUser.username.length < 3) {
-        result({ Error: "Error : Username must be more than 3 character" }, null);
+      if (newUser.lastname.length < 3) {
+        result({ Error: "Error : Lastname must be more than 3 character" }, null);
+        return;
+      }
+      if (newUser.firstname.length < 3) {
+        result({ Error: "Error : Firstname must be more than 3 character" }, null);
         return;
       }
       if (newUser.email.length < 3) {

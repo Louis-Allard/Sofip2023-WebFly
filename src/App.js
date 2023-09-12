@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
 import LogIn from './pages/LogIn';
 import PersonRegister from './pages/PersonRegister';
 import CompanyRegister from './pages/CompanyRegister';
@@ -7,7 +8,6 @@ import CompanyEdit from './pages/CompanyEdit';
 import Accounts from './pages/Accounts';
 import Companies from './pages/Companies';
 import MessageBoard from './pages/MessageBoard';
-import Messenger from './pages/Messenger';
 import './App.css';
 
 function App() {
@@ -17,7 +17,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/login" Component={LogIn} />
+          <Route path="/" Component={LogIn} />
+          <Route path="/dashboard" Component={Dashboard} />
           <Route path="/register_user" Component={PersonRegister} />
           <Route path="/register_company" Component={CompanyRegister} />
           <Route path="/edit_user" Component={PersonEdit} />
@@ -25,7 +26,6 @@ function App() {
           <Route path="/users" Component={Accounts} />
           <Route path="/companies" Component={Companies} />
           <Route path="/message_list" Component={MessageBoard} />
-          <Route path={`/message/${id}`} Component={Messenger} />
         </Routes>
       </Router>
     </div>
