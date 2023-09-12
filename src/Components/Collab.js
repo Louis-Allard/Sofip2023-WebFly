@@ -38,9 +38,11 @@ const Collab = () => {
             </div>
             <div className='listCollab text-center'>
                 <h4 className='text-center titreCollab'>Collaborateurs</h4>
-                {data && data.map((item, index) => (
-                    <p className='pointer' onClick={() => changeDest(item.PRENOM, item.NOM, item.ID_UTILISATEUR)} key={index}>{item.PRENOM} {item.NOM}<img className={`ms-2 ${item.ETAT === 'En Ligne' ? 'online' : 'offline'}`} src={etat} alt='etat' /></p>
-                ))}
+                <div className='overflow'>
+                    {data && data.map((item, index) => (
+                        <p className='pointer' onClick={() => changeDest(item.PRENOM, item.NOM, item.ID_UTILISATEUR)} key={index}>{item.PRENOM} {item.NOM}<img className={`ms-2 ${item.ETAT === 'En Ligne' ? 'online' : 'offline'}`} src={etat} alt='etat' /></p>
+                    ))}
+                </div>
             </div>
         </div>
     );

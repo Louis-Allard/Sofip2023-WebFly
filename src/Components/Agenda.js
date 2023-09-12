@@ -72,14 +72,14 @@ const Agenda = () => {
   const handleEditTitle = (e) => {
     setEditingEvent({
       ...editingEvent,
-      title: e.target.value,
+      TITLE: e.target.value,
     });
   };
 
   const handleEditDate = (e) => {
     setEditingEvent({
       ...editingEvent,
-      date: e.target.value,
+      DATE_CALENDRIER: e.target.value,
     });
   };
 
@@ -94,7 +94,7 @@ const Agenda = () => {
 
   return (
     <div className="container">
-      <Link to="/joint" className="btn btn-primary mb-3">
+      <Link to={`/join/${Math.floor(Math.random() * 1000)}`} className="btn btn-primary mb-3">
         <i className="bi bi-chevron-left"></i> Retour
       </Link>
       <h1>Agenda</h1>

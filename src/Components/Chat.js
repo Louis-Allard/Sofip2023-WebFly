@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import smiley from '../assets/icons/smiley.png';
+import { Link } from 'react-router-dom';
 import file from '../assets/icons/file.png';
 import calendar from '../assets/icons/calendar.png';
 import { useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ const Chat = ({ socket, nom, room }) => {
     const id = useSelector((state) => state.idUser);
     console.log(id);
     const [currentMessage, setCurrentMessage] = useState("");
-    const [messageList, setMessageList] = useState([])
+    const [messageList, setMessageList] = useState([]);
     const sendMessage = async (event) => {
         event.preventDefault();
         if (currentMessage !== "") {
@@ -33,8 +33,8 @@ const Chat = ({ socket, nom, room }) => {
         socket.on("receive_message", (data) => {
             setMessageList((list) => [...list, data]);
         });
-    }, [socket])
-
+    }, [socket]);
+    
     return (
         <div className='blocChat'>
             {/* HEADER */}
@@ -72,10 +72,9 @@ const Chat = ({ socket, nom, room }) => {
                             onChange={(event) => { setCurrentMessage(event.target.value); }}
                             onKeyDown={(event) => { event.key === "enter" && sendMessage(); }}
                             placeholder='Votre message ...' id="input" autoComplete="off" />
-                        <button onClick={sendMessage} className='btn btn-secondary ms-1'>Envoyer</button>
-                        <img className='ms-2' src={smiley} alt='smiley' />
-                        <img className='ms-2' src={file} alt='fichier' />
-                        <img className='ms-2' src={calendar} alt='calendrier' />
+                        <button onClick={sendMessage} className='btn btn-secondary ms-2'>Envoyer</button>
+                        <img className='ms-2' src={file} alt='upload file'/>                            
+                        <Link to="/agenda"><img className="ms-2" src={calendar} alt="calendrier" /></Link>
                     </form>
                 </div>
             </div>
