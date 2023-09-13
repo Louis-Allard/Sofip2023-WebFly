@@ -22,6 +22,7 @@ const FormLogin = () => {
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
     const [errMail, setErrMail] = useState(false);
+    const [send, setSend] = useState(false);
 
     useEffect(() => {
         if (connected) {
@@ -116,6 +117,7 @@ const FormLogin = () => {
 
                     const response3 = await axios.post(`http://localhost:3001/mail`, { mail2, token })
                     console.log(response3.data);
+                    setSend(true);
                 }
 
             } catch (error) {
@@ -157,6 +159,9 @@ const FormLogin = () => {
                                 <input type="email" className="form-control mb-3" id="inputmail" onChange={(e) => { setMail2(e.target.value) }} />
                                 {errMail && (
                                     <p className="text-danger">Adresse mail Inconnue</p>
+                                )}
+                                {send && (
+                                    <p className="text-success">Un email vous a été envoyé</p>
                                 )}
                                 <button type="submit" className="btn btn-secondary mb-2">envoyer</button>
                             </form>
