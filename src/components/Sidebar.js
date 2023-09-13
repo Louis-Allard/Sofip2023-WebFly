@@ -39,7 +39,8 @@ const Sidebar = (props) => {
 
   const setBoardClosed = () => {
       dispatch(setBoard(false));
-  };
+      disconnect()
+  };      
 
   return (
     <>
