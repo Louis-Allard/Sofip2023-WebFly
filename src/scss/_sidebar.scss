@@ -3,7 +3,7 @@
     font-size: 20px;
     width: 300px;
     flex-shrink: 0;
-    background-color: #171b21;
+    background-color: #241b14;
     display: grid;
     position: fixed;
     color: #F5F5F5;
@@ -13,6 +13,11 @@
         width: 100%;
         height: 50px;
         bottom: 0;
+    }
+
+    .logo img {
+        width: 150px;
+        height: 150px;
     }
 
     .sideleft {
@@ -28,7 +33,7 @@
         padding: 10px;
         margin-top: 10px;
         cursor: pointer;
-        
+
         @media screen and (max-width: 512px) {
             display: none;
         }
@@ -46,10 +51,10 @@
     }
 
     .overflow {
-        height: 50vh;
+        height: min(50vh, calc(100vh - 480px));
         margin-top: 10px;
-        overflow-y: scroll;
-        background-color: #171b21;
+        overflow-y: auto;
+        background-color: #241b14;
 
         @media screen and (max-height: 512px) {
             height: 24vh;
@@ -88,7 +93,7 @@
         padding-right: 73.5px;
         cursor: pointer;
     }
-        
+
     @media screen and (max-width: 512px) {
         display: none;
     }
@@ -108,7 +113,7 @@
 .navLinkA:hover,
 .navLinkOpened {
     font-weight: 600;
-    background-color: #7298d9;
+    background-color: #cd72d9;
     border-radius: 5px;
 }
 
@@ -117,7 +122,7 @@
     background-color: #d94272;
 }
 
-.responsive {  
+.responsive {
     display: none;
 
     @media screen and (max-width: 512px) {
@@ -126,8 +131,18 @@
         justify-content: space-around;
         filter: invert(1);
 
+        .logo img {
+            width: 48px;
+            height: 48px;
+            filter: invert(1);
+        }
+
         .red img {
             filter: brightness(1) invert(.75) sepia(1) hue-rotate(135deg) saturate(4);
+        }
+
+        .selected img {
+            filter: brightness(1) invert(.5) sepia(1) hue-rotate(195deg) saturate(64);
         }
     }
 }

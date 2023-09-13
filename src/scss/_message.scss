@@ -4,7 +4,7 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    background-color: #282c34;
+    background-color: #b22b7e;
     z-index: 3;
     
     @media screen and (max-width: 512px) {
@@ -32,7 +32,7 @@
 
     form {
         width: calc(100% - 32px);
-        background-color: #202632;
+        background-color: #0e0e0e;
         padding-left: 16px;
         padding-right: 16px;
         padding-bottom: 28px;
@@ -43,7 +43,7 @@
         align-items: center;
 
         textarea {
-            background-color: #171b21;
+            background-color: #241b14;
             width: 100%;
             min-height: 30px;
             border-radius: 12px;
@@ -76,7 +76,7 @@
             outline: none;
             border: none;
             border-radius: 15px;
-            background: linear-gradient(128deg, #4E81C2 60%, #FFF 100%);
+            background: linear-gradient(128deg, #e5d0d0 60%, #FFF 100%);
             color: white;
             font-weight: 700;
             cursor: pointer;
@@ -92,7 +92,7 @@
     }
 
     .disconnect-home-post {
-        background-color: #202632;
+        background-color: #0e0e0e;
         border-radius: 12px;
         padding: 1em;
         height: 15vh;
@@ -114,7 +114,7 @@
             .btn-connect {
                 border-radius: 15px;
                 gap: 10px;
-                background: linear-gradient(to right, #4E81C2 75%, #FFFFFF);
+                background: linear-gradient(to right, #b39999 75%, #FFFFFF);
                 color: white;
                 font-size: 14px;
                 line-height: 22px;
@@ -123,9 +123,9 @@
 
             .btn-signUp {
                 border-radius: 15px;
-                border-color: #4E81C2;
+                border-color: #e5d0d0;
                 gap: 10px;
-                background-color: #171B21;
+                background-color: #241b14;
                 color: white;
                 font-size: 14px;
                 line-height: 22px;

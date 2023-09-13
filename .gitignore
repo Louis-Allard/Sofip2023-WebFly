@@ -8,7 +8,8 @@
 
 # testing
 /coverage
-
+/backend/db/db.config.js
+/backend/knexfile.js
 # production
 /build
 
