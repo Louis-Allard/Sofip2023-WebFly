@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../scss/_login.scss';
 
 const LogIn = () => {
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -18,12 +19,10 @@ const LogIn = () => {
     axios
       .post("http://localhost:3001/users/login", values)
       .then((res) => {
-        console.log(res.data)
-        if (res.data.Status === "Success") {
-          navigate(`/dashboard/${res.data.id}`);
+        if (res.data === "Success") {
+          setIdUser(res.data.id)
+          navigate(`/dashboard/${iduser}`);
           window.location.reload();
-          
-          
         } else {
           console.log(res.data);
           alert(res.data.error);

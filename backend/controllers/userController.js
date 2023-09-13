@@ -194,7 +194,7 @@ exports.findById = (req, res) => {
         res.send(err);
       } else {
         res.cookie("token", data.Token);
-        res.send(data);
+        res.send(data.Status);
       }
     });
   };
