@@ -1,12 +1,12 @@
 import React from 'react';
+import { useParams } from 'react-router-dom'
 import Sidebar from '../components/Sidebar';
-import logo from '../img/logo.jpg';
 
 const Dashboard = () => {
-  return (
-    <>
-      <Sidebar />
-    </>
+  const { iduser } = useParams()
+
+    return (
+      <Sidebar iduser={iduser}/>
   );
 };
 

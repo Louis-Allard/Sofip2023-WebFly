@@ -12,6 +12,10 @@ import user from '../img/person_FILL0_wght400_GRAD0_opsz48.png';
 import message from '../img/mail_FILL0_wght400_GRAD0_opsz48.png';
 import logout from '../img/logout_FILL0_wght400_GRAD0_opsz48.png';
 
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:3001");
+
 const Sidebar = (props) => {
   const id = props.id;
   const dispatch = useDispatch();
@@ -34,11 +38,20 @@ const Sidebar = (props) => {
   const setBoardOpen = () => {
     if (url === 'http://localhost:3000/dashboard') {
       dispatch(setBoard(true));
+      join()
     }
   };
+  const join = () => {
+      socket.emit('join_conversation', props.iduser);
+  }
 
+  const disconnect = () =>{
+    socket.emit("disconnect")
+  }
   const setBoardClosed = () => {
       dispatch(setBoard(false));
+      disconnect()
+    }
   };
 
   return (
@@ -66,7 +79,7 @@ const Sidebar = (props) => {
           <Link className="red" to={`/logout`}><img src={logout} alt="logout" /></Link>
         </div>
       </div>
-      {display && <MessageBoard />}
+      {display && <MessageBoard iduser={props.iduser}/>}
     </>
   );
 }
