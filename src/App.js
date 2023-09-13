@@ -15,7 +15,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" Component={LogIn} />
-          <Route path="/dashboard/:iduser" Component={Dashboard} />
+          <Route path="/dashboard" Component={Dashboard} />
           <Route path="/register_user" Component={PersonRegister} />
           <Route path="/register_company" Component={CompanyRegister} />
           <Route path="/edit_user" Component={PersonEdit} />
