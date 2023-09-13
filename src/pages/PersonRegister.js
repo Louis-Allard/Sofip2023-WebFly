@@ -41,18 +41,18 @@ const PersonRegister = () => {
 
     // Insérer la valeur dans la base de données ici
     const data = {
-      v1: lastname,
-      v2: firstname,
-      v3: password,
-      v4: passwordConfirm,
-      v5: email,
+      lastname: lastname,
+      firstname: firstname,
+      password: password,
+      email: email,
+      isCM: false
       // v6: selectedValue
     };
     console.log(data);
 
     if (data) {
       // Envoyer une requête POST à votre endpoint d'insertion
-      axios.post('http://localhost:3001/signup', data)
+      axios.post('http://localhost:3001/users/user', data)
         .then(response => {
           console.log('Insertion réussie');
           setPassword('');
