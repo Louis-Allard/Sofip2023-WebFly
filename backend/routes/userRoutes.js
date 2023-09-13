@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 router.get('/all', userController.findAll);
 router.get('/user/:id', userController.findById);
-router.post('/user/', userController.create);
+router.post('/user', userController.create);
 router.put('/user/:id', userController.update);
 router.put('/user/info/:id', userController.updateInfo);
 router.put('/user/pass/:id', userController.updatePass);
@@ -18,7 +18,7 @@ const verifyUser = (req, res, next) => {
     if (!token) {
       return res.json({ Error: "You are not authentificated" });
     } else {
-      jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      jwt.verify(token, "secret", (err, decoded) => {
         if (err) {
           return res.json({ Error: "Token error" });
         } else {
