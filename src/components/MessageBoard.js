@@ -3,10 +3,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import DeleteModal from './DeleteModal';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom'
 import { setModal } from '../reducers';
 import '../scss/_messageboard.scss';
 
 const MessageBoard = ({socket, username, conversation}) => {
+    const { iduser } = useParams()
     const [data, setData] = useState(null);
     const [currentMessage, setCurrentMessage] = useState();
     const [messageList, setMessageList] = useState([]);
