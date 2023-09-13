@@ -177,7 +177,6 @@ User.delete = (id, result) => {
         return;
       }
       if (res.length > 0) {
-        const email = res[0].email;
         const id = res[0].id;
         bcrypt.compare(password, res[0].password, (err, res) => {
           if (err) {
@@ -185,14 +184,12 @@ User.delete = (id, result) => {
             return;
           }
           if (res) {
-            const token = jwt.sign(
-              { email, id },
-              process.env.JWT_SECRET,
-              {
-                expiresIn: "1d",
-              }
-            );
-            result(null, { Status: "Success", Token: token });
+            const status = {
+              Status: "Success",
+              id: id,
+            }
+            console.log(status)
+            result(null, status);
             return;
           } else {
             result({ error: "Password Incorrect" }, null);
